@@ -1,0 +1,32 @@
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_CREATE_SESSION due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_DESTROY_SESSION due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_LINK due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_UNLINK due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_SCHED_REQ due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_FLUSH_REQ due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_SYNC_MODE due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_ALLOC_BUF due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_MAP_BUF due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_RELEASE_BUF due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_LINK_CONTROL due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_LINK_V2 due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported syscall: ioctl$CAM_REQ_MGR_REQUEST_DUMP due to missing const VIDIOC_CAM_CONTROL
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_ALLOC_BUF, cam_mem_mgr_alloc_cmd] due to missing const CAM_REQ_MGR_ALLOC_BUF
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_CREATE_SESSION, cam_req_mgr_session_info__for_create] due to missing const CAM_REQ_MGR_CREATE_SESSION
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_DESTROY_SESSION, cam_req_mgr_session_info__for_destroy] due to missing const CAM_REQ_MGR_DESTROY_SESSION
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_FLUSH_REQ, cam_req_mgr_flush_info] due to missing const CAM_REQ_MGR_FLUSH_REQ
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_LINK, cam_req_mgr_ver_info] due to missing const CAM_REQ_MGR_LINK
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_LINK_CONTROL, cam_req_mgr_link_control] due to missing const CAM_REQ_MGR_LINK_CONTROL
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_LINK_V2, cam_req_mgr_ver_info] due to missing const CAM_REQ_MGR_LINK_V2
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_MAP_BUF, cam_mem_mgr_map_cmd] due to missing const CAM_REQ_MGR_MAP_BUF
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_RELEASE_BUF, cam_mem_mgr_release_cmd] due to missing const CAM_REQ_MGR_RELEASE_BUF
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_REQUEST_DUMP, cam_dump_req_cmd] due to missing const CAM_REQ_MGR_REQUEST_DUMP
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_SCHED_REQ, cam_req_mgr_sched_request] due to missing const CAM_REQ_MGR_SCHED_REQ
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_SYNC_MODE, cam_req_mgr_sync_mode] due to missing const CAM_REQ_MGR_SYNC_MODE
+compiler: unsupported struct: cam_control[CAM_REQ_MGR_UNLINK, cam_req_mgr_unlink_info] due to missing const CAM_REQ_MGR_UNLINK
+compiler: unsupported struct: cam_req_mgr_link_info due to missing const CAM_REQ_MGR_MAX_HANDLES
+compiler: unsupported struct: cam_req_mgr_link_info_v2 due to missing const CAM_REQ_MGR_MAX_HANDLES_V2
+compiler: unsupported struct: cam_req_mgr_sync_mode due to missing const MAX_LINKS_PER_SESSION
+compiler: unsupported struct: cam_mem_mgr_alloc_cmd due to missing const CAM_MEM_MMU_MAX_HANDLE
+compiler: unsupported struct: cam_mem_mgr_map_cmd due to missing const CAM_MEM_MMU_MAX_HANDLE
+compiler: unsupported struct: cam_req_mgr_link_control due to missing const MAX_LINKS_PER_SESSION

@@ -1,3 +1,11 @@
 no-such-struct: ip6t_entry_underflow
 no-such-struct: ip6t_entry_underflow_matches
 no-such-struct: ip6t_ip6_or_uncond
+no-such-struct: ip6t_rt
+no-such-struct: ip6t_mh
+no-such-struct: ip6t_opts
+no-such-struct: ip6t_frag
+no-such-struct: ip6t_ah
+no-such-struct: ip6t_srh
+no-such-struct: ip6t_srh1
+no-such-struct: ip6t_npt_tginfo

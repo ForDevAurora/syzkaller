@@ -1,1 +1,9 @@
-bad-field-number: media_entity_desc: syz=1 kernel=10
+no-such-struct: media_entity_desc
+no-such-struct: media_links_enum
+no-such-struct: media_link_desc
+no-such-struct: media_pad_desc
+no-such-struct: media_v2_topology
+no-such-struct: media_v2_entity
+no-such-struct: media_v2_interface
+no-such-struct: media_v2_pad
+no-such-struct: media_v2_link

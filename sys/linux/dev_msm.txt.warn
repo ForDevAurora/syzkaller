@@ -1,6 +1,10 @@
 no-such-struct: drm_msm_gem_new
 no-such-struct: drm_msm_gem_info
-no-such-struct: drm_msm_param
+no-such-struct: drm_msm_param$DRM_IOCTL_MSM_GET_PARAM
+no-such-struct: drm_msm_param$DRM_IOCTL_MSM_SET_PARAM
+no-such-struct: drm_msm_param_set_union
+no-such-struct: drm_msm_param_set_imm
+no-such-struct: drm_msm_param_set_ptr
 no-such-struct: drm_msm_timespec
 no-such-struct: drm_msm_gem_cpu_prep
 no-such-struct: drm_msm_gem_cpu_fini

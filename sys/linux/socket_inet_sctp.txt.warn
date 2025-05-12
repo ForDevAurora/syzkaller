@@ -3,9 +3,27 @@ no-such-struct: cmsghdr_sctp_init
 no-such-struct: cmsghdr_sctp_sndrcv
 no-such-struct: cmsghdr_sctp_sndinfo
 no-such-struct: cmsghdr_sctp_prinfo
+no-such-struct: sctp_prinfo
 no-such-struct: cmsghdr_sctp_authinfo
+no-such-struct: sctp_authinfo
 no-such-struct: cmsghdr_sctp_dstaddrv4
 no-such-struct: cmsghdr_sctp_dstaddrv6
+no-such-struct: sctp_prim
 no-such-struct: sockaddr_storage_sctp
-bad-field-number: sctp_assoc_stats: syz=3 kernel=17
-bad-field-size: sctp_assoc_stats.status/sas_maxrto: syz=120 kernel=8
+no-such-struct: sctp_setadaptation
+no-such-struct: sctp_event_subscribe
+no-such-struct: sctp_assoc_value
+no-such-struct: sctp_stream_value
+no-such-struct: sctp_status
+no-such-struct: sctp_paddrinfo
+no-such-struct: sctp_sack_info
+no-such-struct: sctp_authchunk
+no-such-struct: sctp_authkeyid
+no-such-struct: sctp_paddrthlds
+no-such-struct: sctp_sndinfo
+no-such-struct: sctp_peeloff_arg_t
+no-such-struct: sctp_getaddrs_old
+no-such-struct: sctp_assoc_stats
+no-such-struct: sctp_default_prinfo
+no-such-struct: sctp_prstatus
+no-such-struct: sctp_add_streams

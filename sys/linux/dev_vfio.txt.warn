@@ -1,2 +1,4 @@
-no-such-struct: vfio_iommu_type1_info [arm]
-no-such-struct: vfio_iommu_type1_dma_map [arm]
+no-such-struct: vfio_iommu_type1_dma_map
+no-such-struct: vfio_info_cap_header
+no-such-struct: vfio_iova_range
+no-such-struct: vfio_iommu_type1_info_dma_avail

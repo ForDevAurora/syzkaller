@@ -1,2 +1,6 @@
+no-such-struct: sockaddr_rose
+no-such-struct: full_sockaddr_rose
+no-such-struct: rose_address
 no-such-struct: rose_address_remote
 no-such-struct: rose_address_dev
+no-such-struct: rose_route_struct

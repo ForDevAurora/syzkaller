@@ -1,4 +1,9 @@
 no-such-struct: ipt_entry_underflow
 no-such-struct: ipt_entry_underflow_matches
 no-such-struct: ipt_ip_or_uncond
+no-such-struct: ipt_ah
 no-such-struct: xt_osf_info
+no-such-struct: ipt_ttl_info
+no-such-struct: ipt_ECN_info
+no-such-struct: ipt_TTL_info
+no-such-struct: ipt_clusterip_tgt_info

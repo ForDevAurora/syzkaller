@@ -1,0 +1,3 @@
+no-such-netlink-policy: gtp_genl_policy
+no-such-struct: gtp_policy_fd
+no-such-netlink-policy: gtp_policy

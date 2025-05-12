@@ -3,3 +3,4 @@ no-such-struct: tcp_repair_opt_mss
 no-such-struct: tcp_repair_opt_window
 no-such-struct: tcp_repair_opt_sack_perm
 no-such-struct: tcp_repair_opt_timestamp
+no-such-struct: tls12_crypto_info_aes_ccm_128

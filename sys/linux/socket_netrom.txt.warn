@@ -1,1 +1,2 @@
 no-such-struct: address_netrom_dev
+no-such-struct: nr_route_struct

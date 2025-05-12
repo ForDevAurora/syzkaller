@@ -1,3 +1,4 @@
+no-such-struct: sockaddr_caif
 no-such-struct: sockaddr_caif_at
 no-such-struct: sockaddr_caif_util
 no-such-struct: sockaddr_caif_dgm

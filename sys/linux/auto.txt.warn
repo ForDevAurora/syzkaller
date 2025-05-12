@@ -1,0 +1,610 @@
+no-such-struct: auto_union
+no-such-struct: auto_aligner
+compiler: unsupported syscall: _llseek due to missing const __NR__llseek
+compiler: unsupported syscall: _newselect due to missing const __NR__newselect
+compiler: unsupported syscall: arm_sync_file_range due to missing const __NR_arm_sync_file_range
+compiler: unsupported syscall: chown32 due to missing const __NR_chown32
+compiler: unsupported syscall: clock_adjtime64 due to missing const __NR_clock_adjtime64
+compiler: unsupported syscall: clock_getres_time64 due to missing const __NR_clock_getres_time64
+compiler: unsupported syscall: clock_gettime64 due to missing const __NR_clock_gettime64
+compiler: unsupported syscall: clock_nanosleep_time64 due to missing const __NR_clock_nanosleep_time64
+compiler: unsupported syscall: clock_settime64 due to missing const __NR_clock_settime64
+compiler: unsupported syscall: fadvise64_64 due to missing const __NR_fadvise64_64
+compiler: unsupported syscall: fchown32 due to missing const __NR_fchown32
+compiler: unsupported syscall: fstatfs64 due to missing const __NR_fstatfs64
+compiler: unsupported syscall: ftruncate64 due to missing const __NR_ftruncate64
+compiler: unsupported syscall: futex_time64 due to missing const __NR_futex_time64
+compiler: unsupported syscall: getgroups32 due to missing const __NR_getgroups32
+compiler: unsupported syscall: getresgid32 due to missing const __NR_getresgid32
+compiler: unsupported syscall: getresuid32 due to missing const __NR_getresuid32
+compiler: unsupported syscall: io_pgetevents_time64 due to missing const __NR_io_pgetevents_time64
+compiler: unsupported syscall: lchown32 due to missing const __NR_lchown32
+compiler: unsupported syscall: mmap2 due to missing const __NR_mmap2
+compiler: unsupported syscall: mq_timedreceive_time64 due to missing const __NR_mq_timedreceive_time64
+compiler: unsupported syscall: mq_timedsend_time64 due to missing const __NR_mq_timedsend_time64
+compiler: unsupported syscall: nice due to missing const __NR_nice
+compiler: unsupported syscall: oldfstat due to missing const __NR_oldfstat
+compiler: unsupported syscall: oldlstat due to missing const __NR_oldlstat
+compiler: unsupported syscall: oldolduname due to missing const __NR_oldolduname
+compiler: unsupported syscall: oldstat due to missing const __NR_oldstat
+compiler: unsupported syscall: olduname due to missing const __NR_olduname
+compiler: unsupported syscall: ppoll_time64 due to missing const __NR_ppoll_time64
+compiler: unsupported syscall: pselect6_time64 due to missing const __NR_pselect6_time64
+compiler: unsupported syscall: readdir due to missing const __NR_readdir
+compiler: unsupported syscall: recv due to missing const __NR_recv
+compiler: unsupported syscall: recvmmsg_time64 due to missing const __NR_recvmmsg_time64
+compiler: unsupported syscall: rt_sigtimedwait_time64 due to missing const __NR_rt_sigtimedwait_time64
+compiler: unsupported syscall: sched_rr_get_interval_time64 due to missing const __NR_sched_rr_get_interval_time64
+compiler: unsupported syscall: semtimedop_time64 due to missing const __NR_semtimedop_time64
+compiler: unsupported syscall: send due to missing const __NR_send
+compiler: unsupported syscall: sendfile64 due to missing const __NR_sendfile64
+compiler: unsupported syscall: setfsgid32 due to missing const __NR_setfsgid32
+compiler: unsupported syscall: setfsuid32 due to missing const __NR_setfsuid32
+compiler: unsupported syscall: setgid32 due to missing const __NR_setgid32
+compiler: unsupported syscall: setgroups32 due to missing const __NR_setgroups32
+compiler: unsupported syscall: setregid32 due to missing const __NR_setregid32
+compiler: unsupported syscall: setresgid32 due to missing const __NR_setresgid32
+compiler: unsupported syscall: setresuid32 due to missing const __NR_setresuid32
+compiler: unsupported syscall: setreuid32 due to missing const __NR_setreuid32
+compiler: unsupported syscall: setuid32 due to missing const __NR_setuid32
+compiler: unsupported syscall: signal due to missing const __NR_signal
+compiler: unsupported syscall: sigpending due to missing const __NR_sigpending
+compiler: unsupported syscall: sigprocmask due to missing const __NR_sigprocmask
+compiler: unsupported syscall: sigsuspend due to missing const __NR_sigsuspend
+compiler: unsupported syscall: ssetmask due to missing const __NR_ssetmask
+compiler: unsupported syscall: statfs64 due to missing const __NR_statfs64
+compiler: unsupported syscall: stime due to missing const __NR_stime
+compiler: unsupported syscall: sync_file_range2 due to missing const __NR_sync_file_range2
+compiler: unsupported syscall: timer_gettime64 due to missing const __NR_timer_gettime64
+compiler: unsupported syscall: timer_settime64 due to missing const __NR_timer_settime64
+compiler: unsupported syscall: timerfd_gettime64 due to missing const __NR_timerfd_gettime64
+compiler: unsupported syscall: timerfd_settime64 due to missing const __NR_timerfd_settime64
+compiler: unsupported syscall: truncate64 due to missing const __NR_truncate64
+compiler: unsupported syscall: ugetrlimit due to missing const __NR_ugetrlimit
+compiler: unsupported syscall: umount due to missing const __NR_umount
+compiler: unsupported syscall: utimensat_time64 due to missing const __NR_utimensat_time64
+compiler: unsupported syscall: waitpid due to missing const __NR_waitpid
+no-such-netlink-policy: ieee802154_policy_nl802154$auto
+no-such-netlink-policy: hsr_genl_policy_hsr_netlink$auto
+no-such-netlink-policy: ioam6_genl_policy_addns_ioam6$auto
+no-such-netlink-policy: ioam6_genl_policy_delns_ioam6$auto
+no-such-netlink-policy: ioam6_genl_policy_addsc_ioam6$auto
+no-such-netlink-policy: ioam6_genl_policy_delsc_ioam6$auto
+no-such-netlink-policy: ioam6_genl_policy_ns_sc_ioam6$auto
+no-such-netlink-policy: ip_vs_cmd_policy_ip_vs_ctl$auto
+no-such-netlink-policy: hwsim_genl_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_pmsr_capa_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_pmsr_peers_result_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_pmsr_capa_type_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_pmsr_peer_result_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_ftm_capa_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_pmsr_resp_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_pmsr_resp_type_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_ftm_result_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_rate_info_policy_mac80211_hwsim$auto
+no-such-netlink-policy: hwsim_genl_policy_mac802154_hwsim$auto
+no-such-netlink-policy: ncsi_genl_policy_ncsi_netlink$auto
+no-such-netlink-policy: net_dm_nl_policy_drop_monitor$auto
+no-such-netlink-policy: calipso_genl_policy_netlabel_calipso$auto
+no-such-netlink-policy: netlbl_cipsov4_genl_policy_netlabel_cipso_v4$auto
+no-such-netlink-policy: netlbl_mgmt_genl_policy_netlabel_mgmt$auto
+no-such-netlink-policy: netlbl_unlabel_genl_policy_netlabel_unlabeled$auto
+no-such-netlink-policy: seg6_genl_policy_seg6$auto
+no-such-netlink-policy: smc_gen_ueid_policy_smc_netlink$auto
+no-such-netlink-policy: smc_pnet_policy_smc_pnet$auto
+no-such-netlink-policy: taskstats_cmd_get_policy_taskstats$auto
+no-such-netlink-policy: cgroupstats_cmd_get_policy_taskstats$auto
+no-such-netlink-policy: tipc_nl_policy_netlink$auto
+no-such-netlink-policy: batadv_netlink_policy_netlink$auto
+no-such-netlink-policy: cifs_genl_policy_netlink$auto
+no-such-netlink-policy: ethnl_strset_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_linkinfo_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_linkinfo_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_linkmodes_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_linkmodes_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_linkstate_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_debug_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_debug_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_wol_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_wol_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_features_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_features_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_privflags_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_privflags_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_rings_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_rings_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_channels_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_channels_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_coalesce_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_coalesce_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_pause_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_pause_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_eee_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_eee_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_tsinfo_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_cable_test_act_policy_netlink$auto
+no-such-netlink-policy: ethnl_cable_test_tdr_act_policy_netlink$auto
+no-such-netlink-policy: ethnl_tunnel_info_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_fec_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_fec_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_module_eeprom_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_stats_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_phc_vclocks_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_module_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_module_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_pse_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_pse_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_rss_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_plca_get_cfg_policy_netlink$auto
+no-such-netlink-policy: ethnl_plca_set_cfg_policy_netlink$auto
+no-such-netlink-policy: ethnl_plca_get_status_policy_netlink$auto
+no-such-netlink-policy: ethnl_mm_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_mm_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_module_fw_flash_act_policy_netlink$auto
+no-such-netlink-policy: ethnl_phy_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_tsconfig_get_policy_netlink$auto
+no-such-netlink-policy: ethnl_tsconfig_set_policy_netlink$auto
+no-such-netlink-policy: ethnl_header_policy_phy_netlink$auto
+no-such-netlink-policy: ethnl_header_policy_netlink$auto
+no-such-netlink-policy: ethnl_header_policy_stats_netlink$auto
+no-such-netlink-policy: coalesce_profile_policy_coalesce$auto
+no-such-netlink-policy: ethnl_ts_hwtst_prov_policy_ts$auto
+no-such-netlink-policy: coalesce_irq_moderation_policy_coalesce$auto
+no-such-netlink-policy: gtp_genl_policy_gtp$auto
+no-such-netlink-policy: handshake_accept_nl_policy_genl$auto
+no-such-netlink-policy: handshake_done_nl_policy_genl$auto
+no-such-netlink-policy: ila_nl_policy_ila_main$auto
+no-such-netlink-policy: l2tp_nl_policy_l2tp_netlink$auto
+no-such-netlink-policy: macsec_genl_policy_macsec$auto
+no-such-netlink-policy: nbd_attr_policy_nbd$auto
+no-such-netlink-policy: net_shaper_get_do_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_get_dump_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_set_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_delete_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_group_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_cap_get_do_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_cap_get_dump_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_handle_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: net_shaper_leaf_info_nl_policy_shaper_nl_gen$auto
+no-such-netlink-policy: netdev_dev_get_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_page_pool_get_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_queue_get_do_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_queue_get_dump_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_napi_get_do_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_napi_get_dump_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_qstats_get_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_bind_rx_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_napi_set_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: netdev_queue_id_nl_policy_netdev_genl_gen$auto
+no-such-netlink-policy: nfc_genl_policy_netlink$auto
+no-such-netlink-policy: nfsd_threads_set_nl_policy_netlink$auto
+no-such-netlink-policy: nfsd_version_set_nl_policy_netlink$auto
+no-such-netlink-policy: nfsd_listener_set_nl_policy_netlink$auto
+no-such-netlink-policy: nfsd_pool_mode_set_nl_policy_netlink$auto
+no-such-netlink-policy: nfsd_version_nl_policy_netlink$auto
+no-such-netlink-policy: nfsd_sock_nl_policy_netlink$auto
+no-such-netlink-policy: nl80211_policy_nl80211$auto
+no-such-netlink-policy: nl80211_sta_wme_policy_nl80211$auto
+no-such-netlink-policy: nl80211_ftm_responder_policy_nl80211$auto
+no-such-netlink-policy: nl80211_pmsr_attr_policy_nl80211$auto
+no-such-netlink-policy: he_obss_pd_policy_nl80211$auto
+no-such-netlink-policy: he_bss_color_policy_nl80211$auto
+no-such-netlink-policy: nl80211_tid_config_attr_policy_nl80211$auto
+no-such-netlink-policy: nl80211_fils_discovery_policy_nl80211$auto
+no-such-netlink-policy: nl80211_unsol_bcast_probe_resp_policy_nl80211$auto
+no-such-netlink-policy: sar_policy_nl80211$auto
+no-such-netlink-policy: nl80211_mbssid_config_policy_nl80211$auto
+no-such-netlink-policy: nl80211_pmsr_peer_attr_policy_nl80211$auto
+no-such-netlink-policy: nl80211_txattr_policy_nl80211$auto
+no-such-netlink-policy: sar_specs_policy_nl80211$auto
+no-such-netlink-policy: nl80211_pmsr_req_attr_policy_nl80211$auto
+no-such-netlink-policy: nl80211_pmsr_req_data_policy_nl80211$auto
+no-such-netlink-policy: nl80211_pmsr_ftm_req_attr_policy_nl80211$auto
+no-such-netlink-policy: nl802154_policy_nl802154$auto
+no-such-netlink-policy: ctrl_policy_family_genetlink$auto
+no-such-netlink-policy: ctrl_policy_policy_genetlink$auto
+no-such-netlink-policy: ct_limit_policy_conntrack$auto
+no-such-netlink-policy: datapath_policy_datapath$auto
+no-such-netlink-policy: flow_policy_datapath$auto
+no-such-netlink-policy: meter_policy_meter$auto
+no-such-netlink-policy: packet_policy_datapath$auto
+no-such-netlink-policy: vport_policy_datapath$auto
+no-such-netlink-policy: tcp_metrics_nl_policy_tcp_metrics$auto
+no-such-netlink-policy: thermal_genl_policy_thermal_netlink$auto
+no-such-netlink-policy: vdpa_nl_policy_vdpa$auto
+no-such-netlink-policy: device_policy_netlink$auto
+bad-field-number: __kernel_timex$auto: syz=34 kernel=20
+bad-field-offset: __kernel_timex$auto.__kernel_timex_1/offset: syz=4 kernel=8
+bad-field-offset: __kernel_timex$auto.offset/freq: syz=8 kernel=16
+bad-field-offset: __kernel_timex$auto.freq/maxerror: syz=16 kernel=24
+bad-field-offset: __kernel_timex$auto.maxerror/esterror: syz=24 kernel=32
+bad-field-offset: __kernel_timex$auto.esterror/status: syz=32 kernel=40
+bad-field-size: __kernel_timex$auto.esterror/status: syz=8 kernel=4
+bad-field-offset: __kernel_timex$auto.status/constant: syz=40 kernel=48
+bad-field-size: __kernel_timex$auto.status/constant: syz=4 kernel=8
+bad-field-offset: __kernel_timex$auto.__kernel_timex_7/precision: syz=44 kernel=56
+bad-field-size: __kernel_timex$auto.__kernel_timex_7/precision: syz=4 kernel=8
+bad-field-offset: __kernel_timex$auto.constant/tolerance: syz=48 kernel=64
+bad-field-offset: __kernel_timex$auto.precision/time: syz=56 kernel=72
+bad-field-size: __kernel_timex$auto.precision/time: syz=8 kernel=16
+bad-field-offset: __kernel_timex$auto.tolerance/tick: syz=64 kernel=88
+bad-field-offset: __kernel_timex$auto.time/ppsfreq: syz=72 kernel=96
+bad-field-size: __kernel_timex$auto.time/ppsfreq: syz=16 kernel=8
+bad-field-offset: __kernel_timex$auto.tick/jitter: syz=88 kernel=104
+bad-field-offset: __kernel_timex$auto.ppsfreq/shift: syz=96 kernel=112
+bad-field-size: __kernel_timex$auto.ppsfreq/shift: syz=8 kernel=4
+bad-field-offset: __kernel_timex$auto.jitter/stabil: syz=104 kernel=120
+bad-field-offset: __kernel_timex$auto.shift/jitcnt: syz=112 kernel=128
+bad-field-size: __kernel_timex$auto.shift/jitcnt: syz=4 kernel=8
+bad-field-offset: __kernel_timex$auto.__kernel_timex_16/calcnt: syz=116 kernel=136
+bad-field-size: __kernel_timex$auto.__kernel_timex_16/calcnt: syz=4 kernel=8
+bad-field-offset: __kernel_timex$auto.stabil/errcnt: syz=120 kernel=144
+bad-field-offset: __kernel_timex$auto.jitcnt/stbcnt: syz=128 kernel=152
+bad-field-offset: __kernel_timex$auto.calcnt/tai: syz=136 kernel=160
+bad-field-size: __kernel_timex$auto.calcnt/tai: syz=8 kernel=4
+no-such-struct: __sifields$auto
+no-such-struct: __sifields__kill$auto
+no-such-struct: __sifields__rt$auto
+no-such-struct: __sifields__sigchld$auto
+no-such-struct: __sifields__sigfault$auto
+no-such-struct: __sifields__sigfault_1$auto
+no-such-struct: __sifields__sigfault_1__addr_bnd$auto
+no-such-struct: __sifields__sigfault_1__addr_pkey$auto
+no-such-struct: __sifields__sigfault_1__perf$auto
+no-such-struct: __sifields__sigpoll$auto
+no-such-struct: __sifields__sigsys$auto
+no-such-struct: __sifields__timer$auto
+no-such-struct: adf_user_cfg_ctl_data$auto
+no-such-struct: adf_user_cfg_ctl_data_0$auto
+no-such-struct: adf_user_cfg_key_val$auto
+no-such-struct: adf_user_cfg_key_val_2$auto
+no-such-struct: adf_user_cfg_section$auto
+no-such-struct: adf_user_cfg_section_1$auto
+no-such-struct: adf_user_cfg_section_2$auto
+no-such-struct: bch_ioctl_data$auto
+no-such-struct: bch_ioctl_data_6$auto
+no-such-struct: bch_ioctl_data_6_2$auto
+no-such-struct: bch_ioctl_data_6_migrate$auto
+no-such-struct: bch_ioctl_data_6_scrub$auto
+no-such-struct: bch_ioctl_dev_usage$auto
+no-such-struct: bch_ioctl_dev_usage_type$auto
+no-such-struct: bch_ioctl_disk$auto
+no-such-struct: bch_ioctl_disk_get_idx$auto
+no-such-struct: bch_ioctl_disk_resize$auto
+no-such-struct: bch_ioctl_disk_resize_journal$auto
+no-such-struct: bch_ioctl_disk_set_state$auto
+no-such-struct: bch_ioctl_fsck_online$auto
+no-such-struct: bch_ioctl_query_uuid$auto
+no-such-struct: bch_ioctl_read_super$auto
+no-such-struct: binderfs_device$auto
+no-such-struct: bkey$auto
+no-such-struct: bkey_i$auto
+no-such-struct: bkey_i_accounting$auto
+no-such-struct: bkey_i_accounting_0$auto
+no-such-struct: blk_crypto_generate_key_arg$auto
+no-such-struct: blk_crypto_import_key_arg$auto
+no-such-struct: blk_crypto_prepare_key_arg$auto
+no-such-struct: blk_zone_range$auto
+no-such-struct: bpf_attr$auto
+no-such-struct: bpf_attr_0$auto
+no-such-struct: bpf_attr_1$auto
+no-such-struct: bpf_attr_11$auto
+no-such-struct: bpf_attr_1_2$auto
+no-such-struct: bpf_attr_3$auto
+no-such-struct: bpf_attr_3_20$auto
+no-such-struct: bpf_attr_4$auto
+no-such-struct: bpf_attr_5$auto
+no-such-struct: bpf_attr_5_0$auto
+no-such-struct: bpf_attr_5_5$auto
+no-such-struct: bpf_attr_7$auto
+no-such-struct: bpf_attr_7_0$auto
+no-such-struct: bpf_attr_batch$auto
+no-such-struct: bpf_attr_enable_stats$auto
+no-such-struct: bpf_attr_info$auto
+no-such-struct: bpf_attr_iter_create$auto
+no-such-struct: bpf_attr_link_create$auto
+no-such-struct: bpf_attr_link_create_0$auto
+no-such-struct: bpf_attr_link_create_1$auto
+no-such-struct: bpf_attr_link_create_4$auto
+no-such-struct: bpf_attr_link_create_4_1$auto
+no-such-struct: bpf_attr_link_create_4_kprobe_multi$auto
+no-such-struct: bpf_attr_link_create_4_netfilter$auto
+no-such-struct: bpf_attr_link_create_4_netkit$auto
+no-such-struct: bpf_attr_link_create_4_netkit_0$auto
+no-such-struct: bpf_attr_link_create_4_perf_event$auto
+no-such-struct: bpf_attr_link_create_4_tcx$auto
+no-such-struct: bpf_attr_link_create_4_tcx_0$auto
+no-such-struct: bpf_attr_link_create_4_tracing$auto
+no-such-struct: bpf_attr_link_create_4_uprobe_multi$auto
+no-such-struct: bpf_attr_link_detach$auto
+no-such-struct: bpf_attr_link_update$auto
+no-such-struct: bpf_attr_link_update_1$auto
+no-such-struct: bpf_attr_link_update_3$auto
+no-such-struct: bpf_attr_prog_bind_map$auto
+no-such-struct: bpf_attr_query$auto
+no-such-struct: bpf_attr_query_0$auto
+no-such-struct: bpf_attr_query_5$auto
+no-such-struct: bpf_attr_raw_tracepoint$auto
+no-such-struct: bpf_attr_task_fd_query$auto
+no-such-struct: bpf_attr_test$auto
+no-such-struct: bpf_attr_token_create$auto
+no-such-struct: bpos$auto
+no-such-struct: btrfs_balance_args$auto
+no-such-struct: btrfs_balance_args_1$auto
+no-such-struct: btrfs_balance_args_1_1$auto
+no-such-struct: btrfs_balance_args_9$auto
+no-such-struct: btrfs_balance_args_9_1$auto
+no-such-struct: btrfs_balance_progress$auto
+no-such-struct: btrfs_ioctl_balance_args$auto
+no-such-struct: btrfs_ioctl_defrag_range_args$auto
+no-such-struct: btrfs_ioctl_defrag_range_args_4$auto
+no-such-struct: btrfs_ioctl_defrag_range_args_4_compress$auto
+no-such-struct: btrfs_ioctl_dev_info_args$auto
+no-such-struct: btrfs_ioctl_dev_replace_args$auto
+no-such-struct: btrfs_ioctl_dev_replace_args_2$auto
+no-such-struct: btrfs_ioctl_dev_replace_start_params$auto
+no-such-struct: btrfs_ioctl_dev_replace_status_params$auto
+no-such-struct: btrfs_ioctl_encoded_io_args$auto
+no-such-struct: btrfs_ioctl_encoded_io_args_32$auto
+no-such-struct: btrfs_ioctl_feature_flags$auto
+no-such-struct: btrfs_ioctl_fs_info_args$auto
+no-such-struct: btrfs_ioctl_get_dev_stats$auto
+no-such-struct: btrfs_ioctl_get_subvol_info_args$auto
+no-such-struct: btrfs_ioctl_get_subvol_rootref_args$auto
+no-such-struct: btrfs_ioctl_get_subvol_rootref_args_rootref$auto
+no-such-struct: btrfs_ioctl_ino_lookup_args$auto
+no-such-struct: btrfs_ioctl_ino_lookup_user_args$auto
+no-such-struct: btrfs_ioctl_ino_path_args$auto
+no-such-struct: btrfs_ioctl_logical_ino_args$auto
+no-such-struct: btrfs_ioctl_qgroup_assign_args$auto
+no-such-struct: btrfs_ioctl_qgroup_create_args$auto
+no-such-struct: btrfs_ioctl_qgroup_limit_args$auto
+no-such-struct: btrfs_ioctl_quota_ctl_args$auto
+no-such-struct: btrfs_ioctl_quota_rescan_args$auto
+no-such-struct: btrfs_ioctl_received_subvol_args$auto
+no-such-struct: btrfs_ioctl_received_subvol_args_32$auto
+no-such-struct: btrfs_ioctl_scrub_args$auto
+no-such-struct: btrfs_ioctl_search_args$auto
+no-such-struct: btrfs_ioctl_search_key$auto
+no-such-struct: btrfs_ioctl_send_args$auto
+no-such-struct: btrfs_ioctl_send_args_32$auto
+no-such-struct: btrfs_ioctl_space_info$auto
+no-such-struct: btrfs_ioctl_subvol_wait$auto
+no-such-struct: btrfs_ioctl_timespec$auto
+no-such-struct: btrfs_ioctl_timespec_32$auto
+no-such-struct: btrfs_ioctl_vol_args$auto
+no-such-struct: btrfs_ioctl_vol_args_v2$auto
+no-such-struct: btrfs_ioctl_vol_args_v2_3$auto
+no-such-struct: btrfs_ioctl_vol_args_v2_3_0$auto
+no-such-struct: btrfs_ioctl_vol_args_v2_4$auto
+no-such-struct: btrfs_qgroup_limit$auto
+no-such-struct: btrfs_scrub_progress$auto
+no-such-struct: bversion$auto
+no-such-struct: cec_caps$auto
+no-such-struct: cec_connector_info_1$auto
+no-such-struct: cec_event_3$auto
+bad-struct-size: compat_blk_user_trace_setup$auto: syz=72 kernel=64
+bad-field-offset: compat_blk_user_trace_setup$auto.start_lba: syz=48 kernel=44
+bad-field-offset: compat_blk_user_trace_setup$auto.end_lba: syz=56 kernel=52
+bad-field-offset: compat_blk_user_trace_setup$auto.pid: syz=64 kernel=60
+no-such-struct: dioattr$auto
+no-such-struct: erase_info_user$auto
+no-such-struct: erase_info_user64$auto
+no-such-struct: fb_cmap_user$auto
+no-such-struct: fb_cursor_user$auto
+no-such-struct: fb_image_user$auto
+no-such-struct: fbcurpos$auto
+no-such-struct: ff_effect_u$auto
+no-such-struct: fscrypt_get_key_status_arg$auto
+no-such-struct: fscrypt_key_specifier$auto
+no-such-struct: fscrypt_key_specifier_u$auto
+no-such-struct: fscrypt_policy_v1$auto
+no-such-struct: fscrypt_remove_key_arg$auto
+no-such-struct: fsverity_enable_arg$auto
+no-such-struct: fuse_backing_map$auto
+no-such-struct: getbmap$auto
+no-such-struct: hwsim_tx_rate$auto
+no-such-struct: kexec_segment_0$auto
+no-such-struct: kvm_device_attr$auto
+no-such-struct: kvm_msr_entry$auto
+no-such-struct: landlock_ruleset_attr$auto
+no-such-struct: mon_bin_hdr_s$auto
+no-such-struct: mtd_ecc_stats$auto
+no-such-struct: mtd_info_user$auto
+no-such-struct: mtd_oob_buf$auto
+no-such-struct: mtd_oob_buf64$auto
+no-such-struct: mtd_read_req$auto
+no-such-struct: mtd_read_req_ecc_stats$auto
+no-such-struct: mtd_write_req$auto
+no-such-struct: nand_ecclayout_user$auto
+no-such-struct: nand_oobfree$auto
+no-such-struct: nand_oobinfo$auto
+no-such-struct: npioctl$auto
+no-such-struct: otp_info$auto
+no-such-struct: ovs_flow_stats$auto
+no-such-struct: ovs_vport_stats$auto
+bad-bitfield: perf_event_attr$auto.disabled: size/offset: syz=1/0 kernel=1/63
+bad-field-offset: perf_event_attr$auto.disabled: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.inherit: size/offset: syz=1/1 kernel=1/63
+bad-field-offset: perf_event_attr$auto.inherit: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.pinned: size/offset: syz=1/2 kernel=1/63
+bad-field-offset: perf_event_attr$auto.pinned: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclusive: size/offset: syz=1/3 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclusive: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_user: size/offset: syz=1/4 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_user: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_kernel: size/offset: syz=1/5 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_kernel: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_hv: size/offset: syz=1/6 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_hv: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_idle: size/offset: syz=1/7 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_idle: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.mmap: size/offset: syz=1/8 kernel=1/63
+bad-field-offset: perf_event_attr$auto.mmap: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.comm: size/offset: syz=1/9 kernel=1/63
+bad-field-offset: perf_event_attr$auto.comm: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.freq: size/offset: syz=1/10 kernel=1/63
+bad-field-offset: perf_event_attr$auto.freq: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.inherit_stat: size/offset: syz=1/11 kernel=1/63
+bad-field-offset: perf_event_attr$auto.inherit_stat: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.enable_on_exec: size/offset: syz=1/12 kernel=1/63
+bad-field-offset: perf_event_attr$auto.enable_on_exec: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.task: size/offset: syz=1/13 kernel=1/63
+bad-field-offset: perf_event_attr$auto.task: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.watermark: size/offset: syz=1/14 kernel=1/63
+bad-field-offset: perf_event_attr$auto.watermark: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.precise_ip: size/offset: syz=2/15 kernel=2/62
+bad-field-offset: perf_event_attr$auto.precise_ip: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.mmap_data: size/offset: syz=1/17 kernel=1/63
+bad-field-offset: perf_event_attr$auto.mmap_data: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.sample_id_all: size/offset: syz=1/18 kernel=1/63
+bad-field-offset: perf_event_attr$auto.sample_id_all: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_host: size/offset: syz=1/19 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_host: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_guest: size/offset: syz=1/20 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_guest: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_callchain_kernel: size/offset: syz=1/21 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_callchain_kernel: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.exclude_callchain_user: size/offset: syz=1/22 kernel=1/63
+bad-field-offset: perf_event_attr$auto.exclude_callchain_user: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.mmap2: size/offset: syz=1/23 kernel=1/63
+bad-field-offset: perf_event_attr$auto.mmap2: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.comm_exec: size/offset: syz=1/24 kernel=1/63
+bad-field-offset: perf_event_attr$auto.comm_exec: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.use_clockid: size/offset: syz=1/25 kernel=1/63
+bad-field-offset: perf_event_attr$auto.use_clockid: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.context_switch: size/offset: syz=1/26 kernel=1/63
+bad-field-offset: perf_event_attr$auto.context_switch: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.write_backward: size/offset: syz=1/27 kernel=1/63
+bad-field-offset: perf_event_attr$auto.write_backward: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.namespaces: size/offset: syz=1/28 kernel=1/63
+bad-field-offset: perf_event_attr$auto.namespaces: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.ksymbol: size/offset: syz=1/29 kernel=1/63
+bad-field-offset: perf_event_attr$auto.ksymbol: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.bpf_event: size/offset: syz=1/30 kernel=1/63
+bad-field-offset: perf_event_attr$auto.bpf_event: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.aux_output: size/offset: syz=1/31 kernel=1/63
+bad-field-offset: perf_event_attr$auto.aux_output: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.cgroup: size/offset: syz=1/32 kernel=1/63
+bad-field-offset: perf_event_attr$auto.cgroup: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.text_poke: size/offset: syz=1/33 kernel=1/63
+bad-field-offset: perf_event_attr$auto.text_poke: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.build_id: size/offset: syz=1/34 kernel=1/63
+bad-field-offset: perf_event_attr$auto.build_id: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.inherit_thread: size/offset: syz=1/35 kernel=1/63
+bad-field-offset: perf_event_attr$auto.inherit_thread: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.remove_on_exec: size/offset: syz=1/36 kernel=1/63
+bad-field-offset: perf_event_attr$auto.remove_on_exec: syz=40 kernel=0
+bad-bitfield: perf_event_attr$auto.sigtrap: size/offset: syz=1/37 kernel=1/63
+bad-field-offset: perf_event_attr$auto.sigtrap: syz=40 kernel=0
+bad-field-offset: perf_event_attr$auto.__reserved_1: syz=40 kernel=0
+no-such-struct: perf_event_attr_3$auto
+no-such-struct: perf_event_attr_44$auto
+no-such-struct: perf_event_attr_46$auto
+no-such-struct: perf_event_attr_47$auto
+no-such-struct: perf_event_attr_57$auto
+no-such-struct: perf_event_attr_57_1$auto
+no-such-struct: ppp_idle32$auto
+no-such-struct: ppp_idle64$auto
+no-such-struct: ppp_option_data$auto
+no-such-struct: region_info_user$auto
+no-such-struct: rtc_param_1$auto
+no-such-struct: sigevent__sigev_un$auto
+no-such-struct: sigevent__sigev_un__sigev_thread$auto
+no-such-struct: siginfo_0$auto
+no-such-struct: siginfo_0_0$auto
+no-such-struct: sigval$auto
+no-such-struct: snd_ctl_elem_info_value$auto
+no-such-struct: snd_ctl_elem_info_value_enumerated$auto
+no-such-struct: snd_ctl_elem_info_value_integer$auto
+no-such-struct: snd_ctl_elem_info_value_integer64$auto
+bad-bitfield: snd_ctl_elem_value$auto.indirect: size/offset: syz=1/0 kernel=1/31
+bad-field-offset: snd_ctl_elem_value$auto.indirect: syz=64 kernel=0
+no-such-struct: snd_ctl_elem_value_value$auto
+no-such-struct: snd_ctl_elem_value_value_bytes$auto
+no-such-struct: snd_ctl_elem_value_value_enumerated$auto
+no-such-struct: snd_ctl_elem_value_value_integer$auto
+no-such-struct: snd_ctl_elem_value_value_integer64$auto
+bad-bitfield: snd_interval$auto.openmin: size/offset: syz=1/0 kernel=1/31
+bad-field-offset: snd_interval$auto.openmin: syz=8 kernel=0
+bad-bitfield: snd_interval$auto.openmax: size/offset: syz=1/1 kernel=1/31
+bad-field-offset: snd_interval$auto.openmax: syz=8 kernel=0
+bad-bitfield: snd_interval$auto.integer: size/offset: syz=1/2 kernel=1/31
+bad-field-offset: snd_interval$auto.integer: syz=8 kernel=0
+bad-bitfield: snd_interval$auto.empty: size/offset: syz=1/3 kernel=1/31
+bad-field-offset: snd_interval$auto.empty: syz=8 kernel=0
+no-such-struct: snd_pcm_sync_ptr32_c$auto
+no-such-struct: snd_pcm_sync_ptr32_s$auto
+no-such-struct: snd_pcm_sync_ptr_c$auto
+no-such-struct: snd_pcm_sync_ptr_s$auto
+no-such-struct: snd_rawmidi_info$auto
+no-such-struct: snd_rawmidi_params$auto
+no-such-struct: snd_rawmidi_status32$auto
+no-such-struct: snd_rawmidi_status64$auto
+no-such-struct: sw_sync_create_fence_data$auto
+no-such-struct: sw_sync_get_deadline$auto
+no-such-struct: ubi_attach_req$auto
+no-such-struct: udmabuf_create$auto
+no-such-struct: udmabuf_create_item$auto
+no-such-struct: uinput_ff_erase$auto
+no-such-struct: uinput_ff_upload$auto
+no-such-struct: uinput_setup$auto
+no-such-struct: usb_raw_ep_caps$auto
+no-such-struct: usb_raw_ep_info$auto
+no-such-struct: usb_raw_ep_limits$auto
+no-such-struct: usb_raw_eps_info$auto
+no-such-struct: usb_raw_init$auto
+no-such-struct: usbdevfs_urb_8$auto
+bad-bitfield: user_desc$auto.seg_32bit: size/offset: syz=1/0 kernel=1/31
+bad-field-offset: user_desc$auto.seg_32bit: syz=12 kernel=0
+bad-bitfield: user_desc$auto.contents: size/offset: syz=2/1 kernel=2/30
+bad-field-offset: user_desc$auto.contents: syz=12 kernel=0
+bad-bitfield: user_desc$auto.read_exec_only: size/offset: syz=1/3 kernel=1/31
+bad-field-offset: user_desc$auto.read_exec_only: syz=12 kernel=0
+bad-bitfield: user_desc$auto.limit_in_pages: size/offset: syz=1/4 kernel=1/31
+bad-field-offset: user_desc$auto.limit_in_pages: syz=12 kernel=0
+bad-bitfield: user_desc$auto.seg_not_present: size/offset: syz=1/5 kernel=1/31
+bad-field-offset: user_desc$auto.seg_not_present: syz=12 kernel=0
+bad-bitfield: user_desc$auto.useable: size/offset: syz=1/6 kernel=1/31
+bad-field-offset: user_desc$auto.useable: syz=12 kernel=0
+bad-bitfield: user_desc$auto.lm: size/offset: syz=1/7 kernel=1/31
+bad-field-offset: user_desc$auto.lm: syz=12 kernel=0
+no-such-struct: vhost_memory_region$auto
+no-such-struct: vhost_vring_addr$auto
+no-such-struct: vhost_vring_file$auto
+no-such-struct: vhost_vring_state$auto
+no-such-struct: xfs_ag_geometry$auto
+no-such-struct: xfs_attr_multiop$auto
+no-such-struct: xfs_attrlist_cursor$auto
+no-such-struct: xfs_bstat$auto
+no-such-struct: xfs_bstime$auto
+no-such-struct: xfs_bulk_ireq$auto
+no-such-struct: xfs_bulkstat$auto
+no-such-struct: xfs_commit_range$auto
+no-such-struct: xfs_error_injection$auto
+no-such-struct: xfs_exchange_range$auto
+no-such-struct: xfs_fid$auto
+no-such-struct: xfs_flock64$auto
+no-such-struct: xfs_fs_eofblocks$auto
+no-such-struct: xfs_fsid$auto
+no-such-struct: xfs_fsop_attrlist_handlereq$auto
+no-such-struct: xfs_fsop_attrmulti_handlereq$auto
+no-such-struct: xfs_fsop_bulkreq$auto
+no-such-struct: xfs_fsop_counts$auto
+no-such-struct: xfs_fsop_geom$auto
+no-such-struct: xfs_fsop_geom_v1$auto
+no-such-struct: xfs_fsop_geom_v4$auto
+no-such-struct: xfs_fsop_handlereq$auto
+no-such-struct: xfs_fsop_resblks$auto
+no-such-struct: xfs_getparents$auto
+no-such-struct: xfs_getparents_by_handle$auto
+no-such-struct: xfs_growfs_data$auto
+no-such-struct: xfs_growfs_log$auto
+no-such-struct: xfs_growfs_rt$auto
+no-such-struct: xfs_handle$auto
+no-such-struct: xfs_handle_ha_u$auto
+no-such-struct: xfs_inumbers$auto
+no-such-struct: xfs_rtgroup_geometry$auto
+no-such-struct: xfs_scrub_metadata$auto
+no-such-struct: xfs_scrub_vec_head$auto
+no-such-struct: xfs_swapext$auto

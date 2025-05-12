@@ -1,15 +1,33 @@
 no-such-struct: rdma_ucm_cmd_t
-bad-field-number: rdma_ucm_connect: syz=3 kernel=4
-bad-struct-size: rdma_ucm_connect: syz=280 kernel=288
-bad-field-number: rdma_ucm_accept: syz=4 kernel=5
-bad-struct-size: rdma_ucm_accept: syz=288 kernel=296
-bad-field-number: rdma_ucm_reject: syz=4 kernel=5
-bad-field-size: rdma_ucm_reject.reserved/reason: syz=3 kernel=1
-bad-field-offset: rdma_ucm_reject.private_data/reserved: syz=8 kernel=6
-bad-field-size: rdma_ucm_reject.private_data/reserved: syz=256 kernel=2
+no-such-struct: rdma_ucm_create_id
+no-such-struct: rdma_ucm_create_id_resp
+no-such-struct: rdma_ucm_destroy_id
+no-such-struct: rdma_ucm_destroy_id_resp
+no-such-struct: rdma_ucm_bind_ip
+no-such-struct: rdma_ucm_bind
+no-such-struct: rdma_ucm_resolve_ip
+no-such-struct: rdma_ucm_resolve_addr
+no-such-struct: rdma_ucm_resolve_route
+no-such-struct: rdma_ucm_query
+no-such-struct: rdma_ucm_connect
+no-such-struct: rdma_ucm_listen
+no-such-struct: rdma_ucm_accept
+no-such-struct: rdma_ucm_reject
+no-such-struct: rdma_ucm_disconnect
+no-such-struct: rdma_ucm_init_qp_attr
+no-such-struct: rdma_ucm_notify
+no-such-struct: rdma_ucm_join_ip_mcast
 no-such-struct: rdma_ucm_create_mcast_id_resp
+no-such-struct: rdma_ucm_join_mcast
 no-such-struct: rdma_ucm_leave_mcast
-bad-field-number: rdma_ucm_event_resp: syz=2 kernel=7
-bad-field-size: rdma_ucm_event_resp.id: syz=8 kernel=4
+no-such-struct: rdma_ucm_get_event
+no-such-struct: rdma_ucm_event_resp
+no-such-struct: rdma_ucm_set_option
 no-such-struct: rdma_ucm_set_option_t
+no-such-struct: ib_path_rec_data
+no-such-struct: rdma_ucm_migrate_id
+no-such-struct: rdma_ucm_migrate_resp
+no-such-struct: rdma_ucm_conn_param
 no-such-struct: sockaddr_rdma_cm
+no-such-struct: sockaddr_ib
+no-such-struct: ib_addr

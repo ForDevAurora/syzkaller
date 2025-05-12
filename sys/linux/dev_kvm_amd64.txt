@@ -3,7 +3,8 @@
 
 # x86(-64)-specific KVM syscall declarations.
 
-meta arches["386", "amd64"]
+# meta arches["386", "amd64"]
+meta arches["amd64"]
 
 include <linux/kvm.h>
 include <linux/kvm_host.h>
@@ -183,7 +184,7 @@ ioctl$KVM_HYPERV_EVENTFD(fd fd_kvmvm, cmd const[KVM_HYPERV_EVENTFD], arg ptr[in,
 
 ioctl$KVM_CAP_DISABLE_QUIRKS(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_DISABLE_QUIRKS, flags[kvm_x86_quirks, int64]]])
 ioctl$KVM_CAP_DISABLE_QUIRKS2(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_DISABLE_QUIRKS2, flags[kvm_x86_quirks, int64]]])
-ioctl$KVM_CAP_SPLIT_IRQCHIP(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_SPLIT_IRQCHIP, int64[0:KVM_MAX_IRQ_ROUTES]]])
+# ioctl$KVM_CAP_SPLIT_IRQCHIP(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_SPLIT_IRQCHIP, int64[0:KVM_MAX_IRQ_ROUTES]]])
 ioctl$KVM_CAP_X2APIC_API(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_X2APIC_API, flags[kvm_x2apic_apis, int64]]])
 ioctl$KVM_CAP_X86_DISABLE_EXITS(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_X86_DISABLE_EXITS, flags[kvm_x86_exits, int64]]])
 ioctl$KVM_CAP_MSR_PLATFORM_INFO(fd fd_kvmvm, cmd const[KVM_ENABLE_CAP], arg ptr[in, kvm_enable_cap[KVM_CAP_MSR_PLATFORM_INFO, bool64]])

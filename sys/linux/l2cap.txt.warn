@@ -1,9 +1,26 @@
+no-such-struct: l2cap_hdr
 no-such-struct: l2cap_cmd_hdr_t
-bad-struct-size: l2cap_conf_opt: syz=11 kernel=2
-bad-struct-size: l2cap_conf_opt: syz=18 kernel=2
-bad-struct-size: l2cap_conf_opt: syz=3 kernel=2
-bad-struct-size: l2cap_conf_opt: syz=4 kernel=2
-bad-field-size: l2cap_conf_opt.val: syz=1 kernel=0
-bad-field-size: l2cap_conf_opt.val: syz=16 kernel=0
-bad-field-size: l2cap_conf_opt.val: syz=2 kernel=0
-bad-field-size: l2cap_conf_opt.val: syz=9 kernel=0
+no-such-struct: l2cap_cmd_hdr
+no-such-struct: l2cap_cmd_rej_unk
+no-such-struct: l2cap_conf_rfc
+no-such-struct: l2cap_conf_efs
+no-such-struct: l2cap_conf_opt
+no-such-struct: l2cap_conn_param_update_req
+no-such-struct: l2cap_conn_param_update_rsp
+no-such-struct: l2cap_conn_req
+no-such-struct: l2cap_conn_rsp
+no-such-struct: l2cap_conninfo
+no-such-struct: l2cap_create_chan_req
+no-such-struct: l2cap_create_chan_rsp
+no-such-struct: l2cap_disconn_req
+no-such-struct: l2cap_disconn_rsp
+no-such-struct: l2cap_ecred_reconf_rsp
+no-such-struct: l2cap_info_req
+no-such-struct: l2cap_le_conn_req
+no-such-struct: l2cap_le_conn_rsp
+no-such-struct: l2cap_le_credits
+no-such-struct: l2cap_move_chan_cfm
+no-such-struct: l2cap_move_chan_cfm_rsp
+no-such-struct: l2cap_move_chan_req
+no-such-struct: l2cap_move_chan_rsp
+no-such-struct: l2cap_options

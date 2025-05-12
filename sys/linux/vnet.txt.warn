@@ -1,8 +1,8 @@
 no-such-struct: vnet_fragmentation
 no-such-struct: tcp_resources
-bad-field-number: mac_addr_t: syz=2 kernel=1
-bad-field-size: mac_addr_t.a0/mac_addr_value: syz=5 kernel=6
+no-such-struct: mac_addr_t
 no-such-struct: mac_addr_link_local
+no-such-struct: mac_addr
 no-such-struct: vlan_tag_ad
 no-such-struct: vlan_tag_q
 no-such-struct: eth2_packet_t
@@ -37,12 +37,23 @@ no-such-struct: tcp_sack_perm_option
 no-such-struct: tcp_timestamp_option
 no-such-struct: tcp_md5sig_option
 no-such-struct: tcp_exp_smc_option
-bad-bitfield: guehdr.hlen/: size/offset: syz=5/0 kernel=0/0
-bad-field-size: guehdr.hlen/: syz=1 kernel=4
 no-such-struct: gre_packet_erspan
+no-such-struct: erspan_base_hdr
 no-such-struct: erspan_md1
 no-such-struct: erspan_md1_msg
+bad-bitfield: erspan_md2.hwid_upper: size/offset: syz=2/0 kernel=2/6
+bad-field-offset: erspan_md2.hwid_upper: syz=6 kernel=0
+bad-bitfield: erspan_md2.ft: size/offset: syz=5/2 kernel=5/3
+bad-field-offset: erspan_md2.ft: syz=6 kernel=0
+bad-field-offset: erspan_md2.p: syz=6 kernel=0
+bad-bitfield: erspan_md2.o: size/offset: syz=1/0 kernel=1/7
+bad-field-offset: erspan_md2.o: syz=7 kernel=0
+bad-bitfield: erspan_md2.gra: size/offset: syz=2/1 kernel=2/6
+bad-field-offset: erspan_md2.gra: syz=7 kernel=0
+bad-bitfield: erspan_md2.dir: size/offset: syz=1/3 kernel=1/7
+bad-field-offset: erspan_md2.dir: syz=7 kernel=0
 bad-bitfield: erspan_md2.hwid: size/offset: syz=1/4 kernel=4/4
+bad-field-offset: erspan_md2.hwid: syz=7 kernel=0
 no-such-struct: erspan_md2_msg
 no-such-struct: icmp_timestamp_packet
 no-such-struct: icmp_timestamp_reply_packet

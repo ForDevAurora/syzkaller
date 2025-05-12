@@ -1748,6 +1748,82 @@ static int read_tun(char* data, int size)
 }
 #endif
 
+#if SYZ_EXECUTOR || __NR_syz_extract_tcp_res && SYZ_NET_INJECTION
+#ifndef __ANDROID__
+// Can't include <linux/ipv6.h>, since it causes
+// conflicts due to some structs redefinition.
+struct ipv6hdr {
+	__u8 priority : 4,
+	    version : 4;
+	__u8 flow_lbl[3];
+
+	__be16 payload_len;
+	__u8 nexthdr;
+	__u8 hop_limit;
+
+	struct in6_addr saddr;
+	struct in6_addr daddr;
+};
+#endif
+
+struct tcp_resources {
+	uint32 seq;
+	uint32 ack;
+};
+
+static long syz_extract_tcp_res(volatile long a0, volatile long a1, volatile long a2)
+{
+	// syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
+
+	if (tunfd < 0)
+		return (uintptr_t)-1;
+
+	// We just need this to be large enough to hold headers that we parse (ethernet/ip/tcp).
+	// Rest of the packet (if any) will be silently truncated which is fine.
+	char data[1000];
+	int rv = read_tun(&data[0], sizeof(data));
+	if (rv == -1)
+		return (uintptr_t)-1;
+	size_t length = rv;
+	// debug_dump_data(data, length);
+
+	if (length < sizeof(struct ethhdr))
+		return (uintptr_t)-1;
+	struct ethhdr* ethhdr = (struct ethhdr*)&data[0];
+
+	struct tcphdr* tcphdr = 0;
+	if (ethhdr->h_proto == htons(ETH_P_IP)) {
+		if (length < sizeof(struct ethhdr) + sizeof(struct iphdr))
+			return (uintptr_t)-1;
+		struct iphdr* iphdr = (struct iphdr*)&data[sizeof(struct ethhdr)];
+		if (iphdr->protocol != IPPROTO_TCP)
+			return (uintptr_t)-1;
+		if (length < sizeof(struct ethhdr) + iphdr->ihl * 4 + sizeof(struct tcphdr))
+			return (uintptr_t)-1;
+		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + iphdr->ihl * 4];
+	} else {
+		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr))
+			return (uintptr_t)-1;
+		struct ipv6hdr* ipv6hdr = (struct ipv6hdr*)&data[sizeof(struct ethhdr)];
+		// TODO: parse and skip extension headers.
+		if (ipv6hdr->nexthdr != IPPROTO_TCP)
+			return (uintptr_t)-1;
+		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr) + sizeof(struct tcphdr))
+			return (uintptr_t)-1;
+		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + sizeof(struct ipv6hdr)];
+	}
+
+	struct tcp_resources* res = (struct tcp_resources*)a0;
+	res->seq = htonl((ntohl(tcphdr->seq) + (uint32)a1));
+	res->ack = htonl((ntohl(tcphdr->ack_seq) + (uint32)a2));
+
+	debug("extracted seq: %08x\n", res->seq);
+	debug("extracted ack: %08x\n", res->ack);
+
+	return 0;
+}
+#endif
+
 #if SYZ_EXECUTOR || __NR_syz_emit_ethernet && SYZ_NET_INJECTION
 #include <stdbool.h>
 #include <sys/uio.h>
@@ -1806,8 +1882,143 @@ static long syz_emit_ethernet(volatile long a0, volatile long a1, volatile long 
 			nfrags++;
 		}
 	}
+	uint16 port = 0;
+	// Parsing the data
+	if (length < sizeof(struct ethhdr))
+		return (uintptr_t)-1;
+	struct ethhdr* ethhdr = (struct ethhdr*)&data[0];
+	struct tcphdr* tcphdr = 0;
+	if (ethhdr->h_proto == htons(ETH_P_IP)) {
+		if (length < sizeof(struct ethhdr) + sizeof(struct iphdr))
+			port = 0;
+		struct iphdr* iphdr = (struct iphdr*)&data[sizeof(struct ethhdr)];
+		if (iphdr->protocol != IPPROTO_TCP)
+			port = 0;
+		if (length < sizeof(struct ethhdr) + iphdr->ihl * 4 + sizeof(struct tcphdr))
+			port = 0;
+		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + iphdr->ihl * 4];
+	} else {
+		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr))
+			port = 0;
+		struct ipv6hdr* ipv6hdr = (struct ipv6hdr*)&data[sizeof(struct ethhdr)];
+		// TODO: parse and skip extension headers.
+		if (ipv6hdr->nexthdr != IPPROTO_TCP)
+			port = 20006;
+		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr) + sizeof(struct tcphdr))
+			port = 0;
+		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + sizeof(struct ipv6hdr)];
+	}
+	port = ntohs(tcphdr->dest);
+	// concat a string with PORT:
+	char result[50];
+	snprintf(result, sizeof(result), "EMIT PORT: %u", port);
+	debug_dump_data(result, sizeof(result));
+
 	return writev(tunfd, vecs, nfrags);
 #else
+	return write(tunfd, data, length);
+#endif
+}
+#endif
+
+#if SYZ_EXECUTOR || __NR_syz_emit_ethernet_tcp && SYZ_NET_INJECTION
+#include <stdbool.h>
+#include <sys/uio.h>
+
+#if ENABLE_NAPI_FRAGS
+#define MAX_FRAGS 4
+struct vnet_fragmentation {
+	uint32 full;
+	uint32 count;
+	uint32 frags[MAX_FRAGS];
+};
+#endif
+
+static long syz_emit_ethernet_tcp(volatile long a0, volatile long a1, volatile long a2)
+{
+	// syz_emit_ethernet(len len[packet], packet ptr[in, eth_packet], frags ptr[in, vnet_fragmentation, opt])
+	// vnet_fragmentation {
+	// 	full	int32[0:1]
+	// 	count	int32[1:4]
+	// 	frags	array[int32[0:4096], 4]
+	// }
+	if (tunfd < 0)
+		return (uintptr_t)-1;
+
+	uint32 length = a0;
+	char* data = (char*)a1;
+	debug("Dumping data\n");
+	// debug_dump_data(data, length);
+	debug("Enter port parsing\n");
+	uint16 port = 0;
+	// Parsing the data
+	if (length < sizeof(struct ethhdr)) {
+		debug("The length of the data is less than the size of the ethhdr\n");
+		return (uintptr_t)-1;
+	}
+	struct ethhdr* ethhdr = (struct ethhdr*)&data[0];
+	struct tcphdr* tcphdr = 0;
+	if (ethhdr->h_proto == htons(ETH_P_IP)) {
+		if (length < sizeof(struct ethhdr) + sizeof(struct iphdr))
+			port = 0;
+		struct iphdr* iphdr = (struct iphdr*)&data[sizeof(struct ethhdr)];
+		if (iphdr->protocol != IPPROTO_TCP)
+			port = 1;
+		if (length < sizeof(struct ethhdr) + iphdr->ihl * 4 + sizeof(struct tcphdr))
+			port = 2;
+		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + iphdr->ihl * 4];
+	} else {
+		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr))
+			port = 3;
+		struct ipv6hdr* ipv6hdr = (struct ipv6hdr*)&data[sizeof(struct ethhdr)];
+		// TODO: parse and skip extension headers.
+		if (ipv6hdr->nexthdr != IPPROTO_TCP)
+			port = 4;
+		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr) + sizeof(struct tcphdr))
+			port = 5;
+		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + sizeof(struct ipv6hdr)];
+	}
+	port = ntohs(tcphdr->dest);
+	debug("EMIT PORT: %u with %u\n", port, tcphdr->dest);
+	// debug("Dumping data\n");
+	// Get a random number
+	// uint32 random_number = rand();
+
+	// debug_dump_data(data, length, random_number);
+
+#if ENABLE_NAPI_FRAGS
+	struct vnet_fragmentation* frags = (struct vnet_fragmentation*)a2;
+	struct iovec vecs[MAX_FRAGS + 1];
+	uint32 nfrags = 0;
+	if (!tun_frags_enabled || frags == NULL) {
+		vecs[nfrags].iov_base = data;
+		vecs[nfrags].iov_len = length;
+		nfrags++;
+	} else {
+		bool full = frags->full;
+		uint32 count = frags->count;
+		if (count > MAX_FRAGS)
+			count = MAX_FRAGS;
+		uint32 i;
+		for (i = 0; i < count && length != 0; i++) {
+			uint32 size = frags->frags[i];
+			if (size > length)
+				size = length;
+			vecs[nfrags].iov_base = data;
+			vecs[nfrags].iov_len = size;
+			nfrags++;
+			data += size;
+			length -= size;
+		}
+		if (length != 0 && (full || nfrags == 0)) {
+			vecs[nfrags].iov_base = data;
+			vecs[nfrags].iov_len = length;
+			nfrags++;
+		}
+	}
+	return writev(tunfd, vecs, nfrags);
+#else
+	debug("Enter writev\n");
 	return write(tunfd, data, length);
 #endif
 }
@@ -2300,79 +2511,55 @@ static void flush_tun()
 }
 #endif
 
-#if SYZ_EXECUTOR || __NR_syz_extract_tcp_res && SYZ_NET_INJECTION
-#ifndef __ANDROID__
-// Can't include <linux/ipv6.h>, since it causes
-// conflicts due to some structs redefinition.
-struct ipv6hdr {
-	__u8 priority : 4,
-	    version : 4;
-	__u8 flow_lbl[3];
-
-	__be16 payload_len;
-	__u8 nexthdr;
-	__u8 hop_limit;
-
-	struct in6_addr saddr;
-	struct in6_addr daddr;
-};
-#endif
-
-struct tcp_resources {
+#if SYZ_EXECUTOR || __NR_syz_port_gen
+struct tcp_seq_num {
 	uint32 seq;
 	uint32 ack;
 };
 
-static long syz_extract_tcp_res(volatile long a0, volatile long a1, volatile long a2)
+static long syz_port_gen(volatile long a0, volatile long a1)
 {
-	// syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
+	struct tcp_seq_num* seq = (struct tcp_seq_num*)a1;
+	uint16 port = (uint16)a0;
+	uint16 network_port = htons(port);
+	debug("GEN PORT: %u\n", port);
+	seq->seq = 12345;
+	seq->ack = 54321;
+	return (long)network_port;
+}
+#endif
 
-	if (tunfd < 0)
-		return (uintptr_t)-1;
+#if SYZ_EXECUTOR || __NR_syz_ipv4_addr_gen
+struct ipv4_addr_def {
+	uint32 addr;
+};
 
-	// We just need this to be large enough to hold headers that we parse (ethernet/ip/tcp).
-	// Rest of the packet (if any) will be silently truncated which is fine.
-	char data[1000];
-	int rv = read_tun(&data[0], sizeof(data));
-	if (rv == -1)
-		return (uintptr_t)-1;
-	size_t length = rv;
-	debug_dump_data(data, length);
+static long syz_ipv4_addr_gen(volatile long a0)
+{
+	struct ipv4_addr_def* addr = (struct ipv4_addr_def*)a0;
+	debug("GEN ADDR: %u\n", addr->addr);
+	return (long)(addr->addr);
+}
+#endif
 
-	if (length < sizeof(struct ethhdr))
-		return (uintptr_t)-1;
-	struct ethhdr* ethhdr = (struct ethhdr*)&data[0];
+#if SYZ_EXECUTOR || __NR_syz_mac_addr_gen
+struct mac_addr_def {
+	uint8 addr[6];
+};
 
-	struct tcphdr* tcphdr = 0;
-	if (ethhdr->h_proto == htons(ETH_P_IP)) {
-		if (length < sizeof(struct ethhdr) + sizeof(struct iphdr))
-			return (uintptr_t)-1;
-		struct iphdr* iphdr = (struct iphdr*)&data[sizeof(struct ethhdr)];
-		if (iphdr->protocol != IPPROTO_TCP)
-			return (uintptr_t)-1;
-		if (length < sizeof(struct ethhdr) + iphdr->ihl * 4 + sizeof(struct tcphdr))
-			return (uintptr_t)-1;
-		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + iphdr->ihl * 4];
-	} else {
-		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr))
-			return (uintptr_t)-1;
-		struct ipv6hdr* ipv6hdr = (struct ipv6hdr*)&data[sizeof(struct ethhdr)];
-		// TODO: parse and skip extension headers.
-		if (ipv6hdr->nexthdr != IPPROTO_TCP)
-			return (uintptr_t)-1;
-		if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr) + sizeof(struct tcphdr))
-			return (uintptr_t)-1;
-		tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + sizeof(struct ipv6hdr)];
+struct mac_addr {
+	uint32 mac1;
+	uint32 mac2;
+};
+
+static long syz_mac_addr_gen(volatile long a0, volatile long a1)
+{
+	struct mac_addr_def* addr = (struct mac_addr_def*)a0;
+	struct mac_addr_def* mac_addr = (struct mac_addr_def*)a1;
+	for (int i = 0; i < 6; i++) {
+		mac_addr->addr[i] = addr->addr[i];
 	}
-
-	struct tcp_resources* res = (struct tcp_resources*)a0;
-	res->seq = htonl((ntohl(tcphdr->seq) + (uint32)a1));
-	res->ack = htonl((ntohl(tcphdr->ack_seq) + (uint32)a2));
-
-	debug("extracted seq: %08x\n", res->seq);
-	debug("extracted ack: %08x\n", res->ack);
-
-	return 0;
+	return (long)(mac_addr);
 }
 #endif
 
@@ -3536,8 +3723,8 @@ static void reset_arptables()
 }
 
 // ebtables.h is broken too:
-// ebtables.h: In function ‘ebt_entry_target* ebt_get_target(ebt_entry*)’:
-// ebtables.h:197:19: error: invalid conversion from ‘void*’ to ‘ebt_entry_target*’
+// ebtables.h: In function 'ebt_entry_target* ebt_get_target(ebt_entry*)':
+// ebtables.h:197:19: error: invalid conversion from 'void*' to 'ebt_entry_target*'
 
 #define NF_BR_NUMHOOKS 6
 #define EBT_TABLE_MAXNAMELEN 32

@@ -1,1 +1,4 @@
+no-such-struct: usbip_header_basic
+no-such-struct: usbip_header_ret_unlink
+no-such-struct: usbip_iso_packet_descriptor
 no-such-struct: usbip_packet_ret_unlink

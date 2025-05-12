@@ -1,1 +1,3 @@
+no-such-struct: xfrm_user_migrate
+no-such-struct: xfrm_user_kmaddress
 no-such-struct: xfrm_filter

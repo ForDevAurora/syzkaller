@@ -1,16 +1,11 @@
+no-such-struct: io_uring_files_update
+no-such-struct: io_uring_restriction_st
 no-such-struct: io_uring_sqe_u
 bad-field-number: io_uring_sqe: syz=10 kernel=13
 bad-field-size: io_uring_sqe.off/: syz=4 kernel=8
-bad-field-offset: io_uring_sqe.addr/: syz=12 kernel=16 [386,arm]
 bad-field-size: io_uring_sqe.addr/: syz=4 kernel=8
-bad-field-offset: io_uring_sqe.len: syz=16 kernel=24 [386,arm]
 bad-field-offset: io_uring_sqe.len: syz=20 kernel=24
-bad-field-offset: io_uring_sqe.misc_flags/: syz=20 kernel=28 [386,arm]
 bad-field-offset: io_uring_sqe.misc_flags/: syz=24 kernel=28
-bad-field-offset: io_uring_sqe.user_data: syz=24 kernel=32 [386,arm]
-bad-field-offset: io_uring_sqe.user_data: syz=28 kernel=32 [386]
-bad-field-offset: io_uring_sqe.misc/: syz=32 kernel=40 [386,arm]
-bad-field-offset: io_uring_sqe.misc/: syz=36 kernel=40 [386]
 bad-field-size: io_uring_sqe.misc/: syz=24 kernel=2
 no-such-struct: io_uring_sqe_readv
 no-such-struct: io_uring_sqe_read
@@ -24,3 +19,10 @@ no-such-struct: buf_index_personality_misc
 no-such-struct: buf_group_personality_misc
 no-such-struct: io_uring_sqe_splice_misc
 no-such-struct: io_uring_sqe_tee_misc
+no-such-struct: kernel_timespec
+bad-field-number: io_uring_napi: syz=4 kernel=6
+bad-field-size: io_uring_napi.pad/opcode: syz=3 kernel=1
+bad-field-offset: io_uring_napi.resv/pad: syz=8 kernel=6
+bad-field-size: io_uring_napi.resv/pad: syz=8 kernel=2
+bad-field-number: io_uring_clone_buffers: syz=3 kernel=6
+bad-field-size: io_uring_clone_buffers.pad/src_off: syz=24 kernel=4

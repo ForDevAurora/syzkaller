@@ -1,4 +1,11 @@
 no-such-struct: tipc_pair
+no-such-struct: sockaddr_tipc
 no-such-struct: sockaddr_tipc_t
 no-such-struct: msghdr_tipc
 no-such-struct: tipc_address_name
+no-such-struct: tipc_socket_addr
+no-such-struct: tipc_service_addr
+no-such-struct: tipc_service_range
+no-such-struct: tipc_sioc_ln_req
+no-such-struct: tipc_sioc_nodeid_req
+no-such-struct: tipc_group_req

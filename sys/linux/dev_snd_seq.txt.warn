@@ -1,3 +1,9 @@
+bad-field-number: snd_seq_client_info: syz=11 kernel=13
+bad-field-size: snd_seq_client_info.pad/midi_version: syz=56 kernel=4
+bad-field-number: snd_seq_port_info: syz=13 kernel=15
+bad-field-size: snd_seq_port_info.pad/direction: syz=59 kernel=1
+bad-bitfield: snd_seq_queue_info.locked: size/offset: syz=1/0 kernel=1/31
+bad-field-offset: snd_seq_queue_info.locked: syz=8 kernel=0
 bad-field-number: snd_seq_queue_timer: syz=5 kernel=4
 bad-field-size: snd_seq_queue_timer.id/u: syz=20 kernel=24
 bad-field-offset: snd_seq_queue_timer.resolution/reserved: syz=28 kernel=32

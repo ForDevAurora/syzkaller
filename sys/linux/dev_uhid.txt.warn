@@ -1,1 +1,4 @@
 no-such-struct: uhid_req
+no-such-struct: uhid_create_req
+no-such-struct: uhid_input_req
+no-such-struct: uhid_get_report_req

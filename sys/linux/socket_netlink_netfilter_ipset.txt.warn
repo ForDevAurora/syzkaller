@@ -1,4 +1,15 @@
 no-such-struct: ip_set_req_get_set_byname
 no-such-struct: ip_set_req_get_set_byindex
+no-such-struct: ip_set_req_get_set_family
+no-such-struct: ip_set_req_version
+no-such-netlink-policy: ip_set_create_policy
+no-such-netlink-policy: ip_set_adt_policy
+no-such-netlink-policy: ip_set_setname_policy
+no-such-netlink-policy: ip_set_setname2_policy
+no-such-netlink-policy: ip_set_dump_policy
+no-such-netlink-policy: ip_set_type_policy
+no-such-netlink-policy: ip_set_protocol_policy
+no-such-netlink-policy: ip_set_index_policy
 no-such-netlink-policy: ip_set_type_create_policy
 no-such-netlink-policy: ip_set_type_adt_policy
+no-such-netlink-policy: ipaddr_policy

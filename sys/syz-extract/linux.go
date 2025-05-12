@@ -128,6 +128,14 @@ struct kvm_sync_regs {};
 }
 
 func (*linux) processFile(arch *Arch, info *compiler.ConstInfo) (map[string]uint64, map[string]bool, error) {
+	// if strings.HasSuffix(info., "_kvm.txt") &&
+	// 	(arch.target.Arch == targets.ARM || arch.target.Arch == targets.RiscV64) {
+	// 	// Hack: KVM is not supported on ARM anymore. We may want some more official support
+	// 	// for marking descriptions arch-specific, but so far this combination is the only
+	// 	// one. For riscv64, KVM is not supported yet but might be in the future.
+	// 	// Note: syz-sysgen also ignores this file for arm and riscv64.
+	// 	return nil, nil, nil
+	// }
 	headerArch := arch.target.KernelHeaderArch
 	sourceDir := arch.sourceDir
 	buildDir := arch.buildDir

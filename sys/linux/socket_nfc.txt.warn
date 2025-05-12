@@ -1,1 +1,3 @@
+no-such-struct: sockaddr_nfc_llcp
+no-such-struct: sockaddr_nfc
 no-such-struct: nfc_llcp_send_msghdr

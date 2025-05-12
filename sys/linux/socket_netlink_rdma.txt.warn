@@ -1,0 +1,13 @@
+no-such-netlink-policy: nldev_policy$DEV
+no-such-netlink-policy: nldev_policy$SET
+no-such-netlink-policy: nldev_policy$NEWLINK
+no-such-netlink-policy: nldev_policy$PORT_GET
+no-such-netlink-policy: nldev_policy$RES_QP_GET
+no-such-netlink-policy: nldev_policy$RES_CM_ID_GET
+no-such-netlink-policy: nldev_policy$RES_CQ_GET
+no-such-netlink-policy: nldev_policy$RES_MR_GET
+no-such-netlink-policy: nldev_policy$RES_PD_GET
+no-such-netlink-policy: nldev_policy$GET_CHARDEV
+no-such-netlink-policy: nldev_policy$STAT_SET
+no-such-netlink-policy: nldev_policy$STAT_GET
+no-such-netlink-policy: nldev_policy$STAT_DEL

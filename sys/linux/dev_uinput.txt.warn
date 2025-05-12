@@ -1,0 +1,5 @@
+no-such-struct: uinput_user_dev
+no-such-struct: uinput_setup
+no-such-struct: uinput_ff_upload
+no-such-struct: uinput_ff_erase
+no-such-struct: uinput_abs_setup

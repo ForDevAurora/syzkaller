@@ -1,0 +1,4 @@
+no-such-struct: snd_rawmidi_info
+no-such-struct: snd_rawmidi_params
+no-such-struct: snd_rawmidi_status32
+no-such-struct: snd_rawmidi_status64

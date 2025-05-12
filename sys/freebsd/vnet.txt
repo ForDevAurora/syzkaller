@@ -17,17 +17,17 @@ syz_emit_ethernet(len len[packet], packet ptr[in, eth_packet])
 
 hop_limits = 0, 1, 255
 
-resource tcp_seq_num[int32]: 0x41424344
+# resource tcp_seq_num[int32]: 0x41424344
 
-tcp_resources {
-	seq	tcp_seq_num
-	ack	tcp_seq_num
-}
+# tcp_resources {
+# 	seq	tcp_seq_num
+# 	ack	tcp_seq_num
+# }
 
 # These pseudo syscalls read a packet from tap device and extract tcp sequence and acknowledgement numbers from it.
 # They also adds the inc arguments to the returned values, this way sequence numbers get incremented.
-syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
-syz_extract_tcp_res$synack(res ptr[out, tcp_resources], seq_inc const[1], ack_inc const[0])
+# syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
+# syz_extract_tcp_res$synack(res ptr[out, tcp_resources], seq_inc const[1], ack_inc const[0])
 
 ################################################################################
 ################################### Ethernet ###################################
@@ -984,8 +984,8 @@ tcp_flags = 0, TH_FIN, TH_SYN, TH_RST, TH_PUSH, TH_ACK, TH_URG, TH_ECE, TH_CWR
 tcp_header {
 	src_port	sock_port
 	dst_port	sock_port
-	seq_num		tcp_seq_num
-	ack_num		tcp_seq_num
+# seq_num		tcp_seq_num
+# ack_num		tcp_seq_num
 	ns		int8:1
 	reserved	const[0, int8:3]
 	data_off	bytesize4[parent, int8:4]

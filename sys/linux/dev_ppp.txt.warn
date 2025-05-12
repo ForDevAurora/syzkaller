@@ -1,0 +1,3 @@
+no-such-struct: npioctl
+no-such-struct: ppp_idle32
+no-such-struct: ppp_idle64

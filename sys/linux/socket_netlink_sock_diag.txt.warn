@@ -1,1 +1,3 @@
+no-such-struct: inet_diag_req
+no-such-struct: inet_diag_sockid
 no-such-netlink-policy: tcpdiag_policy

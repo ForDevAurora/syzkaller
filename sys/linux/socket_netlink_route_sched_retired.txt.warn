@@ -1,0 +1,12 @@
+no-such-netlink-policy: tca_actions_retired
+no-such-netlink-policy: atm_policy
+no-such-netlink-policy: cbq_policy
+no-such-struct: tc_cbq_lssopt
+no-such-struct: tc_cbq_wrropt
+no-such-struct: tc_cbq_fopt
+no-such-netlink-policy: dsmark_policy$class
+no-such-netlink-policy: dsmark_policy
+no-such-netlink-policy: rsvp_policy
+no-such-netlink-policy: rsvp_policy$ipv6
+no-such-netlink-policy: tcindex_policy
+no-such-netlink-policy: ipt_policy

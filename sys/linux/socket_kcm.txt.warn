@@ -1,0 +1,3 @@
+no-such-struct: kcm_attach
+no-such-struct: kcm_unattach
+no-such-struct: kcm_clone

@@ -1,4 +1,3 @@
-compiler: unsupported syscall: accept due to missing const __NR_accept [386]
 no-such-struct: sock_pair
 no-such-struct: sockaddr_storage
 no-such-struct: sockaddr_generic
@@ -11,8 +10,6 @@ no-such-struct: recv_msghdr
 no-such-struct: recv_mmsghdr
 no-such-struct: cmsghdr_t
 no-such-struct: cmsghdr_unaligned
-compiler: unsupported syscall: ioctl$SIOCGSTAMP due to missing const SIOCGSTAMP [386,arm]
-compiler: unsupported syscall: ioctl$SIOCGSTAMPNS due to missing const SIOCGSTAMPNS [386,arm]
 no-such-struct: ifreq_dev_t
 no-such-struct: ifr_ifru
 no-such-struct: vlan_args
@@ -27,5 +24,10 @@ no-such-struct: brctl_arg_add_del
 no-such-struct: brctl_arg_generic
 no-such-struct: dlci_add
 no-such-struct: ethtool_flow_union
+bad-field-size: ethtool_rxfh.rsvd8/input_xfrm: syz=3 kernel=1
+bad-field-offset: ethtool_rxfh.rsvd32/rsvd8: syz=20 kernel=18
+bad-field-size: ethtool_rxfh.rsvd32/rsvd8: syz=4 kernel=2
+no-such-struct: ethtool_rx_ntuple
+no-such-struct: ethtool_rx_ntuple_flow_spec
 no-such-struct: ethtool_rx_ntuple_flow_spec_union
 bad-field-size: ethtool_link_settings.reserved/transceiver: syz=32 kernel=1

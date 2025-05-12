@@ -1,2 +1,10 @@
-bad-netlink-attr: ip_vs_svc_policy: missing attributes: [10]
-bad-netlink-attr: ip_vs_dest_policy: missing attributes: [10]
+no-such-netlink-policy: ip_vs_cmd_policy
+no-such-netlink-policy: ip_vs_svc_policy
+no-such-netlink-policy: ip_vs_daemon_policy
+no-such-netlink-policy: ip_vs_dest_policy
+no-such-struct: ip_vs_flags
+no-such-struct: ip_vs_service_user
+no-such-struct: ip_vs_dest_user
+no-such-struct: ip_vs_svcdest_user
+no-such-struct: ip_vs_timeout_user
+no-such-struct: ip_vs_daemon_user

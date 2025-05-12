@@ -1,0 +1,6 @@
+no-such-struct: vifctl_u
+no-such-struct: mif6ctl
+no-such-struct: mf6cctl
+no-such-struct: if_set
+no-such-struct: sioc_mif_req6
+no-such-struct: sioc_sg_req6

@@ -42,7 +42,6 @@ no-such-struct: ieee80211_operating_mode
 no-such-struct: ieee80211_sm_power_control
 no-such-struct: ieee80211_ht_control_80211n
 no-such-struct: ieee80211_ht_control
-no-such-struct: ieee80211_append_ht_control
 no-such-struct: ieee80211_fc
 no-such-struct: ieee80211_control_fc
 no-such-struct: ieee80211_generic_ie
@@ -59,13 +58,9 @@ no-such-struct: ieee80211_preq_flags
 no-such-struct: ieee80211_preq_target_flags
 no-such-struct: ieee80211_preq_target
 no-such-struct: ieee80211_ae_flags
-no-such-struct: ieee80211_ie_prep_payload_generic
 compiler: len target dest_list refer to an array with variable-size elements (do you mean bytesize?)
-no-such-struct: ieee80211_ie_perr_dest_generic
 no-such-struct: ieee80211_rann_flags
 no-such-struct: ieee80211_ie_rann_payload
-no-such-struct: ieee80211_data_gen_hdr
-no-such-struct: ieee80211_pre_mgmt_header
 no-such-struct: ieee80211_mgmt_action_raw
 no-such-struct: ieee80211_mgmt_action_addba_req
 no-such-struct: ieee80211_block_ack_param_set

@@ -5,3 +5,4 @@ no-such-struct: msghdr_netlink
 no-such-struct: netlink_msg_t
 no-such-struct: nlattr_t
 no-such-struct: nlattr_tt
+no-such-struct: nl_mmap_req

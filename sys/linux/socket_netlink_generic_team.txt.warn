@@ -1,2 +1,4 @@
-bad-netlink-attr: team_nl_policy: missing attributes: [3]
-bad-netlink-attr: team_nl_option_policy$array: missing attributes: [2]
+no-such-netlink-policy: team_nl_policy
+no-such-netlink-policy: team_nl_option_policy
+no-such-netlink-policy: team_nl_option_policy$per_port
+no-such-netlink-policy: team_nl_option_policy$array

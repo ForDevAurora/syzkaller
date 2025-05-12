@@ -1,0 +1,3 @@
+no-such-struct: cec_caps
+no-such-struct: cec_connector_info_union
+no-such-struct: cec_event_union

@@ -1,0 +1,4 @@
+no-such-netlink-policy: nfnl_osf_policy
+no-such-struct: nf_osf_user_finger
+no-such-struct: nf_osf_wc
+no-such-struct: nf_osf_opt

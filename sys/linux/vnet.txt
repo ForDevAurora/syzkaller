@@ -5,6 +5,7 @@ include <linux/types.h>
 include <linux/byteorder/generic.h>
 
 syz_emit_ethernet(len len[packet], packet ptr[in, eth_packet], frags ptr[in, vnet_fragmentation, opt])
+syz_emit_ethernet_tcp(len len[packet], packet ptr[in, eth_packet_tcp], frags ptr[in, vnet_fragmentation, opt])
 
 vnet_fragmentation {
 # If set and we have remaining data after fragmentation, it is written in an additional fragment.
@@ -17,16 +18,40 @@ vnet_fragmentation {
 hop_limits = 0, 1, 255
 
 resource tcp_seq_num[int32]: 0x41424344
+resource mac_addr_part1[int8]
+resource mac_addr_part2[int8]
+resource mac_addr_part3[int8]
+resource mac_addr_part4[int8]
+resource mac_addr_part5[int8]
+resource mac_addr_part6[int8]
+
+# sock_port_host {
+# 	sock_port_host	int16[20005:20007]	(in)
+# }
+
+type sock_port_host int16[20005:20007]
 
 tcp_resources {
 	seq	tcp_seq_num
 	ack	tcp_seq_num
 }
 
+mac_addr {
+	a0	mac_addr_part1
+	a1	mac_addr_part2
+	a2	mac_addr_part3
+	a3	mac_addr_part4
+	a4	mac_addr_part5
+	a5	mac_addr_part6
+}
+
+syz_port_gen(host_port sock_port_host, seq ptr[out, tcp_resources]) sock_port
+syz_ipv4_addr_gen(addr ptr[in, ipv4_addr_def]) ipv4_addr
+syz_mac_addr_gen(addr ptr[in, mac_addr_def], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2], mac_addr_out3 ptr[out, mac_addr_part3], mac_addr_out4 ptr[out, mac_addr_part4], mac_addr_out5 ptr[out, mac_addr_part5], mac_addr_out6 ptr[out, mac_addr_part6], mac_addr_out7 ptr[out, mac_addr])
 # These pseudo syscalls read a packet from /dev/net/tun and extract tcp sequence and acknowledgement numbers from it.
 # They also adds the inc arguments to the returned values, this way sequence numbers get incremented.
-syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
-syz_extract_tcp_res$synack(res ptr[out, tcp_resources], seq_inc const[1], ack_inc const[0])
+# syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
+# syz_extract_tcp_res$synack(res ptr[out, tcp_resources], seq_inc const[1], ack_inc const[0])
 
 ################################################################################
 ################################### Ethernet ###################################
@@ -57,7 +82,7 @@ mac_addr_link_local_values = 0x0, 0x1, 0x2, 0x3, 0xe
 # This corresponds to the last digit in DEV_MAC/DEV_IPV4/DEV_IPV6 in executor/common_linux.h
 type netdev_addr_id int8[10:68]
 
-mac_addr [
+mac_addr_def [
 	empty		array[const[0x0, int8], 6]
 # These correspond to LOCAL_MAC/REMOTE_MAC/DEV_MAC in executor/common_linux.h
 	local		mac_addr_t[const[0xaa, int8]]
@@ -98,8 +123,19 @@ eth_packet {
 	payload	eth_payload
 } [packed]
 
+eth_packet_tcp {
+	dst_mac	mac_addr
+	src_mac	mac_addr
+	vtag	optional[vlan_tag]
+	payload	eth_payload_tcp
+} [packed]
+
 eth_payload {
 	eth2	eth2_packet
+} [packed]
+
+eth_payload_tcp {
+	eth2	eth2_packet_tcp
 } [packed]
 
 ################################################################################
@@ -109,6 +145,20 @@ eth_payload {
 # https://en.wikipedia.org/wiki/Ethernet_frame#Ethernet_II
 
 ether_types = ETH_P_LOOP, ETH_P_PUP, ETH_P_PUPAT, ETH_P_TSN, ETH_P_IP, ETH_P_X25, ETH_P_ARP, ETH_P_IEEEPUP, ETH_P_IEEEPUPAT, ETH_P_BATMAN, ETH_P_DEC, ETH_P_DNA_DL, ETH_P_DNA_RC, ETH_P_DNA_RT, ETH_P_LAT, ETH_P_DIAG, ETH_P_CUST, ETH_P_SCA, ETH_P_TEB, ETH_P_RARP, ETH_P_ATALK, ETH_P_AARP, ETH_P_8021Q, ETH_P_ERSPAN, ETH_P_ERSPAN2, ETH_P_IPV6, ETH_P_PAUSE, ETH_P_SLOW, ETH_P_WCCP, ETH_P_MPLS_UC, ETH_P_MPLS_MC, ETH_P_ATMMPOA, ETH_P_PPP_DISC, ETH_P_PPP_SES, ETH_P_LINK_CTL, ETH_P_ATMFATE, ETH_P_PAE, ETH_P_AOE, ETH_P_8021AD, ETH_P_802_EX1, ETH_P_TIPC, ETH_P_MACSEC, ETH_P_8021AH, ETH_P_MVRP, ETH_P_1588, ETH_P_NCSI, ETH_P_PRP, ETH_P_FCOE, ETH_P_TDLS, ETH_P_FIP, ETH_P_80221, ETH_P_HSR, ETH_P_LOOPBACK, ETH_P_QINQ1, ETH_P_QINQ2, ETH_P_QINQ3, ETH_P_EDSA, ETH_P_AF_IUCV, ETH_P_802_3_MIN, ETH_P_802_3, ETH_P_AX25, ETH_P_ALL, ETH_P_802_2, ETH_P_SNAP, ETH_P_DDCMP, ETH_P_WAN_PPP, ETH_P_PPP_MP, ETH_P_LOCALTALK, ETH_P_CAN, ETH_P_CANFD, ETH_P_PPPTALK, ETH_P_TR_802_2, ETH_P_MOBITEX, ETH_P_CONTROL, ETH_P_IRDA, ETH_P_ECONET, ETH_P_HDLC, ETH_P_ARCNET, ETH_P_DSA, ETH_P_TRAILER, ETH_P_PHONET, ETH_P_IEEE802154, ETH_P_CAIF, ETH_P_XDSA, ETH_P_MAP
+
+eth2_packet_tcp [
+# generic	eth2_packet_generic
+# arp	eth2_packet_t[ETH_P_ARP, arp_packet]
+	ipv4	eth2_packet_t[ETH_P_IP, ipv4_packet_tcp]
+# ipv6	eth2_packet_t[ETH_P_IPV6, ipv6_packet]
+# llc	eth2_packet_t[ETH_P_802_2, llc_packet]
+# llc_tr	eth2_packet_t[ETH_P_TR_802_2, llc_packet]
+# x25	eth2_packet_t[ETH_P_X25, x25_packet]
+# mpls_uc	eth2_packet_t[ETH_P_MPLS_UC, mpls_packet]
+# mpls_mc	eth2_packet_t[ETH_P_MPLS_MC, mpls_packet]
+# can	eth2_packet_t[ETH_P_CAN, can_frame]
+# canfd	eth2_packet_t[ETH_P_CANFD, canfd_frame]
+] [varlen]
 
 eth2_packet [
 	generic	eth2_packet_generic
@@ -257,7 +307,7 @@ ipv4_addr_initdev {
 	a3	proc[1, 1, int8]
 }
 
-ipv4_addr [
+ipv4_addr_def [
 # Few public random addresses 100.1.1.[0-2]
 	rand_addr	int32be[0x64010100:0x64010102]
 # 0.0.0.0
@@ -278,6 +328,8 @@ ipv4_addr [
 # 10.1.1.[0-2] can be used for custom things within the image
 	private		int32be[0xa010100:0xa010102]
 ] [size[4]]
+
+resource ipv4_addr[int32]
 
 type ipv4_addr_mask flags[ipv4_addr_mask_vals, int32be]
 ipv4_addr_mask_vals = 0, 0xff000000, 0xffffff00, 0xffffffff, 0xff
@@ -406,6 +458,18 @@ ipv4_packet [
 	gre	ipv4_packet_t[const[IPPROTO_GRE, int8], gre_packet]
 # TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
 	tipc	ipv4_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
+] [varlen]
+
+ipv4_packet_tcp [
+# generic	ipv4_packet_t[flags[ipv4_types, int8], array[int8]]
+	tcp	ipv4_packet_t[const[IPPROTO_TCP, int8], tcp_packet]
+# udp	ipv4_packet_t[const[IPPROTO_UDP, int8], udp_packet]
+# icmp	ipv4_packet_t[const[IPPROTO_ICMP, int8], icmp_packet]
+# dccp	ipv4_packet_t[const[IPPROTO_DCCP, int8], dccp_packet]
+# igmp	ipv4_packet_t[const[IPPROTO_IGMP, int8], igmp_packet]
+# gre	ipv4_packet_t[const[IPPROTO_GRE, int8], gre_packet]
+# TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
+# tipc	ipv4_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
 ] [varlen]
 
 ################################################################################

@@ -101,6 +101,7 @@ static NORETURN void doexit_thread(int status);
 // This function does not add \n at the end of msg as opposed to the previous functions.
 static PRINTF(1, 2) void debug(const char* msg, ...);
 void debug_dump_data(const char* data, int length);
+void debug_dump_data(const char* data, int length, uint32 current);
 
 #if 0
 #define debug_verbose(...) debug(__VA_ARGS__)
@@ -1888,4 +1889,14 @@ void debug_dump_data(const char* data, int length)
 	}
 	if (i % 16 != 0)
 		debug("\n");
+}
+
+void debug_dump_data(const char* data, int length, uint32 current)
+{
+	if (!flag_debug)
+		return;
+	int i = 0;
+	for (; i < length; i++) {
+		debug("!!!%u!!!: %02x \n", current, data[i] & 0xff);
+	}
 }

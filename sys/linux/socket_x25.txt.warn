@@ -1,1 +1,10 @@
+no-such-struct: sockaddr_x25
+no-such-struct: x25_address
 no-such-struct: x25_address_remote
+no-such-struct: x25_route_struct
+no-such-struct: x25_subscrip_struct
+no-such-struct: x25_facilities
+no-such-struct: x25_dte_facilities
+no-such-struct: x25_calluserdata
+no-such-struct: x25_causediag
+no-such-struct: x25_subaddr

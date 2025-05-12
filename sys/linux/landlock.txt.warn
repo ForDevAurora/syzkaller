@@ -1,0 +1,3 @@
+no-such-struct: landlock_ruleset_attr
+no-such-struct: landlock_path_beneath_attr
+no-such-struct: landlock_net_port_attr

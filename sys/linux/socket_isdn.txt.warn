@@ -1,1 +1,7 @@
+no-such-struct: sockaddr_mISDN
+no-such-struct: mISDN_devinfo
+no-such-struct: mISDN_devrename
+no-such-struct: mISDN_ctrl_req
 no-such-struct: capi20_command
+no-such-struct: capi_register_params
+no-such-struct: capi_manufacturer_cmd

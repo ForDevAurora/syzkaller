@@ -1,7 +1,27 @@
 no-such-struct: fuse_notify
 no-such-struct: fuse_in
 no-such-struct: fuse_out_t
-bad-field-number: fuse_init_out: syz=11 kernel=12
-bad-field-size: fuse_init_out.unused/flags2: syz=32 kernel=4
+no-such-struct: fuse_init_out
+no-such-struct: fuse_lseek_out
+no-such-struct: fuse_bmap_out
+no-such-struct: fuse_ioctl_out
+no-such-struct: fuse_poll_out
+no-such-struct: fuse_notify_poll_wakeup_out
+no-such-struct: fuse_getxattr_out
+no-such-struct: fuse_lk_out
+no-such-struct: fuse_file_lock
+no-such-struct: fuse_statfs_out
+no-such-struct: fuse_kstatfs
+no-such-struct: fuse_write_out
+no-such-struct: fuse_open_out
+no-such-struct: fuse_attr_out
+no-such-struct: fuse_entry_out
 no-such-struct: fuse_create_open_out
+no-such-struct: fuse_attr
+no-such-struct: fuse_notify_inval_inode_out
+no-such-struct: fuse_notify_retrieve_out
+no-such-struct: fuse_statx_out
+no-such-struct: fuse_statx
+no-such-struct: fuse_sx_time
 no-such-struct: syz_fuse_req_out
+no-such-struct: fuse_backing_map

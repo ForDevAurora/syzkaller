@@ -1,0 +1,23 @@
+bad-field-number: drm_syncobj_wait: syz=6 kernel=7
+bad-struct-size: drm_syncobj_wait: syz=32 kernel=40
+bad-field-number: drm_syncobj_timeline_wait: syz=7 kernel=8
+bad-struct-size: drm_syncobj_timeline_wait: syz=40 kernel=48
+no-such-struct: drm_irq_busid
+no-such-struct: drm_map$DRM_IOCTL_GET_MAP
+no-such-struct: drm_map$DRM_IOCTL_ADD_MAP
+no-such-struct: drm_map$DRM_IOCTL_RM_MAP
+no-such-struct: drm_ctx_priv_map
+no-such-struct: drm_ctx
+no-such-struct: drm_ctx_res
+no-such-struct: drm_lock
+no-such-struct: drm_buf_desc
+no-such-struct: drm_buf_map
+no-such-struct: drm_buf_pub
+no-such-struct: drm_buf_free
+no-such-struct: drm_dma
+no-such-struct: drm_control
+no-such-struct: drm_agp_buffer$DRM_IOCTL_AGP_ALLOC
+no-such-struct: drm_agp_buffer$DRM_IOCTL_AGP_FREE
+no-such-struct: drm_agp_binding
+no-such-struct: drm_scatter_gather
+no-such-struct: drm_modeset_ctl

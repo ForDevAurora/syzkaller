@@ -1,2 +1,47 @@
 no-such-struct: cdrom_msf_out_stub
+bad-bitfield: cdrom_tocentry.cdte_adr: size/offset: syz=4/0 kernel=4/4
+bad-field-offset: cdrom_tocentry.cdte_adr: syz=1 kernel=0
+bad-field-offset: cdrom_tocentry.cdte_ctrl: syz=1 kernel=0
 no-such-struct: cdrom_addr
+bad-bitfield: cdrom_subchnl.cdsc_adr: size/offset: syz=4/0 kernel=4/4
+bad-field-offset: cdrom_subchnl.cdsc_adr: syz=2 kernel=0
+bad-field-offset: cdrom_subchnl.cdsc_ctrl: syz=2 kernel=0
+bad-bitfield: dvd_layer.book_version: size/offset: syz=4/0 kernel=4/4
+bad-bitfield: dvd_layer.min_rate: size/offset: syz=4/0 kernel=4/4
+bad-field-offset: dvd_layer.min_rate: syz=1 kernel=0
+bad-field-offset: dvd_layer.disc_size: syz=1 kernel=0
+bad-bitfield: dvd_layer.layer_type: size/offset: syz=4/0 kernel=4/4
+bad-field-offset: dvd_layer.layer_type: syz=2 kernel=0
+bad-bitfield: dvd_layer.track_path: size/offset: syz=1/4 kernel=1/7
+bad-field-offset: dvd_layer.track_path: syz=2 kernel=0
+bad-bitfield: dvd_layer.nlayers: size/offset: syz=2/5 kernel=2/6
+bad-field-offset: dvd_layer.nlayers: syz=2 kernel=0
+bad-bitfield: dvd_layer.track_density: size/offset: syz=4/0 kernel=4/4
+bad-field-offset: dvd_layer.track_density: syz=3 kernel=0
+bad-field-offset: dvd_layer.linear_density: syz=3 kernel=0
+bad-bitfield: dvd_layer.bca: size/offset: syz=1/0 kernel=1/7
+bad-field-offset: dvd_layer.bca: syz=4 kernel=0
+bad-bitfield: dvd_disckey.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_lu_send_agid.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_host_send_challenge.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_send_key.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_lu_send_challenge.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_lu_send_title_key.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_lu_send_title_key.cpm: size/offset: syz=1/0 kernel=1/31
+bad-field-offset: dvd_lu_send_title_key.cpm: syz=12 kernel=0
+bad-bitfield: dvd_lu_send_title_key.cp_sec: size/offset: syz=1/1 kernel=1/31
+bad-field-offset: dvd_lu_send_title_key.cp_sec: syz=12 kernel=0
+bad-bitfield: dvd_lu_send_title_key.cgms: size/offset: syz=2/2 kernel=2/30
+bad-field-offset: dvd_lu_send_title_key.cgms: syz=12 kernel=0
+bad-bitfield: dvd_lu_send_asf.agid: size/offset: syz=2/8 kernel=2/30
+bad-bitfield: dvd_lu_send_asf.asf: size/offset: syz=1/10 kernel=1/31
+bad-bitfield: dvd_lu_send_rpcstate.type: size/offset: syz=2/0 kernel=2/6
+bad-bitfield: dvd_lu_send_rpcstate.vra: size/offset: syz=3/2 kernel=3/5
+bad-bitfield: request_sense.error_code: size/offset: syz=7/0 kernel=7/1
+bad-bitfield: request_sense.sense_key: size/offset: syz=4/0 kernel=4/4
+bad-field-offset: request_sense.sense_key: syz=2 kernel=0
+bad-bitfield: request_sense.reserved2: size/offset: syz=1/4 kernel=1/7
+bad-field-offset: request_sense.reserved2: syz=2 kernel=0
+bad-bitfield: request_sense.ili: size/offset: syz=1/5 kernel=1/7
+bad-field-offset: request_sense.ili: syz=2 kernel=0
+bad-field-offset: request_sense.reserved1: syz=2 kernel=0
