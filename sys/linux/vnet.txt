@@ -29,16 +29,22 @@ mac_addr {
 	a1	mac_addr_part2
 } [packed]
 
-
 tcp_resources {
 	seq	tcp_seq_num
 	ack	tcp_seq_num
 }
 
+resource ipv6_part1[int64]
+resource ipv6_part2[int64]
 
+ipv6_addr {
+	a0	ipv6_part1
+	a1	ipv6_part2
+} [packed]
 
 syz_port_gen(host_port sock_port_host, seq ptr[out, tcp_resources]) sock_port
 syz_ipv4_addr_gen(addr ptr[in, ipv4_addr_def]) ipv4_addr
+syz_ipv6_addr_gen(addr ptr[in, ipv6_addr_def_tmp], ipv6_addr ptr[out, ipv6_addr], ipv6_addr_out1 ptr[out, ipv6_part1], ipv6_addr_out2 ptr[out, ipv6_part2])
 # syz_ipv6_addr_gen(addr ptr[in, ipv6_addr_def]) ipv6_addr
 # syz_mac_addr_gen(addr ptr[in, mac_addr], mac_addr ptr[out, mac_addr], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2], mac_addr_out3 ptr[out, mac_addr_part3], mac_addr_out4 ptr[out, mac_addr_part4], mac_addr_out5 ptr[out, mac_addr_part5], mac_addr_out6 ptr[out, mac_addr_part6])
 syz_mac_addr_gen(addr ptr[in, mac_addr_def], mac_addr ptr[out, mac_addr], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2])
@@ -144,8 +150,8 @@ ether_types = ETH_P_LOOP, ETH_P_PUP, ETH_P_PUPAT, ETH_P_TSN, ETH_P_IP, ETH_P_X25
 eth2_packet_tcp [
 # generic	eth2_packet_generic
 # arp	eth2_packet_t[ETH_P_ARP, arp_packet]
-	ipv4	eth2_packet_t[ETH_P_IP, ipv4_packet_tcp]
-# ipv6	eth2_packet_t[ETH_P_IPV6, ipv6_packet]
+# ipv4	eth2_packet_t[ETH_P_IP, ipv4_packet_tcp]
+	ipv6	eth2_packet_t[ETH_P_IPV6, ipv6_packet_tcp]
 # llc	eth2_packet_t[ETH_P_802_2, llc_packet]
 # llc_tr	eth2_packet_t[ETH_P_TR_802_2, llc_packet]
 # x25	eth2_packet_t[ETH_P_X25, x25_packet]
@@ -455,17 +461,17 @@ ipv4_packet [
 	tipc	ipv4_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
 ] [varlen]
 
-ipv4_packet_tcp [
-# generic	ipv4_packet_t[flags[ipv4_types, int8], array[int8]]
-	tcp	ipv4_packet_t[const[IPPROTO_TCP, int8], tcp_packet]
-# udp	ipv4_packet_t[const[IPPROTO_UDP, int8], udp_packet]
-# icmp	ipv4_packet_t[const[IPPROTO_ICMP, int8], icmp_packet]
-# dccp	ipv4_packet_t[const[IPPROTO_DCCP, int8], dccp_packet]
-# igmp	ipv4_packet_t[const[IPPROTO_IGMP, int8], igmp_packet]
-# gre	ipv4_packet_t[const[IPPROTO_GRE, int8], gre_packet]
-# TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
-# tipc	ipv4_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
-] [varlen]
+# ipv4_packet_tcp [
+# # generic	ipv4_packet_t[flags[ipv4_types, int8], array[int8]]
+# 	tcp	ipv4_packet_t[const[IPPROTO_TCP, int8], tcp_packet]
+# # udp	ipv4_packet_t[const[IPPROTO_UDP, int8], udp_packet]
+# # icmp	ipv4_packet_t[const[IPPROTO_ICMP, int8], icmp_packet]
+# # dccp	ipv4_packet_t[const[IPPROTO_DCCP, int8], dccp_packet]
+# # igmp	ipv4_packet_t[const[IPPROTO_IGMP, int8], igmp_packet]
+# # gre	ipv4_packet_t[const[IPPROTO_GRE, int8], gre_packet]
+# # TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
+# # tipc	ipv4_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
+# ] [varlen]
 
 ################################################################################
 ##################################### IPv6 #####################################
@@ -506,11 +512,11 @@ ipv6_addr_loopback {
 	a1	const[1, int64be]
 } [packed, align[4]]
 
-ipv6_addr_ipv4 {
-	a0	array[const[0x0, int8], 10]
-	a1	array[const[0xff, int8], 2]
-	a3	ipv4_addr
-} [packed, align[4]]
+# ipv6_addr_ipv4 {
+# 	a0	array[const[0x0, int8], 10]
+# 	a1	array[const[0xff, int8], 2]
+# 	a3	ipv4_addr
+# } [packed, align[4]]
 
 ipv6_addr_multicast1 {
 	a0	const[0xff, int8]
@@ -535,7 +541,28 @@ type ipv6_addr_private[BYTE2] {
 
 ipv6_addr_random = `20010000000000000000000000000000`, `20010000000000000000000000000001`, `20010000000000000000000000000002`
 
-ipv6_addr [
+# ipv6_addr_def [
+# # Few public random addresses
+# 	rand_addr	stringnoz[ipv6_addr_random]
+# 	empty		ipv6_addr_empty
+# # These correspond to LOCAL_IPV6/REMOTE_IPV6/DEV_IPV6 in executor/common_linux.h
+# 	local		ipv6_addr_t[const[0xaa, int8]]
+# 	remote		ipv6_addr_t[const[0xbb, int8]]
+# 	dev		ipv6_addr_t[netdev_addr_id]
+# 	initdev		ipv6_addr_initdev
+# # Some special addresses:
+# 	loopback	ipv6_addr_loopback
+# 	ipv4		ipv6_addr_ipv4
+# 	mcast1		ipv6_addr_multicast1
+# 	mcast2		ipv6_addr_multicast2
+# # Several custom private ranges with 2 addresses each: fc0X::/127.
+# # Can be used for custom things within the tested image.
+# 	private0	ipv6_addr_private[0]
+# 	private1	ipv6_addr_private[1]
+# 	private2	ipv6_addr_private[2]
+# ] [size[16]]
+
+ipv6_addr_def_tmp [
 # Few public random addresses
 	rand_addr	stringnoz[ipv6_addr_random]
 	empty		ipv6_addr_empty
@@ -546,7 +573,7 @@ ipv6_addr [
 	initdev		ipv6_addr_initdev
 # Some special addresses:
 	loopback	ipv6_addr_loopback
-	ipv4		ipv6_addr_ipv4
+# ipv4		ipv6_addr_ipv4
 	mcast1		ipv6_addr_multicast1
 	mcast2		ipv6_addr_multicast2
 # Several custom private ranges with 2 addresses each: fc0X::/127.
@@ -709,6 +736,17 @@ ipv6_packet [
 	gre_packet	ipv6_packet_t[const[IPPROTO_GRE, int8], gre_packet]
 # TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
 	tipc_packet	ipv6_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
+] [varlen]
+
+ipv6_packet_tcp [
+# generic		ipv6_packet_t[flags[ipv6_types, int8], array[int8]]
+	tcp	ipv6_packet_t[const[IPPROTO_TCP, int8], tcp_packet]
+# udp		ipv6_packet_t[const[IPPROTO_UDP, int8], udp_packet]
+# icmpv6		ipv6_packet_t[const[IPPROTO_ICMPV6, int8], icmpv6_packet]
+# dccp_packet	ipv6_packet_t[const[IPPROTO_DCCP, int8], dccp_packet]
+# gre_packet	ipv6_packet_t[const[IPPROTO_GRE, int8], gre_packet]
+# TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
+# tipc_packet	ipv6_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
 ] [varlen]
 
 type ipv6_packet_t[PROTO, PAYLOAD] {

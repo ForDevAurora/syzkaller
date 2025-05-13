@@ -76,6 +76,7 @@ var linuxSyscallChecks = map[string]func(*checkContext, *prog.Syscall) string{
 	"syz_port_gen":                linuxNetInjectionSupported,
 	"syz_ipv4_addr_gen":           linuxNetInjectionSupported,
 	"syz_mac_addr_gen":            linuxNetInjectionSupported,
+	"syz_ipv6_addr_gen":           linuxNetInjectionSupported,
 	"syz_extract_tcp_res":         linuxNetInjectionSupported,
 	"syz_usb_connect":             linuxCheckUSBEmulation,
 	"syz_usb_connect_ath9k":       linuxCheckUSBEmulation,

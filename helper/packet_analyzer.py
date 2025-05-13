@@ -57,7 +57,10 @@ def analyze_packet(hex_data):
         # 打印原始数据
         print("\n=== 原始数据 ===")
         print(hexdump(packet, dump=True))
-        # Use text2pcap to save the packet to a pcap file, use command line to do this
+        # Save the packet to a pcap file
+        pcap_file = "packet.pcap"
+        wrpcap(pcap_file, packet)
+        print(f"数据包已保存到 {pcap_file}")
 
     except Exception as e:
         print(f"解析错误: {str(e)}")

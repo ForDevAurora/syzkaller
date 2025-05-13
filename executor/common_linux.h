@@ -2542,6 +2542,37 @@ static long syz_ipv4_addr_gen(volatile long a0)
 }
 #endif
 
+#if SYZ_EXECUTOR || __NR_syz_ipv6_addr_gen
+struct ipv6_addr_def {
+	uint8 addr[16];
+};
+
+struct ipv6_addr {
+	uint64 a0;
+	uint64 a1;
+};
+
+static long syz_ipv6_addr_gen(volatile long a0, volatile long a1, volatile long a2, volatile long a3)
+{
+	struct ipv6_addr_def* addr = (struct ipv6_addr_def*)a0;
+	// organize the ipv6 address stored in addr into ipv6_addr
+	struct ipv6_addr* ipv6_addr = (struct ipv6_addr*)a1;
+	ipv6_addr->a0 = (((long)(addr->addr[0])) << 56) | (((long)(addr->addr[1])) << 48) | (((long)(addr->addr[2])) << 40) | (((long)(addr->addr[3])) << 32) | (((long)(addr->addr[4])) << 24) | (((long)(addr->addr[5])) << 16) | (((long)(addr->addr[6])) << 8) | (((long)(addr->addr[7])));
+	ipv6_addr->a1 = (((long)(addr->addr[8])) << 56) | (((long)(addr->addr[9])) << 48) | (((long)(addr->addr[10])) << 40) | (((long)(addr->addr[11])) << 32) | (((long)(addr->addr[12])) << 24) | (((long)(addr->addr[13])) << 16) | (((long)(addr->addr[14])) << 8) | (((long)(addr->addr[15])));
+	// output the ipv6 address, consider both ipv6_addr->a0 and a1, separate with : for each 8 bit section
+	debug("%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x\n",
+	      ((uint8)((ipv6_addr->a0 >> 56) & 0xff)), ((uint8)((ipv6_addr->a0 >> 48) & 0xff)), ((uint8)((ipv6_addr->a0 >> 40) & 0xff)), ((uint8)((ipv6_addr->a0 >> 32) & 0xff)),
+	      ((uint8)((ipv6_addr->a0 >> 24) & 0xff)), ((uint8)((ipv6_addr->a0 >> 16) & 0xff)), ((uint8)((ipv6_addr->a0 >> 8) & 0xff)), ((uint8)(ipv6_addr->a0 & 0xff)),
+	      ((uint8)((ipv6_addr->a1 >> 56) & 0xff)), ((uint8)((ipv6_addr->a1 >> 48) & 0xff)), ((uint8)((ipv6_addr->a1 >> 40) & 0xff)), ((uint8)((ipv6_addr->a1 >> 32) & 0xff)),
+	      ((uint8)((ipv6_addr->a1 >> 24) & 0xff)), ((uint8)((ipv6_addr->a1 >> 16) & 0xff)), ((uint8)((ipv6_addr->a1 >> 8) & 0xff)), ((uint8)(ipv6_addr->a1 & 0xff)));
+	long* ipv6_addr_part1 = (long*)a2;
+	long* ipv6_addr_part2 = (long*)a3;
+	*ipv6_addr_part1 = ipv6_addr->a0;
+	*ipv6_addr_part2 = ipv6_addr->a1;
+	return 0;
+}
+#endif
+
 #if SYZ_EXECUTOR || __NR_syz_mac_addr_gen
 struct mac_addr {
 	uint32 a0;
@@ -2560,6 +2591,11 @@ static long syz_mac_addr_gen(volatile long a0, volatile long a1, volatile long a
 	// Organize the mac address stored in mac_addr_def (6 parts, 8bit each) into mac_addr (2 parts, 32bit + 16bit)
 	mac_addr->a0 = (addr->addr[0] << 24) | (addr->addr[1] << 16) | (addr->addr[2] << 8) | addr->addr[3];
 	mac_addr->a1 = (addr->addr[4] << 8) | addr->addr[5];
+
+	uint32* mac_addr_part1 = (uint32*)a2;
+	uint16* mac_addr_part2 = (uint16*)a3;
+	*mac_addr_part1 = mac_addr->a0;
+	*mac_addr_part2 = mac_addr->a1;
 
 	return 0;
 }
