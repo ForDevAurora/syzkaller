@@ -18,12 +18,9 @@ vnet_fragmentation {
 hop_limits = 0, 1, 255
 
 resource tcp_seq_num[int32]: 0x41424344
-resource mac_addr_part1[int8]
-resource mac_addr_part2[int8]
-resource mac_addr_part3[int8]
-resource mac_addr_part4[int8]
-resource mac_addr_part5[int8]
-resource mac_addr_part6[int8]
+
+# type mac48 
+resource mac_addr[int64[0:0xffffffffffff]]
 
 # sock_port_host {
 # 	sock_port_host	int16[20005:20007]	(in)
@@ -36,22 +33,15 @@ tcp_resources {
 	ack	tcp_seq_num
 }
 
-mac_addr {
-	a0	mac_addr_part1
-	a1	mac_addr_part2
-	a2	mac_addr_part3
-	a3	mac_addr_part4
-	a4	mac_addr_part5
-	a5	mac_addr_part6
-}
-
 syz_port_gen(host_port sock_port_host, seq ptr[out, tcp_resources]) sock_port
 syz_ipv4_addr_gen(addr ptr[in, ipv4_addr_def]) ipv4_addr
-syz_mac_addr_gen(addr ptr[in, mac_addr_def], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2], mac_addr_out3 ptr[out, mac_addr_part3], mac_addr_out4 ptr[out, mac_addr_part4], mac_addr_out5 ptr[out, mac_addr_part5], mac_addr_out6 ptr[out, mac_addr_part6], mac_addr_out7 ptr[out, mac_addr])
+# syz_mac_addr_gen(addr ptr[in, mac_addr_def], mac_addr ptr[out, mac_addr], mac_addr_out1 mac_addr_part1, mac_addr_out2 mac_addr_part2, mac_addr_out3 mac_addr_part3, mac_addr_out4 mac_addr_part4, mac_addr_out5 mac_addr_part5, mac_addr_out6 mac_addr_part6)
+# syz_mac_addr_gen(addr ptr[in, mac_addr_def], mac_addr ptr[out, mac_addr], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2], mac_addr_out3 ptr[out, mac_addr_part3], mac_addr_out4 ptr[out, mac_addr_part4], mac_addr_out5 ptr[out, mac_addr_part5], mac_addr_out6 ptr[out, mac_addr_part6])
+syz_mac_addr_gen(addr ptr[in, mac_addr_def]) mac_addr
 # These pseudo syscalls read a packet from /dev/net/tun and extract tcp sequence and acknowledgement numbers from it.
 # They also adds the inc arguments to the returned values, this way sequence numbers get incremented.
-# syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
-# syz_extract_tcp_res$synack(res ptr[out, tcp_resources], seq_inc const[1], ack_inc const[0])
+syz_extract_tcp_res(res ptr[out, tcp_resources], seq_inc int32, ack_inc int32)
+syz_extract_tcp_res$synack(res ptr[out, tcp_resources], seq_inc const[1], ack_inc const[0])
 
 ################################################################################
 ################################### Ethernet ###################################
