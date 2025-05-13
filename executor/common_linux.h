@@ -2544,48 +2544,26 @@ static long syz_ipv4_addr_gen(volatile long a0)
 
 #if SYZ_EXECUTOR || __NR_syz_mac_addr_gen
 struct mac_addr {
-	uint8 a0;
-	uint8 a1;
-	uint8 a2;
-	uint8 a3;
-	uint8 a4;
-	uint8 a5;
+	uint32 a0;
+	uint16 a1;
 };
 
 struct mac_addr_def {
 	uint8 addr[6];
 };
 
-// static long syz_mac_addr_gen(volatile long a0, volatile long a1, volatile long a2, volatile long a3, volatile long a4, volatile long a5, volatile long a6, volatile long a7)
-// {
-// 	struct mac_addr_def* addr = (struct mac_addr_def*)a0;
-// 	struct mac_addr* mac_addr = (struct mac_addr*)a1;
-// 	mac_addr->a0 = addr->addr[0];
-// 	mac_addr->a1 = addr->addr[1];
-// 	mac_addr->a2 = addr->addr[2];
-// 	mac_addr->a3 = addr->addr[3];
-// 	mac_addr->a4 = addr->addr[4];
-// 	mac_addr->a5 = addr->addr[5];
-// 	*(uint8*)a2 = mac_addr->a0;
-// 	*(uint8*)a3 = mac_addr->a1;
-// 	*(uint8*)a4 = mac_addr->a2;
-// 	*(uint8*)a5 = mac_addr->a3;
-// 	*(uint8*)a6 = mac_addr->a4;
-// 	*(uint8*)a7 = mac_addr->a5;
-
-// 	return 0;
-// }
-
-static long syz_mac_addr_gen(volatile long a0)
+static long syz_mac_addr_gen(volatile long a0, volatile long a1, volatile long a2, volatile long a3)
 {
 	struct mac_addr_def* addr = (struct mac_addr_def*)a0;
-	// Convert mac_addr_def to int64
-	uint64 mac_addr = 0;
-	for (int i = 0; i < 6; i++) {
-		mac_addr = (mac_addr << 8) | addr->addr[i];
-	}
-	return (long)mac_addr;
+	struct mac_addr* mac_addr = (struct mac_addr*)a1;
+
+	// Organize the mac address stored in mac_addr_def (6 parts, 8bit each) into mac_addr (2 parts, 32bit + 16bit)
+	mac_addr->a0 = (addr->addr[0] << 24) | (addr->addr[1] << 16) | (addr->addr[2] << 8) | addr->addr[3];
+	mac_addr->a1 = (addr->addr[4] << 8) | addr->addr[5];
+
+	return 0;
 }
+
 #endif
 
 #if SYZ_EXECUTOR || SYZ_CLOSE_FDS || __NR_syz_usb_connect || __NR_syz_usb_connect_ath9k
