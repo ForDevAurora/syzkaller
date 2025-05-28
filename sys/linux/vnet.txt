@@ -5,7 +5,7 @@ include <linux/types.h>
 include <linux/byteorder/generic.h>
 
 syz_emit_ethernet(len len[packet], packet ptr[in, eth_packet], frags ptr[in, vnet_fragmentation, opt])
-syz_emit_ethernet_tcp(len len[packet], packet ptr[in, eth_packet_tcp], frags ptr[in, vnet_fragmentation, opt])
+# syz_emit_ethernet_tcp(len len[packet], packet ptr[in, eth_packet_tcp], frags ptr[in, vnet_fragmentation, opt])
 
 vnet_fragmentation {
 # If set and we have remaining data after fragmentation, it is written in an additional fragment.
@@ -42,9 +42,10 @@ ipv6_addr {
 	a1	ipv6_part2
 } [packed]
 
-syz_port_gen(host_port sock_port_host, seq ptr[out, tcp_resources]) sock_port
+
+syz_port_gen(host_port sock_port_host) sock_port
 syz_ipv4_addr_gen(addr ptr[in, ipv4_addr_def]) ipv4_addr
-syz_ipv6_addr_gen(addr ptr[in, ipv6_addr_def_tmp], ipv6_addr ptr[out, ipv6_addr], ipv6_addr_out1 ptr[out, ipv6_part1], ipv6_addr_out2 ptr[out, ipv6_part2])
+syz_ipv6_addr_gen(addr ptr[in, ipv6_addr_def], ipv6_addr ptr[out, ipv6_addr], ipv6_addr_out1 ptr[out, ipv6_part1], ipv6_addr_out2 ptr[out, ipv6_part2])
 # syz_ipv6_addr_gen(addr ptr[in, ipv6_addr_def]) ipv6_addr
 # syz_mac_addr_gen(addr ptr[in, mac_addr], mac_addr ptr[out, mac_addr], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2], mac_addr_out3 ptr[out, mac_addr_part3], mac_addr_out4 ptr[out, mac_addr_part4], mac_addr_out5 ptr[out, mac_addr_part5], mac_addr_out6 ptr[out, mac_addr_part6])
 syz_mac_addr_gen(addr ptr[in, mac_addr_def], mac_addr ptr[out, mac_addr], mac_addr_out1 ptr[out, mac_addr_part1], mac_addr_out2 ptr[out, mac_addr_part2])
@@ -124,20 +125,20 @@ eth_packet {
 	payload	eth_payload
 } [packed]
 
-eth_packet_tcp {
-	dst_mac	mac_addr
-	src_mac	mac_addr
-	vtag	optional[vlan_tag]
-	payload	eth_payload_tcp
-} [packed]
+# eth_packet_tcp {
+# 	dst_mac	mac_addr
+# 	src_mac	mac_addr
+# 	vtag	optional[vlan_tag]
+# 	payload	eth_payload_tcp
+# } [packed]
 
 eth_payload {
 	eth2	eth2_packet
 } [packed]
 
-eth_payload_tcp {
-	eth2	eth2_packet_tcp
-} [packed]
+# eth_payload_tcp {
+# 	eth2	eth2_packet_tcp
+# } [packed]
 
 ################################################################################
 ################################## Ethernet 2 ##################################
@@ -147,11 +148,11 @@ eth_payload_tcp {
 
 ether_types = ETH_P_LOOP, ETH_P_PUP, ETH_P_PUPAT, ETH_P_TSN, ETH_P_IP, ETH_P_X25, ETH_P_ARP, ETH_P_IEEEPUP, ETH_P_IEEEPUPAT, ETH_P_BATMAN, ETH_P_DEC, ETH_P_DNA_DL, ETH_P_DNA_RC, ETH_P_DNA_RT, ETH_P_LAT, ETH_P_DIAG, ETH_P_CUST, ETH_P_SCA, ETH_P_TEB, ETH_P_RARP, ETH_P_ATALK, ETH_P_AARP, ETH_P_8021Q, ETH_P_ERSPAN, ETH_P_ERSPAN2, ETH_P_IPV6, ETH_P_PAUSE, ETH_P_SLOW, ETH_P_WCCP, ETH_P_MPLS_UC, ETH_P_MPLS_MC, ETH_P_ATMMPOA, ETH_P_PPP_DISC, ETH_P_PPP_SES, ETH_P_LINK_CTL, ETH_P_ATMFATE, ETH_P_PAE, ETH_P_AOE, ETH_P_8021AD, ETH_P_802_EX1, ETH_P_TIPC, ETH_P_MACSEC, ETH_P_8021AH, ETH_P_MVRP, ETH_P_1588, ETH_P_NCSI, ETH_P_PRP, ETH_P_FCOE, ETH_P_TDLS, ETH_P_FIP, ETH_P_80221, ETH_P_HSR, ETH_P_LOOPBACK, ETH_P_QINQ1, ETH_P_QINQ2, ETH_P_QINQ3, ETH_P_EDSA, ETH_P_AF_IUCV, ETH_P_802_3_MIN, ETH_P_802_3, ETH_P_AX25, ETH_P_ALL, ETH_P_802_2, ETH_P_SNAP, ETH_P_DDCMP, ETH_P_WAN_PPP, ETH_P_PPP_MP, ETH_P_LOCALTALK, ETH_P_CAN, ETH_P_CANFD, ETH_P_PPPTALK, ETH_P_TR_802_2, ETH_P_MOBITEX, ETH_P_CONTROL, ETH_P_IRDA, ETH_P_ECONET, ETH_P_HDLC, ETH_P_ARCNET, ETH_P_DSA, ETH_P_TRAILER, ETH_P_PHONET, ETH_P_IEEE802154, ETH_P_CAIF, ETH_P_XDSA, ETH_P_MAP
 
-eth2_packet_tcp [
-# generic	eth2_packet_generic
+# eth2_packet_tcp [
+# # generic	eth2_packet_generic
 # arp	eth2_packet_t[ETH_P_ARP, arp_packet]
 # ipv4	eth2_packet_t[ETH_P_IP, ipv4_packet_tcp]
-	ipv6	eth2_packet_t[ETH_P_IPV6, ipv6_packet_tcp]
+# ipv6	eth2_packet_t[ETH_P_IPV6, ipv6_packet_tcp]
 # llc	eth2_packet_t[ETH_P_802_2, llc_packet]
 # llc_tr	eth2_packet_t[ETH_P_TR_802_2, llc_packet]
 # x25	eth2_packet_t[ETH_P_X25, x25_packet]
@@ -159,7 +160,7 @@ eth2_packet_tcp [
 # mpls_mc	eth2_packet_t[ETH_P_MPLS_MC, mpls_packet]
 # can	eth2_packet_t[ETH_P_CAN, can_frame]
 # canfd	eth2_packet_t[ETH_P_CANFD, canfd_frame]
-] [varlen]
+# ] [varlen]
 
 eth2_packet [
 	generic	eth2_packet_generic
@@ -512,11 +513,11 @@ ipv6_addr_loopback {
 	a1	const[1, int64be]
 } [packed, align[4]]
 
-# ipv6_addr_ipv4 {
-# 	a0	array[const[0x0, int8], 10]
-# 	a1	array[const[0xff, int8], 2]
-# 	a3	ipv4_addr
-# } [packed, align[4]]
+ipv6_addr_ipv4 {
+	a0	array[const[0x0, int8], 10]
+	a1	array[const[0xff, int8], 2]
+	a3	ipv4_addr
+} [packed, align[4]]
 
 ipv6_addr_multicast1 {
 	a0	const[0xff, int8]
@@ -541,28 +542,7 @@ type ipv6_addr_private[BYTE2] {
 
 ipv6_addr_random = `20010000000000000000000000000000`, `20010000000000000000000000000001`, `20010000000000000000000000000002`
 
-# ipv6_addr_def [
-# # Few public random addresses
-# 	rand_addr	stringnoz[ipv6_addr_random]
-# 	empty		ipv6_addr_empty
-# # These correspond to LOCAL_IPV6/REMOTE_IPV6/DEV_IPV6 in executor/common_linux.h
-# 	local		ipv6_addr_t[const[0xaa, int8]]
-# 	remote		ipv6_addr_t[const[0xbb, int8]]
-# 	dev		ipv6_addr_t[netdev_addr_id]
-# 	initdev		ipv6_addr_initdev
-# # Some special addresses:
-# 	loopback	ipv6_addr_loopback
-# 	ipv4		ipv6_addr_ipv4
-# 	mcast1		ipv6_addr_multicast1
-# 	mcast2		ipv6_addr_multicast2
-# # Several custom private ranges with 2 addresses each: fc0X::/127.
-# # Can be used for custom things within the tested image.
-# 	private0	ipv6_addr_private[0]
-# 	private1	ipv6_addr_private[1]
-# 	private2	ipv6_addr_private[2]
-# ] [size[16]]
-
-ipv6_addr_def_tmp [
+ipv6_addr_def [
 # Few public random addresses
 	rand_addr	stringnoz[ipv6_addr_random]
 	empty		ipv6_addr_empty
@@ -573,7 +553,7 @@ ipv6_addr_def_tmp [
 	initdev		ipv6_addr_initdev
 # Some special addresses:
 	loopback	ipv6_addr_loopback
-# ipv4		ipv6_addr_ipv4
+	ipv4		ipv6_addr_ipv4
 	mcast1		ipv6_addr_multicast1
 	mcast2		ipv6_addr_multicast2
 # Several custom private ranges with 2 addresses each: fc0X::/127.
@@ -738,16 +718,16 @@ ipv6_packet [
 	tipc_packet	ipv6_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
 ] [varlen]
 
-ipv6_packet_tcp [
-# generic		ipv6_packet_t[flags[ipv6_types, int8], array[int8]]
-	tcp	ipv6_packet_t[const[IPPROTO_TCP, int8], tcp_packet]
-# udp		ipv6_packet_t[const[IPPROTO_UDP, int8], udp_packet]
-# icmpv6		ipv6_packet_t[const[IPPROTO_ICMPV6, int8], icmpv6_packet]
-# dccp_packet	ipv6_packet_t[const[IPPROTO_DCCP, int8], dccp_packet]
-# gre_packet	ipv6_packet_t[const[IPPROTO_GRE, int8], gre_packet]
-# TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
-# tipc_packet	ipv6_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
-] [varlen]
+# ipv6_packet_tcp [
+# # generic		ipv6_packet_t[flags[ipv6_types, int8], array[int8]]
+# 	tcp	ipv6_packet_t[const[IPPROTO_TCP, int8], tcp_packet]
+# # udp		ipv6_packet_t[const[IPPROTO_UDP, int8], udp_packet]
+# # icmpv6		ipv6_packet_t[const[IPPROTO_ICMPV6, int8], icmpv6_packet]
+# # dccp_packet	ipv6_packet_t[const[IPPROTO_DCCP, int8], dccp_packet]
+# # gre_packet	ipv6_packet_t[const[IPPROTO_GRE, int8], gre_packet]
+# # TODO: what proto do we need for tipc (there is no IPPROTO_TIPC)?
+# # tipc_packet	ipv6_packet_t[const[IPPROTO_TCP, int8], tipc_packet]
+# ] [varlen]
 
 type ipv6_packet_t[PROTO, PAYLOAD] {
 	priority	int8:4

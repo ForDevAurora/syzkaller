@@ -969,3 +969,18 @@ func CppName(name string) string {
 	}
 	return string(res)
 }
+
+// Getter for inputResources
+func (s *Syscall) InputResources() []*ResourceDesc {
+	return s.inputResources
+}
+
+// Getter for createsResources
+func (s *Syscall) CreatesResources() []*ResourceDesc {
+	return s.createsResources
+}
+
+// Getter for usesResources
+func (s *Syscall) UsesResources() []*ResourceDesc {
+	return s.usesResources
+}

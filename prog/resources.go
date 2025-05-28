@@ -202,6 +202,8 @@ func (target *Target) transitivelyEnabled(enabled map[*Syscall]bool) (map[*Sysca
 
 func (target *Target) TransitivelyEnabledCalls(enabled map[*Syscall]bool) (map[*Syscall]bool, map[*Syscall]string) {
 	supported, canCreate := target.transitivelyEnabled(enabled)
+	fmt.Println("supported", supported)
+	fmt.Println("canCreate", canCreate)
 	disabled := make(map[*Syscall]string)
 	ctors := make(map[string][]string)
 	for c := range enabled {
@@ -218,7 +220,7 @@ func (target *Target) TransitivelyEnabledCalls(enabled map[*Syscall]bool) (map[*
 					names = append(names, ctor.Call.Name)
 				}
 				if len(names) > 5 {
-					names = append(names[:3], "...")
+					// names = append(names[:3], "...")
 				}
 				ctors[res.Name] = names
 			}

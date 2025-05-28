@@ -463,6 +463,7 @@ func (serv *server) runCheck(ctx context.Context, info *handshakeResult) error {
 	}
 
 	enabledCalls, transitivelyDisabled := serv.target.TransitivelyEnabledCalls(enabledCalls)
+
 	// Note: need to print disbled syscalls before failing due to an error.
 	// This helps to debug "all system calls are disabled".
 	if serv.cfg.PrintMachineCheck {
