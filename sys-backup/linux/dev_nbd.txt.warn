@@ -1,0 +1,2 @@
+no-such-netlink-policy: nbd_attr_policy
+no-such-struct: nbd_sock_pair

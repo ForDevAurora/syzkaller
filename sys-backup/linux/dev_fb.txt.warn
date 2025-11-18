@@ -1,0 +1,4 @@
+no-such-struct: fb_var_screeninfo
+no-such-struct: fb_cmap_user
+no-such-struct: fb_bitfield
+no-such-struct: fb_con2fbmap

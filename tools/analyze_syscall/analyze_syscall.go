@@ -10,7 +10,7 @@ import (
 
 // 数组以记录ignore resources
 var ignoreResources = []string{
-	"fd", "pid", "fd_dir", "uid", "gid", "time_sec", "time_nsec", "time_usec", "fd_io_uring", "timespec"}
+	"fd", "pid", "fd_dir", "uid", "gid", "time_sec", "time_nsec", "time_usec", "fd_io_uring", "timespec", "nfc_dev_id", "fd_cgroup", "fd_perf", "fd_nci", "fd_pidfd", "fd_rdma"}
 
 // findConsumers returns all syscalls that, transitively, take
 // any of the resource kinds in initialRes as input.

@@ -1,0 +1,11 @@
+no-such-struct: nci_ctrl_hdr
+no-such-struct: nci_core_reset_rsp
+no-such-struct: nci_core_init_rsp_2
+no-such-struct: nci_core_conn_create_rsp
+no-such-struct: nci_nfcee_discover_rsp
+no-such-struct: nci_core_reset_ntf
+no-such-struct: conn_credit_entry
+no-such-struct: nci_core_intf_error_ntf
+no-such-struct: nci_rf_discover_ntf
+no-such-struct: rf_tech_specific_params_nfcv_poll
+no-such-struct: nci_rf_deactivate_ntf

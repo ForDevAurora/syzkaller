@@ -303,6 +303,9 @@ func (target *Target) mutateArg(r *randGen, s *state, arg Arg, ctx ArgCtx, updat
 
 func regenerate(r *randGen, s *state, arg Arg) (calls []*Call, retry, preserve bool) {
 	var newArg Arg
+	// if arg.Type().Name() == "ipv6_part1" || arg.Type().Name() == "ipv6_part2" || arg.Type().Name() == "mac_part1" || arg.Type().Name() == "mac_part2" {
+	// 	panic(fmt.Sprintf("regenerate called for %v, this should not happen", arg.Type().Name()))
+	// }
 	newArg, calls = r.generateArg(s, arg.Type(), arg.Dir())
 	replaceArg(arg, newArg)
 	return
@@ -507,6 +510,10 @@ func (t *ArrayType) mutate(r *randGen, s *state, arg Arg, ctx ArgCtx) (calls []*
 func (t *PtrType) mutate(r *randGen, s *state, arg Arg, ctx ArgCtx) (calls []*Call, retry, preserve bool) {
 	a := arg.(*PointerArg)
 	if r.oneOf(1000) {
+		//if a.Type().Name() == "ipv6_addr_out1" || a.Type().Name() == "ipv6_addr_out2" || a.Type().Name() == "mac_addr_part1" || a.Type().Name() == "mac_addr_part2" {
+		if t.Elem.Name() == "ipv6_part1" || t.Elem.Name() == "ipv6_part2" || t.Elem.Name() == "mac_part1" || t.Elem.Name() == "mac_part2" {
+			return nil, false, true
+		}
 		removeArg(a.Res)
 		index := r.rand(len(r.target.SpecialPointers))
 		newArg := MakeSpecialPointerArg(t, a.Dir(), index)
@@ -526,6 +533,23 @@ func (t *StructType) mutate(r *randGen, s *state, arg Arg, ctx ArgCtx) (calls []
 	var newArg Arg
 	newArg, calls = gen(&Gen{r, s}, t, arg.Dir(), arg)
 	a := arg.(*GroupArg)
+	if t.Name() == "ipv6_addr" || t.Name() == "mac_addr" {
+		changed_ipv6 := false
+		for i, f := range newArg.(*GroupArg).Inner {
+			if a.Inner[i] != f {
+				changed_ipv6 = true
+				break
+			}
+		}
+		if !changed_ipv6 {
+			// We don't want to mutate ipv6_addr if nothing changed.
+			// This is because syz_ipv6_addr_gen is a special syscall
+			// that generates a random IPv6 address, and we don't want
+			// to call it if nothing changed.
+			return nil, false, true
+		}
+
+	}
 	for i, f := range newArg.(*GroupArg).Inner {
 		replaceArg(a.Inner[i], f)
 	}

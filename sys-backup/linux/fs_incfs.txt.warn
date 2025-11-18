@@ -1,0 +1,8 @@
+no-such-struct: incfs_uuid_t
+no-such-struct: incfs_uuid_str
+no-such-struct: incfs_new_file_args
+no-such-struct: incfs_fill_blocks
+no-such-struct: incfs_fill_block
+no-such-struct: incfs_permit_fill
+no-such-struct: incfs_get_file_sig_args
+no-such-struct: incfs_get_filled_blocks_args

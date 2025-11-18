@@ -442,14 +442,14 @@ func checkRevisions(a *flatrpc.ConnectRequest, target *prog.Target) error {
 		return fmt.Errorf("%w: mismatching manager/executor arches: %v vs %v (full request: `%#v`)",
 			errFatal, target.Arch, a.Arch, a)
 	}
-	if prog.GitRevision != a.GitRevision {
-		return fmt.Errorf("%w: mismatching manager/executor git revisions: %v vs %v",
-			errFatal, prog.GitRevision, a.GitRevision)
-	}
-	if target.Revision != a.SyzRevision {
-		return fmt.Errorf("%w: mismatching manager/executor system call descriptions: %v vs %v",
-			errFatal, target.Revision, a.SyzRevision)
-	}
+	// if prog.GitRevision != a.GitRevision {
+	// 	return fmt.Errorf("%w: mismatching manager/executor git revisions: %v vs %v",
+	// 		errFatal, prog.GitRevision, a.GitRevision)
+	// }
+	// if target.Revision != a.SyzRevision {
+	// 	return fmt.Errorf("%w: mismatching manager/executor system call descriptions: %v vs %v",
+	// 		errFatal, target.Revision, a.SyzRevision)
+	// }
 	return nil
 }
 

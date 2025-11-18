@@ -210,9 +210,9 @@ const (
 
 func main() {
 	flag.Parse()
-	if !prog.GitRevisionKnown() {
-		log.Fatalf("bad syz-manager build: build with make, run bin/syz-manager")
-	}
+	// if !prog.GitRevisionKnown() {
+	// 	log.Fatalf("bad syz-manager build: build with make, run bin/syz-manager")
+	// }
 	log.EnableLogCaching(1000, 1<<20)
 	cfg, err := mgrconfig.LoadFile(*flagConfig)
 	if err != nil {

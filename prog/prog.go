@@ -177,6 +177,11 @@ func MakeSpecialPointerArg(t Type, dir Dir, index uint64) *PointerArg {
 		panic("bad special pointer index")
 	}
 	if _, ok := t.(*PtrType); ok {
+		if t.(*PtrType).Elem.Name() == "ipv6_part1" || t.(*PtrType).Elem.Name() == "ipv6_part2" || t.(*PtrType).Elem.Name() == "mac_part1" || t.(*PtrType).Elem.Name() == "mac_part2" {
+			panic("special pointer arg without result")
+		}
+	}
+	if _, ok := t.(*PtrType); ok {
 		dir = DirIn // pointers are always in
 	}
 	return &PointerArg{
@@ -472,12 +477,36 @@ func removeArg(arg0 Arg) {
 			arg2 := arg1.Type().DefaultArg(arg1.Dir()).(*ResultArg)
 			replaceResultArg(arg1, arg2)
 		}
+		// if a.Type().Name() == "ipv6_part1" || a.Type().Name() == "ipv6_part2" ||
+		// 	a.Type().Name() == "mac_part1" || a.Type().Name() == "mac_part2" {
+		// 	fmt.Println("!!!! ipv6_part1/mac_part1 arg removed, should not happen")
+		// }
+
 	})
 }
 
 // RemoveCall removes call idx from p.
 func (p *Prog) RemoveCall(idx int) {
 	c := p.Calls[idx]
+	// if c.Meta.Name == "syz_ipv6_addr_gen" || c.Meta.Name == "syz_mac_addr_gen" {
+	// 	// These calls are used to generate addresses, so we should not remove them.
+	// 	fmt.Printf("cannot remove call %v, with argument as follows:", c.Meta.Name)
+	// 	for _, arg := range c.Args {
+	// 		// if arg is of type ResultArg
+	// 		fmt.Printf("\n  %v", arg.Type().Name())
+	// 		// if arg is of type ResultArg, print its reference
+	// 		if resArg, ok := arg.(*PointerArg).Res.(*ResultArg); ok {
+	// 			if resArg.Res != nil {
+	// 				fmt.Printf(" %v %p (ref: %p)", resArg.Type().Name(), resArg, resArg.Res)
+	// 			} else {
+	// 				fmt.Printf(" %v, %p (no ref)", resArg.Type().Name(), resArg)
+	// 			}
+	// 		} else {
+	// 			fmt.Printf(" %v", arg.Type().Name())
+	// 		}
+	// 	}
+	// 	fmt.Println("\n")
+	// }
 	for _, arg := range c.Args {
 		removeArg(arg)
 	}
@@ -486,6 +515,7 @@ func (p *Prog) RemoveCall(idx int) {
 	}
 	copy(p.Calls[idx:], p.Calls[idx+1:])
 	p.Calls = p.Calls[:len(p.Calls)-1]
+
 }
 
 func (p *Prog) sanitizeFix() {

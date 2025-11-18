@@ -1,0 +1,19 @@
+bad-field-number: snd_seq_client_info: syz=11 kernel=13
+bad-field-size: snd_seq_client_info.pad/midi_version: syz=56 kernel=4
+bad-field-number: snd_seq_port_info: syz=13 kernel=15
+bad-field-size: snd_seq_port_info.pad/direction: syz=59 kernel=1
+bad-bitfield: snd_seq_queue_info.locked: size/offset: syz=1/0 kernel=1/31
+bad-field-offset: snd_seq_queue_info.locked: syz=8 kernel=0
+bad-field-number: snd_seq_queue_timer: syz=5 kernel=4
+bad-field-size: snd_seq_queue_timer.id/u: syz=20 kernel=24
+bad-field-offset: snd_seq_queue_timer.resolution/reserved: syz=28 kernel=32
+bad-field-size: snd_seq_queue_timer.resolution/reserved: syz=4 kernel=64
+no-such-struct: snd_seq_event_data
+bad-field-number: snd_seq_ev_ctrl: syz=3 kernel=6
+bad-field-offset: snd_seq_ev_ctrl.param/unused1: syz=4 kernel=1
+bad-field-offset: snd_seq_ev_ctrl.val/unused2: syz=8 kernel=2
+bad-field-size: snd_seq_ev_ctrl.val/unused2: syz=4 kernel=1
+bad-field-number: snd_seq_ev_queue_control: syz=2 kernel=3
+bad-field-offset: snd_seq_ev_queue_control.param/pad: syz=4 kernel=1
+bad-field-size: snd_seq_ev_queue_control.param/pad: syz=8 kernel=3
+no-such-struct: snd_seq_timestamp

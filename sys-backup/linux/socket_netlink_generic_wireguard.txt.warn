@@ -1,0 +1,10 @@
+no-such-netlink-policy: device_policy
+no-such-netlink-policy: peer_policy
+no-such-netlink-policy: allowedip_policy$ipv4
+no-such-netlink-policy: allowedip_policy$ipv6
+no-such-struct: wireguard_private_key
+no-such-struct: wireguard_public_key
+no-such-struct: message_handshake_initiation
+no-such-struct: message_handshake_response
+no-such-struct: message_handshake_cookie
+no-such-struct: message_macs

@@ -108,6 +108,10 @@ func (target *Target) populateResourceCtors() {
 
 // isCompatibleResource returns true if resource of kind src can be passed as an argument of kind dst.
 func (target *Target) isCompatibleResource(dst, src string) bool {
+	//if (src == "ipv6_part1" && dst != "ipv6_part1") || (src == "ipv6_part2" && dst != "ipv6_part2") || (src == "mac_part1" && dst != "mac_part1") || (src == "mac_part2" && dst != "mac_part2") {
+	if ((src == "ipv6_part1" || dst == "ipv6_part1") || (src == "ipv6_part2" || dst == "ipv6_part2") || (src == "mac_part1" || dst == "mac_part1") || (src == "mac_part2" || dst == "mac_part2") || (src == "sock_port" || dst == "sock_port") || (src == "ipv4_addr" || dst == "ipv4_addr")) && (src != dst) {
+		return false
+	}
 	if target.isAnyRes(dst) {
 		return true
 	}
@@ -202,8 +206,8 @@ func (target *Target) transitivelyEnabled(enabled map[*Syscall]bool) (map[*Sysca
 
 func (target *Target) TransitivelyEnabledCalls(enabled map[*Syscall]bool) (map[*Syscall]bool, map[*Syscall]string) {
 	supported, canCreate := target.transitivelyEnabled(enabled)
-	fmt.Println("supported", supported)
-	fmt.Println("canCreate", canCreate)
+	// fmt.Println(">DEBUG: supported", supported)
+	// fmt.Println(">DEBUG: canCreate", canCreate)
 	disabled := make(map[*Syscall]string)
 	ctors := make(map[string][]string)
 	for c := range enabled {

@@ -1,0 +1,13 @@
+no-such-netlink-policy: nfc_genl_policy_dev_index
+no-such-netlink-policy: nfc_genl_policy_START_POLL
+no-such-netlink-policy: nfc_genl_policy_ACTIVATE_TARGET
+no-such-netlink-policy: nfc_genl_policy_DEACTIVATE_TARGET
+no-such-netlink-policy: nfc_genl_policy_DEP_LINK_UP
+no-such-netlink-policy: nfc_genl_policy_DEP_LINK_DOWN
+no-such-netlink-policy: nfc_genl_policy_LLC_GET_PARAMS
+no-such-netlink-policy: nfc_genl_policy_LLC_SET_PARAMS
+no-such-netlink-policy: nfc_genl_policy_se
+no-such-netlink-policy: nfc_genl_policy_LLC_SDREQ
+no-such-netlink-policy: nfc_genl_policy_FW_DOWNLOAD
+no-such-netlink-policy: nfc_genl_policy_SE_IO
+no-such-netlink-policy: nfc_genl_policy_VENDOR

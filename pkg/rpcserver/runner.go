@@ -294,6 +294,8 @@ func (runner *Runner) sendRequest(req *queue.Request) error {
 	var data []byte
 	switch req.Type {
 	case flatrpc.RequestTypeProgram:
+		// Change the ipv6_addr structure
+		// progData := req.Prog.changeIPv6Addr()
 		progData, err := req.Prog.SerializeForExec()
 		if err != nil {
 			// It's bad if we systematically fail to serialize programs,

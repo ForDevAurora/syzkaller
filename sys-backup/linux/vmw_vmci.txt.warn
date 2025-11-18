@@ -1,0 +1,13 @@
+no-such-struct: vmci_init_blk
+no-such-struct: vmci_handle
+no-such-struct: vmci_datagram
+no-such-struct: vmci_datagram_snd_rcv_info
+no-such-struct: vmci_qp_alloc_info
+no-such-struct: vmci_qp_set_va_info
+no-such-struct: vmci_qp_page_file_info
+no-such-struct: vmci_qp_dtch_info
+no-such-struct: vmci_ctx_info
+no-such-struct: vmci_ctx_chkpt_buf_info
+no-such-struct: vmci_set_notify_info
+no-such-struct: vmci_dbell_notify_resource_info
+no-such-struct: vmci_ctx_notify_recv_info

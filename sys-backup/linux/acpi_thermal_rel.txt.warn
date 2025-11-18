@@ -1,0 +1,4 @@
+no-such-struct: trt_struct
+no-such-struct: trt_object
+no-such-struct: art_struct
+no-such-struct: art_object

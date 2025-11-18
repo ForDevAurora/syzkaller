@@ -1,0 +1,9 @@
+no-such-struct: sockaddr_can
+no-such-struct: sockaddr_can_j1939
+no-such-struct: can_j1939_pgn
+no-such-struct: msghdr_can
+no-such-struct: msghdr_can_j1939
+no-such-struct: can_frame_t
+no-such-struct: canid_t
+no-such-struct: can_filter
+no-such-struct: j1939_filter

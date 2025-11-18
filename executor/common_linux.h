@@ -1882,8 +1882,23 @@ static long syz_emit_ethernet(volatile long a0, volatile long a1, volatile long 
 			nfrags++;
 		}
 	}
-	// uint16 port = 0;
-	// // Parsing the data
+
+	if (length >= sizeof(struct ethhdr) + sizeof(struct ipv6hdr)) {
+		struct ethhdr* eth = (struct ethhdr*)data;
+		if (ntohs(eth->h_proto) == ETH_P_IPV6) {
+			struct ipv6hdr* ip6 = (struct ipv6hdr*)(data + sizeof(struct ethhdr));
+			char src_addr[INET6_ADDRSTRLEN] = {0};
+			char dst_addr[INET6_ADDRSTRLEN] = {0};
+			inet_ntop(AF_INET6, &ip6->saddr, src_addr, sizeof(src_addr));
+			inet_ntop(AF_INET6, &ip6->daddr, dst_addr, sizeof(dst_addr));
+			debug_dump_data("IPv6 Source: %s, Destination: %s\n", src_addr, dst_addr);
+		}
+	}
+
+	// Dump the entire packet data
+	debug_dump_data("Packet Data: %.*s\n", (int)length, data);
+
+	// Parsing the data
 	// if (length < sizeof(struct ethhdr))
 	// 	return (uintptr_t)-1;
 	// struct ethhdr* ethhdr = (struct ethhdr*)&data[0];
@@ -1901,17 +1916,9 @@ static long syz_emit_ethernet(volatile long a0, volatile long a1, volatile long 
 	// 	if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr))
 	// 		port = 0;
 	// 	struct ipv6hdr* ipv6hdr = (struct ipv6hdr*)&data[sizeof(struct ethhdr)];
-	// 	// TODO: parse and skip extension headers.
-	// 	if (ipv6hdr->nexthdr != IPPROTO_TCP)
-	// 		port = 20006;
-	// 	if (length < sizeof(struct ethhdr) + sizeof(struct ipv6hdr) + sizeof(struct tcphdr))
-	// 		port = 0;
-	// 	tcphdr = (struct tcphdr*)&data[sizeof(struct ethhdr) + sizeof(struct ipv6hdr)];
+
 	// }
-	// port = ntohs(tcphdr->dest);
-	// // concat a string with PORT:
-	// char result[50];
-	// snprintf(result, sizeof(result), "EMIT PORT: %u", port);
+	// // concat a string with ipv6 address
 	// debug_dump_data(result, sizeof(result));
 
 	return writev(tunfd, vecs, nfrags);
@@ -1921,18 +1928,18 @@ static long syz_emit_ethernet(volatile long a0, volatile long a1, volatile long 
 }
 #endif
 
-// #if SYZ_EXECUTOR || __NR_syz_emit_ethernet_tcp && SYZ_NET_INJECTION
-// #include <stdbool.h>
-// #include <sys/uio.h>
+#if SYZ_EXECUTOR || __NR_syz_emit_ethernet_tcp && SYZ_NET_INJECTION
+#include <stdbool.h>
+#include <sys/uio.h>
 
-// #if ENABLE_NAPI_FRAGS
-// #define MAX_FRAGS 4
-// struct vnet_fragmentation {
-// 	uint32 full;
-// 	uint32 count;
-// 	uint32 frags[MAX_FRAGS];
-// };
-// #endif
+#if ENABLE_NAPI_FRAGS
+#define MAX_FRAGS 4
+struct vnet_fragmentation {
+	uint32 full;
+	uint32 count;
+	uint32 frags[MAX_FRAGS];
+};
+#endif
 
 // static long syz_emit_ethernet_tcp(volatile long a0, volatile long a1, volatile long a2)
 // {
@@ -2022,7 +2029,113 @@ static long syz_emit_ethernet(volatile long a0, volatile long a1, volatile long 
 // 	return write(tunfd, data, length);
 // #endif
 // }
-// #endif
+
+static long syz_emit_ethernet_tcp(volatile long a0, volatile long a1, volatile long a2)
+{
+	// syz_emit_ethernet(len len[packet], packet ptr[in, eth_packet], frags ptr[in, vnet_fragmentation, opt])
+	// vnet_fragmentation {
+	// 	full	int32[0:1]
+	// 	count	int32[1:4]
+	// 	frags	array[int32[0:4096], 4]
+	// }
+	if (tunfd < 0)
+		return (uintptr_t)-1;
+
+	uint32 length = a0;
+	char* data = (char*)a1;
+	char result[1001];
+	uint timestamp = (uint)time(NULL);
+	snprintf(result, sizeof(result), "----INTO PACKET GEN---Timestamp: %u\n", timestamp);
+	debug(result);
+	if (length >= sizeof(struct ethhdr) + sizeof(struct ipv6hdr)) {
+		struct ethhdr* eth = (struct ethhdr*)data;
+		if (ntohs(eth->h_proto) == ETH_P_IPV6) {
+			struct ipv6hdr* ip6 = (struct ipv6hdr*)(data + sizeof(struct ethhdr));
+			char src_addr[INET6_ADDRSTRLEN] = {0};
+			char dst_addr[INET6_ADDRSTRLEN] = {0};
+			inet_ntop(AF_INET6, &ip6->saddr, src_addr, sizeof(src_addr));
+			inet_ntop(AF_INET6, &ip6->daddr, dst_addr, sizeof(dst_addr));
+			// Put the following line into a string.
+			char result[1000];
+			snprintf(result, sizeof(result), "IPv6 Source: %s, Destination: %s, timestamp %u", src_addr, dst_addr, timestamp);
+			// Print the ipv6 into hex format.
+			snprintf(result + strlen(result), sizeof(result) - strlen(result),
+				 " IPv6 Source Hex: ");
+			for (long unsigned i = 0; i < sizeof(ip6->saddr) / sizeof(uint8); i++) {
+				snprintf(result + strlen(result), sizeof(result) - strlen(result),
+					 "%02x", ((uint8*)&ip6->saddr)[i]);
+			}
+			snprintf(result + strlen(result), sizeof(result) - strlen(result),
+				 " IPv6 Destination Hex: ");
+			for (long unsigned i = 0; i < sizeof(ip6->daddr) / sizeof(uint8); i++) {
+				snprintf(result + strlen(result), sizeof(result) - strlen(result),
+					 "%02x", ((uint8*)&ip6->daddr)[i]);
+			}
+			debug(result);
+			memset(result, 0, sizeof(result));
+			// Print the mac address into hex format
+			snprintf(result, sizeof(result), "Mac addr, timestamp %u", timestamp);
+			snprintf(result + strlen(result), sizeof(result) - strlen(result), "Mac Source: ");
+			for (long unsigned i = 0; i < ETH_ALEN; i++) {
+				snprintf(result + strlen(result), sizeof(result) - strlen(result),
+					 "%02x", eth->h_source[i]);
+			}
+			snprintf(result + strlen(result), sizeof(result) - strlen(result),
+				 " Mac Destination: ");
+			for (long unsigned i = 0; i < ETH_ALEN; i++) {
+				snprintf(result + strlen(result), sizeof(result) - strlen(result),
+					 "%02x", eth->h_dest[i]);
+			}
+			debug(result);
+			// Dump the data into hex:
+			char hex_dump[9000];
+			snprintf(hex_dump, sizeof(hex_dump), "Time Stamp: %u, Packet Data: ---", timestamp);
+			for (long unsigned i = 0; i < length && i < sizeof(hex_dump) - 100; i++) {
+				snprintf(hex_dump + strlen(hex_dump), sizeof(hex_dump) - strlen(hex_dump), "%02x ", (uint8)data[i]);
+			}
+			snprintf(hex_dump + strlen(hex_dump), sizeof(hex_dump) - strlen(hex_dump), "---\n");
+			debug(hex_dump);
+			debug_dump_data(data, length, timestamp);
+		}
+	}
+
+#if ENABLE_NAPI_FRAGS
+	struct vnet_fragmentation* frags = (struct vnet_fragmentation*)a2;
+	struct iovec vecs[MAX_FRAGS + 1];
+	uint32 nfrags = 0;
+	if (!tun_frags_enabled || frags == NULL) {
+		vecs[nfrags].iov_base = data;
+		vecs[nfrags].iov_len = length;
+		nfrags++;
+	} else {
+		bool full = frags->full;
+		uint32 count = frags->count;
+		if (count > MAX_FRAGS)
+			count = MAX_FRAGS;
+		uint32 i;
+		for (i = 0; i < count && length != 0; i++) {
+			uint32 size = frags->frags[i];
+			if (size > length)
+				size = length;
+			vecs[nfrags].iov_base = data;
+			vecs[nfrags].iov_len = size;
+			nfrags++;
+			data += size;
+			length -= size;
+		}
+		if (length != 0 && (full || nfrags == 0)) {
+			vecs[nfrags].iov_base = data;
+			vecs[nfrags].iov_len = length;
+			nfrags++;
+		}
+	}
+	return writev(tunfd, vecs, nfrags);
+#else
+	return write(tunfd, data, length);
+#endif
+}
+
+#endif
 
 #if SYZ_EXECUTOR || __NR_syz_io_uring_submit || __NR_syz_io_uring_complete || __NR_syz_io_uring_setup
 
@@ -2539,35 +2652,204 @@ static long syz_ipv4_addr_gen(volatile long a0)
 }
 #endif
 
-#if SYZ_EXECUTOR || __NR_syz_ipv6_addr_gen
-struct ipv6_addr_def {
-	uint8 addr[16];
-};
-
+#if SYZ_EXECUTOR || __NR_syz_ipv6_addr_test
 struct ipv6_addr {
 	uint64 a0;
 	uint64 a1;
 };
 
-static long syz_ipv6_addr_gen(volatile long a0, volatile long a1, volatile long a2, volatile long a3)
+static long syz_ipv6_addr_test(volatile long a0)
+{
+	struct ipv6_addr* addr = (struct ipv6_addr*)a0;
+	// Output this ipv6 address in the format :
+	// 2001:0000:0000:0000:0000:0000:0000:0001
+	debug("%016llx : %016llx : %016llx : %016llx : %016llx : %016llx : %016llx : %016llx\n",
+	      addr->a0 >> 48,
+	      (addr->a0 >> 32) & 0xffff, (addr->a0 >> 16) & 0xffff, addr->a0 & 0xffff,
+	      addr->a1 >> 48, (addr->a1 >> 32) & 0xffff, (addr->a1 >> 16) & 0xffff, addr->a1 & 0xffff);
+	return 0;
+}
+#endif
+
+#if SYZ_EXECUTOR || __NR_syz_ipv6_addr_use
+
+static long syz_ipv6_addr_use(volatile long a0)
+{
+	struct ipv6_addr* addr = (struct ipv6_addr*)a0;
+	// Output this ipv6 address in the format :
+	// 2001:0000:0000:0000:0000:0000:0000:0001
+	debug("%016llx : %016llx : %016llx : %016llx : %016llx : %016llx : %016llx : %016llx\n",
+	      addr->a0 >> 48,
+	      (addr->a0 >> 32) & 0xffff, (addr->a0 >> 16) & 0xffff, addr->a0 & 0xffff,
+	      addr->a1 >> 48, (addr->a1 >> 32) & 0xffff, (addr->a1 >> 16) & 0xffff, addr->a1 & 0xffff);
+	return 0;
+}
+#endif
+
+#if SYZ_EXECUTOR || __NR_syz_ipv6_addr_gen
+struct ipv6_addr_def {
+	uint8 addr[16];
+};
+
+static long syz_ipv6_addr_gen(volatile long a0, volatile long a2, volatile long a3)
 {
 	struct ipv6_addr_def* addr = (struct ipv6_addr_def*)a0;
 	// organize the ipv6 address stored in addr into ipv6_addr
-	struct ipv6_addr* ipv6_addr = (struct ipv6_addr*)a1;
-	ipv6_addr->a0 = (((long)(addr->addr[0])) << 56) | (((long)(addr->addr[1])) << 48) | (((long)(addr->addr[2])) << 40) | (((long)(addr->addr[3])) << 32) | (((long)(addr->addr[4])) << 24) | (((long)(addr->addr[5])) << 16) | (((long)(addr->addr[6])) << 8) | (((long)(addr->addr[7])));
-	ipv6_addr->a1 = (((long)(addr->addr[8])) << 56) | (((long)(addr->addr[9])) << 48) | (((long)(addr->addr[10])) << 40) | (((long)(addr->addr[11])) << 32) | (((long)(addr->addr[12])) << 24) | (((long)(addr->addr[13])) << 16) | (((long)(addr->addr[14])) << 8) | (((long)(addr->addr[15])));
+	// struct ipv6_addr* ipv6_addr = (struct ipv6_addr*)a1;
+	// ipv6_addr->a0 = (((long)(addr->addr[0])) << 56) | (((long)(addr->addr[1])) << 48) | (((long)(addr->addr[2])) << 40) | (((long)(addr->addr[3])) << 32) | (((long)(addr->addr[4])) << 24) | (((long)(addr->addr[5])) << 16) | (((long)(addr->addr[6])) << 8) | (((long)(addr->addr[7])));
+	// ipv6_addr->a1 = (((long)(addr->addr[8])) << 56) | (((long)(addr->addr[9])) << 48) | (((long)(addr->addr[10])) << 40) | (((long)(addr->addr[11])) << 32) | (((long)(addr->addr[12])) << 24) | (((long)(addr->addr[13])) << 16) | (((long)(addr->addr[14])) << 8) | (((long)(addr->addr[15])));
 	// output the ipv6 address, consider both ipv6_addr->a0 and a1, separate with : for each 8 bit section
-	debug("%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x\n",
-	      ((uint8)((ipv6_addr->a0 >> 56) & 0xff)), ((uint8)((ipv6_addr->a0 >> 48) & 0xff)), ((uint8)((ipv6_addr->a0 >> 40) & 0xff)), ((uint8)((ipv6_addr->a0 >> 32) & 0xff)),
-	      ((uint8)((ipv6_addr->a0 >> 24) & 0xff)), ((uint8)((ipv6_addr->a0 >> 16) & 0xff)), ((uint8)((ipv6_addr->a0 >> 8) & 0xff)), ((uint8)(ipv6_addr->a0 & 0xff)),
-	      ((uint8)((ipv6_addr->a1 >> 56) & 0xff)), ((uint8)((ipv6_addr->a1 >> 48) & 0xff)), ((uint8)((ipv6_addr->a1 >> 40) & 0xff)), ((uint8)((ipv6_addr->a1 >> 32) & 0xff)),
-	      ((uint8)((ipv6_addr->a1 >> 24) & 0xff)), ((uint8)((ipv6_addr->a1 >> 16) & 0xff)), ((uint8)((ipv6_addr->a1 >> 8) & 0xff)), ((uint8)(ipv6_addr->a1 & 0xff)));
+	// debug("%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x\n",
+	//       ((uint8)((ipv6_addr->a0 >> 56) & 0xff)), ((uint8)((ipv6_addr->a0 >> 48) & 0xff)), ((uint8)((ipv6_addr->a0 >> 40) & 0xff)), ((uint8)((ipv6_addr->a0 >> 32) & 0xff)),
+	//       ((uint8)((ipv6_addr->a0 >> 24) & 0xff)), ((uint8)((ipv6_addr->a0 >> 16) & 0xff)), ((uint8)((ipv6_addr->a0 >> 8) & 0xff)), ((uint8)(ipv6_addr->a0 & 0xff)),
+	//       ((uint8)((ipv6_addr->a1 >> 56) & 0xff)), ((uint8)((ipv6_addr->a1 >> 48) & 0xff)), ((uint8)((ipv6_addr->a1 >> 40) & 0xff)), ((uint8)((ipv6_addr->a1 >> 32) & 0xff)),
+	//       ((uint8)((ipv6_addr->a1 >> 24) & 0xff)), ((uint8)((ipv6_addr->a1 >> 16) & 0xff)), ((uint8)((ipv6_addr->a1 >> 8) & 0xff)), ((uint8)(ipv6_addr->a1 & 0xff)));
+
 	long* ipv6_addr_part1 = (long*)a2;
+	*ipv6_addr_part1 = (((long)(addr->addr[7])) << 56) | (((long)(addr->addr[6])) << 48) | (((long)(addr->addr[5])) << 40) | (((long)(addr->addr[4])) << 32) | (((long)(addr->addr[3])) << 24) | (((long)(addr->addr[2])) << 16) | (((long)(addr->addr[1])) << 8) | (((long)(addr->addr[0])));
 	long* ipv6_addr_part2 = (long*)a3;
-	*ipv6_addr_part1 = ipv6_addr->a0;
-	*ipv6_addr_part2 = ipv6_addr->a1;
+	*ipv6_addr_part2 = (((long)(addr->addr[15])) << 56) | (((long)(addr->addr[14])) << 48) | (((long)(addr->addr[13])) << 40) | (((long)(addr->addr[12])) << 32) | (((long)(addr->addr[11])) << 24) | (((long)(addr->addr[10])) << 16) | (((long)(addr->addr[9])) << 8) | (((long)(addr->addr[8])));
+	// *ipv6_addr_part1 = ipv6_addr->a0;
+	// *ipv6_addr_part2 = ipv6_addr->a1;
 	return 0;
 }
+
+// 0: 20010000000000000000000000000000
+// 1: 20010000000000000000000000000001
+// 2: 20010000000000000000000000000002
+// 3: 00000000000000000000000000000000
+// 4: fe8000000000000000000000000000aa
+// 5: fe8000000000000000000000000000bb
+// 6: fe8000000000000000000000000000+random byte (10:68)
+// 7: fe88000000000000000000000000+random byte(0,1)+randombyte(int8)
+// 8: 00000000000000001111111111111111
+// 9: 00000000000000000000ffff+ipv4_addr
+// 10: ff010000000000000000000000000001
+// 11: ff020000000000000000000000000001
+// 12: fc0000000000000000000000000000+random byte(0,1)
+// 13: fc0100000000000000000000000000+random byte(0,1)
+// 14: fc0200000000000000000000000000+random byte(0,1)
+
+// static long syz_ipv6_addr_gen(volatile long a0)
+// {
+// 	uint64 ipv6_compress = 0x0000000000000000;
+// 	struct ipv6_addr_def* addr = (struct ipv6_addr_def*)a0;
+// 	// Determine which of the 0–14 patterns the 16-byte IPv6 address matches
+// 	uint8* a = addr->addr;
+// 	int category = -1;
+// 	// 0: 2001::0
+// 	if (a[0] == 0x20 && a[1] == 0x01 && a[15] == 0x00) {
+// 		category = 0;
+// 		ipv6_compress = 0;
+// 	}
+// 	// 1: 2001::1
+// 	else if (a[0] == 0x20 && a[1] == 0x01 && a[15] == 0x01) {
+// 		category = 1;
+// 		ipv6_compress = 1;
+// 	}
+// 	// 2: 2001::2
+// 	else if (a[0] == 0x20 && a[1] == 0x01 && a[15] == 0x02) {
+// 		category = 2;
+// 		ipv6_compress = 2;
+// 	}
+// 	// 3: ::0
+// 	else if (memcmp(a, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 16) == 0) {
+// 		category = 3;
+// 		ipv6_compress = 3;
+// 	}
+// 	// 4: fe80::aa
+// 	else if (a[0] == 0xfe && a[1] == 0x80 && a[2] == 0x00 && a[15] == 0xaa) {
+// 		category = 4;
+// 		ipv6_compress = 4;
+// 	}
+// 	// 5: fe80::bb
+// 	else if (a[0] == 0xfe && a[1] == 0x80 && a[2] == 0x00 && a[15] == 0xbb) {
+// 		category = 5;
+// 		ipv6_compress = 5;
+// 	}
+// 	// 6: fe80::00–ff (random last byte)
+// 	else if (a[0] == 0xfe && a[1] == 0x80 && a[2] == 0x00) {
+// 		category = 6;
+// 		// Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 		ipv6_compress = 6;
+// 		ipv6_compress |= ((uint64)a[15]) << 32;
+// 	}
+// 	// 7: fe88::00–01:xx (random)
+// 	else if (a[0] == 0xfe && a[1] == 0x88) {
+// 		category = 7;
+// 		ipv6_compress = 7;
+// 		ipv6_compress |= ((uint64)a[15]) << 32; // Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 		ipv6_compress |= ((uint64)a[14]) << 40; // Use the higher 8 bits of ipv6_compress to store the random byte
+// 	}
+// 	// 8: ipv6_loopback
+// 	// 00000000000000001111111111111111
+// 	else if (a[0] == 0x00 && a[1] == 0x00 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0xff && a[9] == 0xff && a[10] == 0xff && a[11] == 0xff && a[12] == 0xff && a[13] == 0xff && a[14] == 0xff && a[15] == 0xff) {
+// 		category = 8;
+// 		ipv6_compress = 8;
+// 	}
+// 	// 9: ::ffff:IPv4
+// 	else if (a[0] == 0x00 && a[1] == 0x00 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0x00 && a[9] == 0x00 && a[10] == 0xff && a[11] == 0xff) {
+// 		category = 9;
+// 		// Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the IPv4 address
+// 		ipv6_compress = 9;
+// 		ipv6_compress |= ((uint64)a[15]) << 32; // Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the IPv4 address
+// 		ipv6_compress |= ((uint64)a[14]) << 40; // Use the higher 8 bits of ipv6_compress to store the IPv4 address
+// 		ipv6_compress |= ((uint64)a[13]) << 48; // Use the higher 16 bits of ipv6_compress to store the IPv4 address
+// 		ipv6_compress |= ((uint64)a[12]) << 56; // Use the higher 24 bits of ipv6_compress to store the IPv4 address
+// 	}
+// 	// 10: ff01::1
+// 	else if (a[0] == 0xff && a[1] == 0x01 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0x00 && a[9] == 0x00 && a[10] == 0x00 && a[11] == 0x00 &&
+// 		 a[12] == 0x00 && a[13] == 0x00 && a[14] == 0x00 && a[15] == 0x01) {
+// 		category = 10;
+// 		ipv6_compress = 10;
+// 	}
+// 	// 11: ff02::1
+// 	else if (a[0] == 0xff && a[1] == 0x02 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0x00 && a[9] == 0x00 && a[10] == 0x00 && a[11] == 0x00 &&
+// 		 a[12] == 0x00 && a[13] == 0x00 && a[14] == 0x00 && a[15] == 0x01) {
+// 		category = 11;
+// 		ipv6_compress = 11;
+// 	}
+// 	// 12: fc00::00–01 (random low byte)
+// 	else if ((a[0] == 0xfc) && a[1] == 0x00 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0x00 && a[9] == 0x00 && a[10] == 0x00 && a[11] == 0x00 &&
+// 		 a[12] == 0x00 && a[13] == 0x00 && a[14] == 0x00) {
+// 		category = 12;
+// 		// Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 		ipv6_compress = 12;
+// 		ipv6_compress |= ((uint64)a[15]) << 32; // Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 	}
+// 	// 13: fc01::00–01
+// 	else if ((a[0] == 0xfc) && a[1] == 0x01 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0x00 && a[9] == 0x00 && a[10] == 0x00 && a[11] == 0x00 &&
+// 		 a[12] == 0x00 && a[13] == 0x00 && a[14] == 0x00) {
+// 		category = 13;
+// 		// Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 		ipv6_compress = 13;
+// 		ipv6_compress |= ((uint64)a[15]) << 32; // Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 	}
+// 	// 14: fc02::00–01
+// 	else if ((a[0] == 0xfc) && a[1] == 0x02 && a[2] == 0x00 && a[3] == 0x00 &&
+// 		 a[4] == 0x00 && a[5] == 0x00 && a[6] == 0x00 && a[7] == 0x00 &&
+// 		 a[8] == 0x00 && a[9] == 0x00 && a[10] == 0x00 && a[11] == 0x00 &&
+// 		 a[12] == 0x00 && a[13] == 0x00 && a[14] == 0x00) {
+// 		category = 14;
+// 		// Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 		ipv6_compress = 14;
+// 		ipv6_compress |= ((uint64)a[15]) << 32; // Use the lower 32 bits of ipv6_compress to store the category, use the higher 32 bits to store the random byte
+// 	}
+
+// 	return ipv6_compress;
+// }
 #endif
 
 #if SYZ_EXECUTOR || __NR_syz_mac_addr_gen
@@ -2580,19 +2862,19 @@ struct mac_addr_def {
 	uint8 addr[6];
 };
 
-static long syz_mac_addr_gen(volatile long a0, volatile long a1, volatile long a2, volatile long a3)
+static long syz_mac_addr_gen(volatile long a0, volatile long a1, volatile long a2)
 {
 	struct mac_addr_def* addr = (struct mac_addr_def*)a0;
-	struct mac_addr* mac_addr = (struct mac_addr*)a1;
+	uint32* part1 = (uint32*)a1;
+	uint16* part2 = (uint16*)a2;
 
 	// Organize the mac address stored in mac_addr_def (6 parts, 8bit each) into mac_addr (2 parts, 32bit + 16bit)
-	mac_addr->a0 = (addr->addr[0] << 24) | (addr->addr[1] << 16) | (addr->addr[2] << 8) | addr->addr[3];
-	mac_addr->a1 = (addr->addr[4] << 8) | addr->addr[5];
-
-	uint32* mac_addr_part1 = (uint32*)a2;
-	uint16* mac_addr_part2 = (uint16*)a3;
-	*mac_addr_part1 = mac_addr->a0;
-	*mac_addr_part2 = mac_addr->a1;
+	*part1 = (addr->addr[3] << 24) | (addr->addr[2] << 16) | (addr->addr[1] << 8) | addr->addr[0];
+	*part2 = (addr->addr[5] << 8) | addr->addr[4];
+	// Output the mac address in the format: 02:00:00:00:00:00
+	debug("GEN MAC: %02x:%02x:%02x:%02x:%02x:%02x\n",
+	      (uint8)(*part1 >> 24), (uint8)(*part1 >> 16), (uint8)(*part1 >> 8), (uint8)(*part1),
+	      (uint8)(*part2 >> 8), (uint8)(*part2));
 
 	return 0;
 }

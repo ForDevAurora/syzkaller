@@ -1,0 +1,26 @@
+no-such-struct: ebt_replace_t
+compiler: len target entries refer to an array with variable-size elements (do you mean bytesize?)
+no-such-struct: ebt_getinfo
+no-such-struct: ebt_get_entries
+no-such-struct: ebt_entry_match
+no-such-struct: ebt_entry_match_t
+no-such-struct: xt_padded
+no-such-struct: ebt_802_3_info
+no-such-struct: ebt_among_info_offset
+no-such-struct: ebt_mac_wormhash_tuple
+no-such-struct: ebt_arp_info
+no-such-struct: ebt_ip_info
+no-such-struct: ebt_ip6_info
+no-such-struct: ebt_limit_info
+no-such-struct: ebt_mark_m_info
+no-such-struct: ebt_pkttype_info
+no-such-struct: ebt_stp_info
+no-such-struct: ebt_stp_config_info
+no-such-struct: ebt_vlan_info
+no-such-struct: ebt_entry_target
+no-such-struct: ebt_arpreply_info
+no-such-struct: ebt_nat_info
+no-such-struct: ebt_log_info
+no-such-struct: ebt_mark_t_info
+no-such-struct: ebt_nflog_info
+no-such-struct: ebt_redirect_info

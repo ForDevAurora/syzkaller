@@ -65,6 +65,12 @@ func clone(arg Arg, newargs map[*ResultArg]*ResultArg) Arg {
 		a1 := new(PointerArg)
 		*a1 = *a
 		arg1 = a1
+		// Try to convert a.Type() to PtrType. with _, ok := a.Type().(*PtrType); !ok {
+		// if _, ok := a.Type().(*PtrType); ok {
+		// 	if (a.Type().(*PtrType).Elem.Name() == "ipv6_part1" || a.Type().(*PtrType).Elem.Name() == "ipv6_part2" || a.Type().(*PtrType).Elem.Name() == "mac_part1" || a.Type().(*PtrType).Elem.Name() == "mac_part2") && a.Res == nil {
+		// 		panic("pointer arg without result")
+		// 	}
+		// }
 		if a.Res != nil {
 			a1.Res = clone(a.Res, newargs)
 		}
@@ -91,7 +97,7 @@ func clone(arg Arg, newargs map[*ResultArg]*ResultArg) Arg {
 		*a1 = *a
 		arg1 = a1
 		if a1.Res != nil {
-			r := a1.Res
+			r := a1.Res // 这里的assumption是，当a1需要被clone时，a1.Res已经被clone过了，所以a1.Res一定会在newargs中
 			if newargs != nil {
 				r = newargs[a1.Res]
 				a1.Res = r

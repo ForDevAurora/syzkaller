@@ -1,0 +1,3 @@
+no-such-netlink-policy: dccp_nla_policy
+no-such-netlink-policy: sctp_nla_policy
+no-such-netlink-policy: synproxy_policy

@@ -1,0 +1,62 @@
+compiler: unsupported syscall: ioctl$KVM_PPC_GET_PVINFO due to missing const KVM_PPC_GET_PVINFO
+compiler: unsupported syscall: ioctl$KVM_PPC_GET_SMMU_INFO due to missing const KVM_PPC_GET_SMMU_INFO
+compiler: unsupported syscall: ioctl$KVM_S390_UCAS_MAP due to missing const KVM_S390_UCAS_MAP
+compiler: unsupported syscall: ioctl$KVM_S390_UCAS_UNMAP due to missing const KVM_S390_UCAS_UNMAP
+compiler: unsupported syscall: ioctl$KVM_S390_INTERRUPT_CPU due to missing const KVM_S390_INTERRUPT
+no-such-struct: kvm_text_ppc64
+no-such-struct: kvm_setup_opt_ppc64
+no-such-struct: kvm_setup_opt_ppc64_feature
+no-such-struct: kvm_guest_debug
+no-such-struct: kvm_device_attr
+no-such-struct: kvm_device_attr_generic
+no-such-struct: kvm_device_attr_arm64
+no-such-struct: kvm_device_attr_vm
+no-such-struct: kvm_device_attr_vcpu
+no-such-struct: kvm_device_attr_vm_arm64
+compiler: unsupported struct: kvm_vcpu_attr_pmu_irq due to missing const KVM_ARM_VCPU_PMU_V3_CTRL
+no-such-struct: kvm_vcpu_attr_pmu_irq
+compiler: unsupported struct: kvm_vcpu_attr_pmu_init due to missing const KVM_ARM_VCPU_PMU_V3_CTRL
+no-such-struct: kvm_vcpu_attr_pmu_init
+compiler: unsupported struct: kvm_vcpu_attr_pmu_filter due to missing const KVM_ARM_VCPU_PMU_V3_CTRL
+no-such-struct: kvm_vcpu_attr_pmu_filter
+compiler: unsupported struct: kvm_vcpu_attr_set_pmu due to missing const KVM_ARM_VCPU_PMU_V3_CTRL
+no-such-struct: kvm_vcpu_attr_set_pmu
+compiler: unsupported struct: kvm_vcpu_attr_irq_timer due to missing const KVM_ARM_VCPU_TIMER_CTRL
+no-such-struct: kvm_vcpu_attr_irq_timer
+compiler: unsupported struct: kvm_vcpu_attr_pvtime_ipa due to missing const KVM_ARM_VCPU_PVTIME_CTRL
+no-such-struct: kvm_vcpu_attr_pvtime_ipa
+no-such-struct: kvm_pmu_event_filter
+no-such-struct: kvm_smccc_filter
+no-such-struct: kvm_create_guest_memfd
+no-such-struct: kvm_pre_fault_memory
+no-such-struct: kvm_create_device
+no-such-struct: kvm_irqfd
+no-such-struct: kvm_msi
+no-such-struct: kvm_one_reg
+no-such-struct: kvm_one_reg_arm64
+no-such-struct: kvm_one_reg_arm64_range
+no-such-struct: kvm_one_reg_arm64_srange
+no-such-struct: kvm_one_reg_other
+no-such-struct: kvm_dirty_tlb
+no-such-struct: kvm_ioeventfd
+no-such-struct: kvm_assigned_msix_entry
+no-such-struct: kvm_assigned_msix_nr
+no-such-struct: kvm_irq_routing_entry
+no-such-struct: kvm_irq_routing_entry_u
+no-such-struct: kvm_irq_routing_irqchip
+no-such-struct: kvm_irq_routing_msi
+no-such-struct: kvm_irq_routing_s390_adapter
+no-such-struct: kvm_irq_routing_hv_sint
+no-such-struct: kvm_enable_cap
+no-such-struct: kvm_userspace_memory_region
+no-such-struct: kvm_userspace_memory_region2
+no-such-struct: kvm_vcpu_events_x86
+no-such-struct: kvm_vcpu_events_arm64
+no-such-struct: kvm_irq_level
+no-such-struct: kvm_dirty_log
+no-such-struct: kvm_clear_dirty_log
+bad-field-number: kvm_regs: syz=3 kernel=18
+bad-field-size: kvm_regs.gp/rax: syz=128 kernel=8
+bad-field-offset: kvm_regs.rip/rbx: syz=128 kernel=8
+bad-field-offset: kvm_regs.rflags/rcx: syz=136 kernel=16
+no-such-struct: kvm_coalesced_mmio_zone

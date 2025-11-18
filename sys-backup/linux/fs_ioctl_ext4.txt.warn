@@ -1,0 +1,2 @@
+bad-struct-size: fsuuid: syz=24 kernel=8
+bad-field-size: fsuuid.fsu_uuid: syz=16 kernel=0

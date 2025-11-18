@@ -1,0 +1,4 @@
+no-such-netlink-policy: team_nl_policy
+no-such-netlink-policy: team_nl_option_policy
+no-such-netlink-policy: team_nl_option_policy$per_port
+no-such-netlink-policy: team_nl_option_policy$array

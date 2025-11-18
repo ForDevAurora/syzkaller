@@ -1,0 +1,4 @@
+no-such-struct: sockaddr_l2tpip
+no-such-struct: sockaddr_l2tpip6
+no-such-netlink-policy: l2tp_nl_policy
+no-such-struct: l2tp_tunnel_fd

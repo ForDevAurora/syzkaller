@@ -1,0 +1,9 @@
+no-such-struct: te_service_id
+no-such-struct: te_opensession
+no-such-struct: te_closesession
+no-such-struct: te_answer
+no-such-struct: te_launchop
+no-such-struct: te_operation
+no-such-struct: te_int_mem_union
+no-such-struct: te_mem
+no-such-struct: te_oper_param

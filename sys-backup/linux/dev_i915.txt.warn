@@ -1,0 +1,6 @@
+no-such-struct: drm_i915_gem_context_create
+no-such-struct: drm_i915_gem_execbuffer
+no-such-struct: drm_i915_gem_exec_object
+no-such-struct: drm_i915_gem_mmap_gtt
+no-such-struct: drm_i915_gem_pin
+no-such-struct: drm_i915_gem_unpin

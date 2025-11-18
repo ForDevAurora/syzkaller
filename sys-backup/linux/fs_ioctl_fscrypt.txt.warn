@@ -1,0 +1,16 @@
+no-such-struct: fscrypt_key_identifier
+no-such-struct: fscrypt_key_descriptor
+no-such-struct: fscrypt_key_descriptor_hex
+no-such-struct: fscrypt_v1_key_description
+no-such-struct: fscrypt_v1_key_payload
+no-such-struct: fscrypt_policy_v1
+no-such-struct: fscrypt_policy_v2
+no-such-struct: fscrypt_policy_modes
+no-such-struct: fscrypt_policy_mode_t
+no-such-struct: fscrypt_key_specifier
+no-such-struct: fscrypt_key_specifier__by_descriptor
+no-such-struct: fscrypt_key_specifier__by_identifier
+no-such-struct: fscrypt_key_specifier__for_add_key
+no-such-struct: fscrypt_key_specifier__by_identifier_for_add_key
+no-such-struct: fscrypt_remove_key_arg
+no-such-struct: fscrypt_get_key_status_arg

@@ -1,0 +1,7 @@
+no-such-netlink-policy: nfqa_verdict_policy
+no-such-netlink-policy: nfqa_verdict_batch_policy
+no-such-netlink-policy: nfqa_vlan_policy
+no-such-netlink-policy: nfqa_cfg_policy
+no-such-struct: nfqnl_msg_verdict_hdr
+no-such-struct: nfqnl_msg_config_cmd
+no-such-struct: nfqnl_msg_config_params

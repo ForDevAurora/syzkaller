@@ -130,9 +130,11 @@ ifneq ("$(NO_CROSS_COMPILER)", "")
 	$(info $(NO_CROSS_COMPILER))
 	$(info ************************************************************************************)
 else
+	# LDFLAGS := -static
+	# CFLAGS := -O0 -fno-omit-frame-pointer -fno-optimize-sibling-calls
 	mkdir -p ./bin/$(TARGETOS)_$(TARGETARCH)
 	$(CXX) -o ./bin/$(TARGETOS)_$(TARGETARCH)/syz-executor$(EXE) executor/executor.cc \
-		$(ADDCXXFLAGS) $(CXXFLAGS) $(LDFLAGS) -DGOOS_$(TARGETOS)=1 -DGOARCH_$(TARGETARCH)=1 \
+		$(ADDCXXFLAGS) $(CXXFLAGS) -O0 -fno-omit-frame-pointer -fno-optimize-sibling-calls $(LDFLAGS) -DGOOS_$(TARGETOS)=1 -DGOARCH_$(TARGETARCH)=1 \
 		-DHOSTGOOS_$(HOSTOS)=1 -DGIT_REVISION=\"$(REV)\"
 endif
 endif

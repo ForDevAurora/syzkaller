@@ -1,0 +1,4 @@
+no-such-struct: devlink_devname
+no-such-netlink-policy: devlink_nl_policy$nsim
+no-such-netlink-policy: devlink_nl_policy$pci
+no-such-netlink-policy: devlink_nl_policy$reload

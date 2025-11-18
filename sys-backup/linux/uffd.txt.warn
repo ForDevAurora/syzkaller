@@ -1,0 +1,7 @@
+no-such-struct: uffdio_api
+no-such-struct: uffdio_range
+no-such-struct: uffdio_register
+no-such-struct: uffdio_copy
+no-such-struct: uffdio_zeropage
+no-such-struct: uffdio_writeprotect
+no-such-struct: uffdio_continue

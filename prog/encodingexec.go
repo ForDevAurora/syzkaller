@@ -73,7 +73,8 @@ func (p *Prog) SerializeForExec() ([]byte, error) {
 		args:   make(map[Arg]argInfo),
 	}
 	w.write(uint64(len(p.Calls)))
-	for _, c := range p.Calls {
+	for i, c := range p.Calls {
+		_ = i // avoid unused variable warning
 		w.csumMap, w.csumUses = calcChecksumsCall(c)
 		w.serializeCall(c)
 	}
@@ -84,6 +85,19 @@ func (p *Prog) SerializeForExec() ([]byte, error) {
 	if w.copyoutSeq > execMaxCommands {
 		return nil, fmt.Errorf("encodingexec: too many resources (%v/%v)", w.copyoutSeq, execMaxCommands)
 	}
+	// // Represent w.buf into a hexadecimal string for debugging purposes. Save it into a variable
+	// // so that it is not optimized out by the compiler.
+	// debugStr := fmt.Sprintf("encodingexec: serialized program: %x", w.buf)
+	// // Append this debugstr to the file "encodingexec_debug.txt" in the current directory.
+	// if len(debugStr) > 0 {
+	// 	f, err := os.OpenFile("encodingexec_debug.txt",
+	// 		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// 	if err == nil {
+	// 		defer f.Close()
+	// 		// ignore write errors
+	// 		_, _ = f.WriteString(debugStr + "\n")
+	// 	}
+	// }
 	return w.buf, nil
 }
 

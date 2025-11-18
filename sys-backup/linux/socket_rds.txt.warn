@@ -1,0 +1,9 @@
+no-such-struct: msghdr_rds
+no-such-struct: cmsghdr_rds_t
+no-such-struct: rds_rdma_args
+no-such-struct: rds_atomic_args
+no-such-struct: rds_get_mr_args
+no-such-struct: rds_get_mr_for_dest_args
+no-such-struct: rds_free_mr_args
+no-such-struct: rds_iovec
+no-such-struct: rds_rdma_cookie_t

@@ -291,7 +291,7 @@ static bool all_extra_signal;
 static uint64 syscall_timeout_ms;
 static uint64 program_timeout_ms;
 static uint64 slowdown_scale;
-
+void execute_one_test();
 // Can be used to disginguish whether we're at the initialization stage
 // or we already execute programs.
 static bool in_execute_one = false;
@@ -584,8 +584,10 @@ int main(int argc, char** argv)
 #endif
 		return 0;
 	}
-	if (strcmp(argv[1], "test") == 0)
+	if (strcmp(argv[1], "test") == 0) {
+		// execute_one_test();
 		return run_tests(argc == 3 ? argv[2] : nullptr);
+	}
 
 	if (strcmp(argv[1], "exec") != 0) {
 		fprintf(stderr, "unknown command");
@@ -873,6 +875,259 @@ void execute_glob()
 	}
 	output_data->consumed.store(fbb.GetSize(), std::memory_order_release);
 	output_data->result_offset.store(off, std::memory_order_release);
+}
+
+// execute_one executes program stored in input_data.
+void execute_one_test()
+{
+	// Allocate a 1000 byte buffer for the input data.
+	input_data = (uint8*)malloc(1000);
+	if (!input_data)
+		fail("failed to allocate input data buffer");
+	// Read the input data from file "temphex.bin".
+
+	FILE* input_file = fopen("/home/auroraeth/Project/4-packet/syzkaller-change/syzkaller/bin/linux_amd64/temphex.bin", "rb");
+	if (!input_file)
+		fail("failed to open input file");
+	size_t bytes_read = fread(input_data, 1, 1000, input_file);
+	fclose(input_file);
+	if (bytes_read == 0)
+		fail("failed to read input data");
+	// uint64 input_len = bytes_read;
+	in_execute_one = true;
+#if GOOS_linux
+	char buf[64];
+	// Linux TASK_COMM_LEN is only 16, so the name needs to be compact.
+	snprintf(buf, sizeof(buf), "syz.%llu.%llu", procid, request_id);
+	prctl(PR_SET_NAME, buf);
+#endif
+	// if (flag_snapshot)
+	// 	SnapshotStart();
+	// else
+	// 	realloc_output_data();
+	// // Output buffer may be pkey-protected in snapshot mode, so don't write the output size
+	// // (it's fixed and known anyway).
+	// output_builder.emplace(output_data, output_size, !flag_snapshot);
+	uint64 start = current_time_ms();
+	uint8* input_pos = input_data;
+
+	// if (cover_collection_required()) {
+	// 	if (!flag_threaded)
+	// 		cover_enable(&threads[0].cov, flag_comparisons, false);
+	// 	if (flag_extra_coverage)
+	// 		cover_reset(&extra_cov);
+	// }
+
+	int call_index = 0;
+	uint64 prog_extra_timeout = 0;
+	uint64 prog_extra_cover_timeout = 0;
+	call_props_t call_props;
+	memset(&call_props, 0, sizeof(call_props));
+	char* temp;
+	read_input(&input_pos); // total number of calls
+	for (;;) {
+		uint64 call_num = read_input(&input_pos);
+		if (call_num == instr_eof)
+			break;
+		if (call_num == instr_copyin) {
+			char* addr = (char*)(read_input(&input_pos) + SYZ_DATA_OFFSET);
+			addr = (char*)malloc(1000); // Allocate space for the address.
+			temp = addr;
+			uint64 typ = read_input(&input_pos);
+			switch (typ) {
+			case arg_const: {
+				uint64 size, bf, bf_off, bf_len;
+				uint64 arg = read_const_arg(&input_pos, &size, &bf, &bf_off, &bf_len);
+				copyin(addr, arg, size, bf, bf_off, bf_len);
+				break;
+			}
+			case arg_addr32:
+			case arg_addr64: {
+				uint64 val = read_input(&input_pos) + SYZ_DATA_OFFSET;
+				if (typ == arg_addr32)
+					NONFAILING(*(uint32*)addr = val);
+				else
+					NONFAILING(*(uint64*)addr = val);
+				break;
+			}
+			case arg_result: {
+				uint64 meta = read_input(&input_pos);
+				uint64 size = meta & 0xff;
+				uint64 bf = meta >> 8;
+				uint64 val = read_result(&input_pos);
+				copyin(addr, val, size, bf, 0, 0);
+				break;
+			}
+			case arg_data: {
+				uint64 size = read_input(&input_pos);
+				size &= ~(1ull << 63); // readable flag
+				if (input_pos + size > input_data + kMaxInput)
+					fail("data arg overflow");
+				NONFAILING(memcpy(addr, input_pos, size));
+				input_pos += size;
+				break;
+			}
+			case arg_csum: {
+				debug_verbose("checksum found at %p\n", addr);
+				uint64 size = read_input(&input_pos);
+				char* csum_addr = addr;
+				uint64 csum_kind = read_input(&input_pos);
+				switch (csum_kind) {
+				case arg_csum_inet: {
+					if (size != 2)
+						failmsg("bag inet checksum size", "size=%llu", size);
+					debug_verbose("calculating checksum for %p\n", csum_addr);
+					struct csum_inet csum;
+					csum_inet_init(&csum);
+					uint64 chunks_num = read_input(&input_pos);
+					uint64 chunk;
+					for (chunk = 0; chunk < chunks_num; chunk++) {
+						uint64 chunk_kind = read_input(&input_pos);
+						uint64 chunk_value = read_input(&input_pos);
+						uint64 chunk_size = read_input(&input_pos);
+						switch (chunk_kind) {
+						case arg_csum_chunk_data:
+							chunk_value += SYZ_DATA_OFFSET;
+							debug_verbose("#%lld: data chunk, addr: %llx, size: %llu\n",
+								      chunk, chunk_value, chunk_size);
+							NONFAILING(csum_inet_update(&csum, (const uint8*)chunk_value, chunk_size));
+							break;
+						case arg_csum_chunk_const:
+							if (chunk_size != 2 && chunk_size != 4 && chunk_size != 8)
+								failmsg("bad checksum const chunk size", "size=%lld", chunk_size);
+							// Here we assume that const values come to us big endian.
+							debug_verbose("#%lld: const chunk, value: %llx, size: %llu\n",
+								      chunk, chunk_value, chunk_size);
+							csum_inet_update(&csum, (const uint8*)&chunk_value, chunk_size);
+							break;
+						default:
+							failmsg("bad checksum chunk kind", "kind=%llu", chunk_kind);
+						}
+					}
+					uint16 csum_value = csum_inet_digest(&csum);
+					debug_verbose("writing inet checksum %hx to %p\n", csum_value, csum_addr);
+					copyin(csum_addr, csum_value, 2, binary_format_native, 0, 0);
+					break;
+				}
+				default:
+					failmsg("bad checksum kind", "kind=%llu", csum_kind);
+				}
+				break;
+			}
+			default:
+				failmsg("bad argument type", "type=%llu", typ);
+			}
+			continue;
+		}
+		if (call_num == instr_copyout) {
+			read_input(&input_pos); // index
+			read_input(&input_pos); // addr
+			read_input(&input_pos); // size
+			// The copyout will happen when/if the call completes.
+			continue;
+		}
+		if (call_num == instr_setprops) {
+			read_call_props_t(call_props, read_input(&input_pos, false));
+			continue;
+		}
+
+		// Normal syscall.
+		if (call_num >= ARRAY_SIZE(syscalls))
+			failmsg("invalid syscall number", "call_num=%llu", call_num);
+		const call_t* call = &syscalls[call_num];
+		if (prog_extra_timeout < call->attrs.prog_timeout)
+			prog_extra_timeout = call->attrs.prog_timeout * slowdown_scale;
+		if (call->attrs.remote_cover)
+			prog_extra_cover_timeout = 500 * slowdown_scale; // 500 ms
+		uint64 copyout_index = read_input(&input_pos);
+		uint64 num_args = read_input(&input_pos);
+		if (num_args > kMaxArgs)
+			failmsg("command has bad number of arguments", "args=%llu", num_args);
+		uint64 args[kMaxArgs] = {};
+		for (uint64 i = 0; i < num_args; i++)
+			args[i] = read_arg(&input_pos);
+		for (uint64 i = num_args; i < kMaxArgs; i++)
+			args[i] = 0;
+		thread_t* th = schedule_call(call_index++, call_num, copyout_index,
+					     num_args, args, input_pos, call_props);
+
+		if (call_props.async && flag_threaded) {
+			// Don't wait for an async call to finish. We'll wait at the end.
+			// If we're not in the threaded mode, just ignore the async flag - during repro simplification syzkaller
+			// will anyway try to make it non-threaded.
+		} else if (flag_threaded) {
+			// Wait for call completion.
+			uint64 timeout_ms = syscall_timeout_ms + call->attrs.timeout * slowdown_scale;
+			// This is because of printing pre/post call. Ideally we print everything in the main thread
+			// and then remove this (would also avoid intermixed output).
+			if (flag_debug && timeout_ms < 1000)
+				timeout_ms = 1000;
+			if (event_timedwait(&th->done, timeout_ms))
+				handle_completion(th);
+
+			// Check if any of previous calls have completed.
+			for (int i = 0; i < kMaxThreads; i++) {
+				th = &threads[i];
+				if (th->executing && event_isset(&th->done))
+					handle_completion(th);
+			}
+		} else {
+			// Execute directly.
+			if (th != &threads[0])
+				fail("using non-main thread in non-thread mode");
+			event_reset(&th->ready);
+			execute_call(th);
+			event_set(&th->done);
+			handle_completion(th);
+		}
+		memset(&call_props, 0, sizeof(call_props));
+	}
+
+	if (running > 0) {
+		// Give unfinished syscalls some additional time.
+		last_scheduled = 0;
+		uint64 wait_start = current_time_ms();
+		uint64 wait_end = wait_start + 2 * syscall_timeout_ms;
+		wait_end = std::max(wait_end, start + program_timeout_ms / 6);
+		wait_end = std::max(wait_end, wait_start + prog_extra_timeout);
+		while (running > 0 && current_time_ms() <= wait_end) {
+			sleep_ms(1 * slowdown_scale);
+			for (int i = 0; i < kMaxThreads; i++) {
+				thread_t* th = &threads[i];
+				if (th->executing && event_isset(&th->done))
+					handle_completion(th);
+			}
+		}
+		// Write output coverage for unfinished calls.
+		if (running > 0) {
+			for (int i = 0; i < kMaxThreads; i++) {
+				thread_t* th = &threads[i];
+				if (th->executing) {
+					if (cover_collection_required())
+						cover_collect(&th->cov);
+					write_call_output(th, false);
+				}
+			}
+		}
+	}
+
+#if SYZ_HAVE_CLOSE_FDS
+	close_fds();
+#endif
+
+	write_extra_output();
+	if (flag_extra_coverage) {
+		// Check for new extra coverage in small intervals to avoid situation
+		// that we were killed on timeout before we write any.
+		// Check for extra coverage is very cheap, effectively a memory load.
+		const uint64 kSleepMs = 100;
+		for (uint64 i = 0; i < prog_extra_cover_timeout / kSleepMs &&
+				   output_data->completed.load(std::memory_order_relaxed) < kMaxCalls;
+		     i++) {
+			sleep_ms(kSleepMs);
+			write_extra_output();
+		}
+	}
 }
 
 // execute_one executes program stored in input_data.

@@ -17,24 +17,146 @@ import (
 )
 
 type state struct {
-	target    *Target
-	ct        *ChoiceTable
-	corpus    []*Prog
-	files     map[string]bool
-	resources map[string][]*ResultArg
-	strings   map[string]bool
-	ma        *memAlloc
-	va        *vmaAlloc
+	target     *Target
+	ct         *ChoiceTable
+	corpus     []*Prog
+	files      map[string]bool
+	resources  map[string][]*ResultArg // 不能被ipv6_part1/mac_part1引用 TODOTODOTODO
+	strings    map[string]bool
+	ma         *memAlloc
+	va         *vmaAlloc
+	NetworkRes NetworkResources // Network resources used by the program.
+
+}
+
+type NetworkResources struct {
+	// A map recording the correspondence between one object to another. Write this in go code
+	// to avoid the need to serialize it.
+	// For example, a map of file descriptors to sockets.
+	Ipv6       map[*ResultArg]*ResultArg // ipv6 resources used by the program.
+	Ipv6_part2 map[*ResultArg]*ResultArg // ipv6_part2 resources used by the program.
+	Mac        map[*ResultArg]*ResultArg // mac resources used by the program.
+	Mac_part2  map[*ResultArg]*ResultArg // mac_part2 resources used by the program.
+}
+
+func (s *state) InStructure(part1 *ResultArg, correlation_structure *map[*ResultArg]*ResultArg) (ipv6_part2 *ResultArg, ok bool) {
+	if *correlation_structure == nil {
+		return nil, false
+	}
+	part2, ok := (*correlation_structure)[part1]
+	return part2, ok
+}
+
+func (s *state) FindRef(arg *ResultArg) *ResultArg {
+	//fmt.Printf(">DEBUG: Finding reference for ResultArg %p\n", arg)
+	if arg.Res == nil {
+		//fmt.Printf(">DEBUG: ResultArg %p has no resource, returning itself.\n", arg)
+		return arg
+	} else {
+		//fmt.Printf(">DEBUG: ResultArg %p has a resource %p, trying to find it.\n", arg, arg.Res)
+		return s.FindRef(arg.Res)
+	}
+}
+
+func (s *state) ChangeRef(arg, newArg Arg) {
+	// Always make a ref and then replace it.
+	// fmt.Printf(">> DEBUG: Changing the reference of ResultArg %p to point to bare-metal newArg %p.", arg, newArg)
+	// new_arg_ref := MakeResultArg(newArg.Type(), newArg.Dir(), newArg, 0)
+	// fmt.Printf(">> DEBUG: The new bare-metal reference is %p.\n", new_arg_ref)
+	// replaceResultArg(arg, new_arg_ref)
+	// fmt.Printf(">> DEBUG: With the new reference, ResultArg %p now points to %p with its resource value %p.\n", arg, new_arg_ref, arg.Res)
+
+	// OPTION 1
+
+	// if arg.Res == nil {
+	// 	//fmt.Printf(">DEBUG: Changing reference of ResultArg, arg.Res is nil, DIRECTLY replacing with newArg. The original arg address is %p, trying to refer %p", arg, newArg)
+	// 	// new_arg_ref := MakeResultArg(newArg.Type(), arg.Dir(), newArg, 0)
+	// 	// //fmt.Printf(">DEBUG: now is %p.", new_arg_ref)
+	// 	// replaceResultArg(arg, new_arg_ref) // 原本是裸的nil，现在替换成了一个带ref的arg。这是个很奇怪的事情！
+	// 	replaceResultArg(arg, newArg) // 直接替换掉arg的引用，arg的资源值变成了newArg。
+	// 	//fmt.Printf(">DEBUG: See! Now is %v, %p", arg, arg)
+	// 	//arg = newArg
+	// } else {
+	// 	// if arg.Res.Res == nil {
+	// 	// 	fmt.Println(">DEBUG: Changing reference of ResultArg, arg.Res is not nil, INDIRECTLY replacing with newArg.")
+	// 	// 	//new_arg_ref := MakeResultArg(newArg.Type(), arg.Dir(), newArg, 0)
+	// 	// 	//replaceResultArg(arg, new_arg_ref)
+	// 	// 	s.ChangeRef(arg.Res, newArg)
+	// 	// } else {
+	// 	// 	panic("DEBUG: Found nested ResultArg, not considered yet.")
+	// 	// }
+	// 	// //fmt.Printf(">DEBUG: Changing reference of ResultArg, arg.Res is not nil, INDIRECTLY replacing with newArg. The original arg address is %p, trying to refer %p in %p", arg, newArg, arg.Res)
+	// 	s.ChangeRef(arg.Res, newArg)
+	// }
+
+	// // OPTION 2
+	// new_arg_ref := MakeResultArg(newArg.Type(), newArg.Dir(), newArg, 0)
+	// replaceResultArg(arg, new_arg_ref)
+
+	// OPTION 3, Lastest, change argument to a new one
+	replaceArg(arg, newArg) // 直接替换掉arg的引用，arg的资源值变成了newArg。
+
+}
+
+func (s *state) Check_match(part1, part2 *ResultArg, g *Gen, correlation_structure *map[*ResultArg]*ResultArg, correlation_structure_part2 *map[*ResultArg]*ResultArg) (part1_changed, part2_changed *ResultArg) {
+	//fmt.Printf(">DEBUG CHECK_MATCH: CHECK MATCHING PART1 AND PART2 with address %v, %v\n", part1, part2)
+	if (*correlation_structure == nil) && (*correlation_structure_part2 == nil) {
+		// fmt.Println(">DEBUG CHECK_MATCH: NETWORK RESOURCES NOT INITIALIZED. Initializing now")
+		*correlation_structure = make(map[*ResultArg]*ResultArg)
+		*correlation_structure_part2 = make(map[*ResultArg]*ResultArg)
+	} else if (*correlation_structure == nil) || (*correlation_structure_part2 == nil) {
+		panic(">DEBUG CHECK_MATCH: NETWORK RESOURCES NOT INITIALIZED. One of them is nil, this is not allowed.")
+	}
+	// nil is allowed. mismatch is not allowed.
+	if part1 == nil || part2 == nil {
+		//fmt.Printf(">DEBUG CHECK_MATCH: PART1 OR PART2 IS NIL. Irregular but allowed. with address %p, %p\n", part1, part2)
+		return part1, part2
+	}
+	db_part2_id, ok := s.InStructure(part1, correlation_structure)
+	if ok {
+		// part1 is in the database, check part2
+		if db_part2_id == part2 {
+			//fmt.Printf(">DEBUG CHECK_MATCH: PART1 AND PART2 MATCH IN DB. With address %p, %p \n", part1, part2)
+			part1_changed = part1
+			part2_changed = part2
+		} else {
+			//fmt.Printf(">DEBUG CHECK_MATCH: PART1 MATCH IN DB, BUT PART2 NOT MATCH, REMATCH PART2. Originally, part1 is %p, part2 is %p. Now part1 is %p, part2 is %p \n", part1, part2, part1, db_part2_id)
+			// part1 is in the database, but part2 is not, rematch part2
+			//part2 = db_part2_id
+			part1_changed = part1
+			part2_changed = db_part2_id
+		}
+	} else {
+		// part1 is not in the db, this is not possible. panic
+		//fmt.Printf(">DEBUG CHECK_MATCH: PART1 NOT IN DB, VALIDATE PART2\n")
+		if db_part1_id, ok := s.InStructure(part2, correlation_structure_part2); ok {
+			// part2 is in the database, but part1 is not, rematch part1
+			//fmt.Printf(">DEBUG CHECK_MATCH: PART2 MATCH IN DB, BUT PART1 NOT MATCH, REMATCH PART1. Originally, part1 is %p, part2 is %p. Now part1 is %p, part2 is %p \n", part1, part2, db_part1_id, part2)
+			part1_changed = db_part1_id
+			part2_changed = part2
+		} else {
+			//fmt.Printf(">DEBUG CHECK_MATCH: PART1 AND PART2 NOT MATCH IN DB, NO REMATCH POSSIBLE. \n")
+			// both are not in the database, this is not possible. panic
+			//fmt.Printf(">DEBUG CHECK_MATCH: Must be special value of both part1 and part2, not in the database. Ignore for now. The address is %p, %p\n", part1, part2)
+			part1_changed = part1
+			part2_changed = part2
+			// g.GetState().InsertIPv6(part1_changed, part2_changed, &g.GetState().NetworkRes.Ipv6, &g.GetState().NetworkRes.Ipv6_part2)
+		}
+	}
+
+	return part1_changed, part2_changed
 }
 
 // analyze analyzes the program p up to but not including call c.
 func analyze(ct *ChoiceTable, corpus []*Prog, p *Prog, c *Call) *state {
 	s := newState(p.Target, ct, corpus)
 	resources := true
-	for _, c1 := range p.Calls {
+	for i, c1 := range p.Calls {
 		if c1 == c {
 			resources = false
 		}
+		// Shut up i's unused warning.
+		_ = i
 		s.analyzeImpl(c1, resources)
 	}
 	return s
@@ -54,11 +176,45 @@ func newState(target *Target, ct *ChoiceTable, corpus []*Prog) *state {
 	return s
 }
 
+// analyze the resources generated by the syscall
 func (s *state) analyze(c *Call) {
 	s.analyzeImpl(c, true)
 }
 
+func (s *state) InsertStructure(part1 *ResultArg, part2 *ResultArg, correlation_structure *map[*ResultArg]*ResultArg, correlation_structure_part2 *map[*ResultArg]*ResultArg) {
+	if *correlation_structure == nil {
+		*correlation_structure = make(map[*ResultArg]*ResultArg)
+		*correlation_structure_part2 = make(map[*ResultArg]*ResultArg)
+	}
+	// if _, ok := (*correlation_structure)[part1]; ok {
+	// 	// If part1 is already in the correlation structure, we should not add it again.
+	// 	panic(fmt.Sprintf("DEBUG: In InsertStructure process: part1 %v already exists in correlation structure, skipping\n", part1))
+	// }
+	// if _, ok := (*correlation_structure_part2)[part2]; ok {
+	// 	// If part2 is already in the correlation structure, we should not add it again.
+	// 	panic(fmt.Sprintf("DEBUG: In InsertStructure process: part2 %v already exists in correlation structure, skipping\n", part2))
+	// }
+	// if part1.Res != nil || part2.Res != nil {
+	// 	panic(fmt.Sprintf("DEBUG: In InsertStructure process: part1 %v or part2 %v has a resource, this is not allowed", part1, part2))
+	// }
+	(*correlation_structure)[part1] = part2
+	(*correlation_structure_part2)[part2] = part1
+}
+
+func (s *state) PickStructure(correlation_structure *map[*ResultArg]*ResultArg, correlation_structure_part2 *map[*ResultArg]*ResultArg) (*ResultArg, *ResultArg) {
+	if *correlation_structure == nil || len(*correlation_structure) == 0 {
+		return nil, nil
+	}
+	for part1, part2 := range *correlation_structure {
+		if _, ok := (*correlation_structure_part2)[part2]; ok {
+			return part1, part2
+		}
+	}
+	return nil, nil
+}
+
 func (s *state) analyzeImpl(c *Call, resources bool) {
+	hasAddr := false
 	ForeachArg(c, func(arg Arg, _ *ArgCtx) {
 		switch a := arg.(type) {
 		case *PointerArg:
@@ -74,7 +230,10 @@ func (s *state) analyzeImpl(c *Call, resources bool) {
 		case *ResourceType:
 			a := arg.(*ResultArg)
 			if resources && a.Dir() != DirIn {
-				s.resources[typ.Desc.Name] = append(s.resources[typ.Desc.Name], a)
+				s.resources[typ.Desc.Name] = append(s.resources[typ.Desc.Name], a) // 兼容resource
+				if typ.Desc.Name == "ipv6_part1" || typ.Desc.Name == "ipv6_part2" || typ.Desc.Name == "mac_part1" || typ.Desc.Name == "mac_part2" {
+					hasAddr = true
+				}
 				// TODO: negative PIDs and add them as well (that's process groups).
 			}
 		case *BufferType:
@@ -100,8 +259,101 @@ func (s *state) analyzeImpl(c *Call, resources bool) {
 					s.files[val] = true
 				}
 			}
+
 		}
 	})
+	if hasAddr && resources {
+		AnalyzeAddr(c, s) // Analyze the address generation syscalls.
+	}
+}
+
+func AnalyzeAddr(c *Call, s *state) {
+	// This is a syscall that generates IPv6 addresses. Here it could be called when mutating the prog, and therefore we need to supplement the network resource states.
+	//Note that arg1 or arg2 could be nil. We should consider this case.
+
+	var critical_structure *map[*ResultArg]*ResultArg
+	var critical_structure_part2 *map[*ResultArg]*ResultArg
+
+	if c.Meta.Name == "syz_ipv6_addr_gen" || c.Meta.Name == "syz_mac_addr_gen" {
+		if c.Meta.Name == "syz_ipv6_addr_gen" {
+			// fmt.Println("DEBUG: Analyzing syz_ipv6_addr_gen call")
+			critical_structure = &s.NetworkRes.Ipv6
+			critical_structure_part2 = &s.NetworkRes.Ipv6_part2
+		} else {
+			critical_structure = &s.NetworkRes.Mac
+			critical_structure_part2 = &s.NetworkRes.Mac_part2
+		}
+		InsertWrapper(c.Args[1].(*PointerArg).Res.(*ResultArg), c.Args[2].(*PointerArg).Res.(*ResultArg), critical_structure, critical_structure_part2, s)
+
+	} else {
+
+		// First, get the ipv6/mac addresses from the call arguments.
+		ForeachArg(c, func(arg Arg, _ *ArgCtx) {
+			switch a := arg.(type) {
+			case *GroupArg:
+				// Check if the group argument is StructType
+				if _, ok := a.Type().(*StructType); ok {
+					// Check if the name is ipv6_addr or mac_addr
+					if a.Type().Name() == "ipv6_addr" {
+						critical_structure = &s.NetworkRes.Ipv6
+						critical_structure_part2 = &s.NetworkRes.Ipv6_part2
+					} else if a.Type().Name() == "mac_addr" {
+						critical_structure = &s.NetworkRes.Mac
+						critical_structure_part2 = &s.NetworkRes.Mac_part2
+					} else {
+						return // Not the address generation call we are looking for.
+					}
+					InsertWrapper(a.Inner[0].(*ResultArg), a.Inner[1].(*ResultArg), critical_structure, critical_structure_part2, s)
+				}
+			}
+		})
+	}
+}
+
+func InsertWrapper(ipv6_arg1 *ResultArg, ipv6_arg2 *ResultArg, critical_structure *map[*ResultArg]*ResultArg, critical_structure_part2 *map[*ResultArg]*ResultArg, s *state) {
+
+	// ipv6_part1 := s.FindRef(ipv6_arg1)
+	// if ipv6_arg1 != ipv6_part1 {
+	// 	if _, ok := s.InStructure(ipv6_part1, critical_structure); !ok {
+	// 		panic("DEBUG: In analysis process: ipv6_arg1 is not equal to ipv6_part1, this should not happen. This is a bug in the analysis code.")
+	// 	}
+	// }
+	// ipv6_part2 := s.FindRef(ipv6_arg2)
+	// if ipv6_arg2 != ipv6_part2 {
+	// 	if _, ok := s.InStructure(ipv6_part2, critical_structure_part2); !ok {
+	// 		panic("DEBUG: In analysis process: ipv6_arg2 is not equal to ipv6_part2, this should not happen. This is a bug in the analysis code.")
+	// 	}
+	// }
+
+	// if res, ok := s.InStructure(ipv6_part1, critical_structure); ok {
+	// 	// fmt.Println("DEBUG: Mutating the call. Found existing IPv6 address in the correlation structure, ")
+	// 	if res != ipv6_part2 {
+	// 		panic(fmt.Sprintf("DEBUG: In analysis process: part1 %p already exists in correlation structure, but part2 %p is different", ipv6_part1, ipv6_part2))
+	// 	} else {
+	// 		// fmt.Println("DEBUG: In analysis process: part1 and part2 match in correlation structure, skipping insertion")
+	// 		// panic(fmt.Sprintf("DEBUG: In analysis process: part1 and part2 match in correlation structure, skipping insertion. The address is %p, %p", c.Args[1].(*PointerArg), c.Args[2].(*PointerArg)))
+	// 		fmt.Printf("DEBUG: In analysis process: part1 and part2 match in correlation structure, skipping insertion. The address is %p, %p", ipv6_part1, ipv6_part2)
+	// 	}
+	// } else if res, ok := s.InStructure(ipv6_part2, critical_structure_part2); ok {
+	// 	// fmt.Println("DEBUG: Mutating the call. Found existing IPv6 address in the correlation structure, ")
+	// 	if res != ipv6_part1 {
+	// 		panic(fmt.Sprintf("DEBUG: In analysis process: part2 %p already exists in correlation structure, but part1 %p is different", ipv6_part2, ipv6_part1))
+	// 	} else {
+	// 		// fmt.Println("DEBUG: In analysis process: part2 and part1 match in correlation structure, skipping insertion")
+	// 		// panic(fmt.Sprintf("DEBUG: In analysis process: part2 and part1 match in correlation structure, skipping insertion. The address is %p, %p", c.Args[1].(*PointerArg), c.Args[2].(*PointerArg)))
+	// 		fmt.Printf("DEBUG: In analysis process: part2 and part1 match in correlation structure, skipping insertion. The address is %p, %p", ipv6_part1, ipv6_part2)
+	// 	}
+	// } else if ipv6_part1 == nil || ipv6_part2 == nil {
+	// 	panic(fmt.Sprintf("DEBUG: In analysis, both parts are nil. This should not be possible, as nil pointer cannot be generated. The address is %p, %p", ipv6_part1, ipv6_part2)) // TODO!!!
+	// 	////fmt.Printf(">DEBUG: In analysis process inside the analysis.go, part1 %p or part2 %p is nil. TODOTODOTODO!!!")
+	// 	// ipv6_part1, ipv6_part2 = s.PickStructure(&s.NetworkRes.Ipv6, &s.NetworkRes.Ipv6_part2) // TODO!!!
+	// } else {
+	// Both of part1 and part2 is not nil, and they are not inside the structure. Insert them into the structure.
+	ipv6_part1_ref := s.FindRef(ipv6_arg1)
+	ipv6_part2_ref := s.FindRef(ipv6_arg2)
+	//fmt.Printf(">DEBUG: In analysis process inside the analysis.go, part1 %p and part2 %p are not in the correlation structure, inserting them now.\n", ipv6_part1_ref, ipv6_part2_ref)
+	s.InsertStructure(ipv6_part1_ref, ipv6_part2_ref, critical_structure, critical_structure_part2)
+	// }
 }
 
 type parentStack []Arg
@@ -163,7 +415,7 @@ func foreachArgImpl(arg Arg, field *Field, ctx *ArgCtx, f func(Arg, *ArgCtx)) {
 		}
 	}
 	ctx.Field = field
-	f(arg, ctx)
+	f(arg, ctx) // Never forget to go into this function! Here is where resources being added!
 	if ctx.Stop {
 		return
 	}

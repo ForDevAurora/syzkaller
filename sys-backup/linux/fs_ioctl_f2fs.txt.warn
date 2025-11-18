@@ -1,0 +1,6 @@
+no-such-struct: f2fs_gc_range
+no-such-struct: f2fs_defragment
+no-such-struct: f2fs_move_range
+no-such-struct: f2fs_flush_device
+no-such-struct: f2fs_sectrim_range
+no-such-struct: f2fs_comp_option

@@ -17,10 +17,10 @@ import (
 
 const (
 	// "Recommended" number of calls in programs that we try to aim at during fuzzing.
-	RecommendedCalls = 30
+	RecommendedCalls = 30 // !!!!DEBUG!!!CHANGED!!!!!! 30
 	// "Recommended" max number of calls in programs.
 	// If we receive longer programs from hub/corpus we discard them.
-	MaxCalls = 40
+	MaxCalls = 40 // !!!!DEBUG!!!CHANGED!!!!!! 40
 )
 
 type randGen struct {
@@ -419,6 +419,33 @@ func (r *randGen) createResource(s *state, res *ResourceType, dir Dir) (Arg, []*
 		// syscalls based on optional inputs resources w/o ctors in TransitivelyEnabledCalls.
 		return nil, nil
 	}
+
+	if (res.Name() == "ipv6_part1" || res.Name() == "ipv6_part2") && (s.NetworkRes.Ipv6 == nil || len(s.NetworkRes.Ipv6) == 0) {
+		// Only keep syz_ipv6_addr_gen calls in ctors
+		var ipv6Ctors []ResourceCtor
+		for _, ctor := range ctors {
+			if ctor.Call.CallName == "syz_ipv6_addr_gen" {
+				ipv6Ctors = append(ipv6Ctors, ctor)
+			}
+		}
+		if len(ipv6Ctors) == 0 {
+			panic(fmt.Sprintf("no syz_ipv6_addr_gen ctors for ipv6 resource %v", res.Name()))
+		}
+		ctors = ipv6Ctors
+	} else if (res.Name() == "mac_part1" || res.Name() == "mac_part2") && (s.NetworkRes.Mac == nil || len(s.NetworkRes.Mac) == 0) {
+		// Only keep syz_mac_addr_gen calls in ctors
+		var macCtors []ResourceCtor
+		for _, ctor := range ctors {
+			if ctor.Call.CallName == "syz_mac_addr_gen" {
+				macCtors = append(macCtors, ctor)
+			}
+		}
+		if len(macCtors) == 0 {
+			panic(fmt.Sprintf("no syz_mac_addr_gen ctors for mac resource %v", res.Name()))
+		}
+		ctors = macCtors
+	}
+
 	// Now we have a set of candidate calls that can create the necessary resource.
 	// Generate one of them.
 	var meta *Syscall
@@ -434,6 +461,7 @@ func (r *randGen) createResource(s *state, res *ResourceType, dir Dir) (Arg, []*
 		// precise constructor.
 		meta = precise[r.Intn(len(precise))]
 	}
+
 	if meta == nil || r.oneOf(3) {
 		// Sometimes just take a random one.
 		meta = ctors[r.Intn(len(ctors))].Call
@@ -457,6 +485,14 @@ func (r *randGen) createResource(s *state, res *ResourceType, dir Dir) (Arg, []*
 			res.Desc.Kind[0], kind, meta.Name))
 	}
 	arg := MakeResultArg(res, dir, allres[r.Intn(len(allres))], 0)
+
+	if (len(calls) == 0 && res.Name() == "ipv6_part1") ||
+		(len(calls) == 0 && res.Name() == "ipv6_part2") ||
+		(len(calls) == 0 && res.Name() == "mac_part1") ||
+		(len(calls) == 0 && res.Name() == "mac_part2") {
+		fmt.Println("no calls found for resource %v in dir %v", res.Name(), dir)
+	}
+
 	return arg, calls
 }
 
@@ -612,6 +648,20 @@ func (r *randGen) generateParticularCall(s *state, meta *Syscall) (calls []*Call
 	c.Args, calls = r.generateArgs(s, meta.Args, DirIn)
 	moreCalls, _ := r.patchConditionalFields(c, s)
 	r.target.assignSizesCall(c)
+
+	// if meta.CallName == "syz_ipv6_addr_gen" || meta.CallName == "syz_mac_addr_gen" {
+	// 	var critical_structure *map[*ResultArg]*ResultArg
+	// 	var critical_structure_part2 *map[*ResultArg]*ResultArg
+	// 	if meta.CallName == "syz_ipv6_addr_gen" {
+	// 		critical_structure = &s.NetworkRes.Ipv6
+	// 		critical_structure_part2 = &s.NetworkRes.Ipv6_part2
+	// 	} else {
+	// 		critical_structure = &s.NetworkRes.Mac
+	// 		critical_structure_part2 = &s.NetworkRes.Mac_part2
+	// 	}
+	// 	s.InsertStructure(s.FindRef(c.Args[1].(*PointerArg).Res.(*ResultArg)), s.FindRef(c.Args[2].(*PointerArg).Res.(*ResultArg)), critical_structure, critical_structure_part2)
+	// }
+
 	return append(append(calls, moreCalls...), c)
 }
 
@@ -742,31 +792,61 @@ func (a *ResourceType) generate(r *randGen, s *state, dir Dir) (arg Arg, calls [
 		defer func() { r.inGenerateResource = false }()
 		canRecurse = true
 	}
+	generateAddr := false
+	if a.TypeName == "ipv6_part1" || a.TypeName == "ipv6_part2" ||
+		a.TypeName == "mac_part1" || a.TypeName == "mac_part2" {
+		if a.TypeName == "ipv6_part1" || a.TypeName == "ipv6_part2" {
+			if s.NetworkRes.Ipv6 != nil && len(s.NetworkRes.Ipv6) > 0 {
+				panic("You are calling generate for ipv6_part1/2 resource, but it already exists in the state. This should not happen.")
+			}
+		} else if a.TypeName == "mac_part1" || a.TypeName == "mac_part2" {
+			if s.NetworkRes.Mac != nil && len(s.NetworkRes.Mac) > 0 {
+				panic("You are calling generate for mac_part1/2 resource, but it already exists in the state. This should not happen.")
+			}
+		}
+		generateAddr = true
+	}
 	if canRecurse && r.nOutOf(8, 10) ||
 		!canRecurse && r.nOutOf(19, 20) {
 		arg = r.existingResource(s, a, dir)
+
 		if arg != nil {
+			// fmt.Println(">DEBUG: reusing existing resource\n", a.Desc.Kind[0], "in", dir)
 			return
 		}
 	}
 	if canRecurse {
 		if r.oneOf(4) {
 			arg, calls = r.resourceCentric(s, a, dir)
+
 			if arg != nil {
 				return
 			}
 		}
-		if r.nOutOf(4, 5) {
+		if r.nOutOf(4, 5) || a.TypeName == "ipv6_part1" || a.TypeName == "ipv6_part2" || a.TypeName == "mac_part1" || a.TypeName == "mac_part2" {
 			// If we could not reuse a resource, let's prefer resource creation over
 			// random int substitution.
 			arg, calls = r.createResource(s, a, dir)
 			if arg != nil {
+				// fmt.Println(">DEBUG: creating resource\n", a.Desc.Kind[0], "in", dir)
 				return
 			}
+		}
+	} else if generateAddr {
+		arg, calls = r.createResource(s, a, dir)
+		if arg != nil {
+			fmt.Println(">DEBUG: recursively creating resource\n", a.Desc.Kind[0], "in", dir)
+			return
 		}
 	}
 	special := a.SpecialValues()
 	arg = MakeResultArg(a, dir, nil, special[r.Intn(len(special))])
+	if a.Name() == "ipv6_part1" || a.Name() == "ipv6_part2" || a.Name() == "mac_part1" || a.Name() == "mac_part2" {
+		// panic(">DEBUG: reusing ipv6_part1/2 or mac_part1/2 resource, this should not happen")
+		// !!!TODO!!! Remember that some of the syscalls can also produce ipv6_part1/2 or mac_part1/2, like getsockopt$inet6_IPV6_XFRM_POLICY(fd sock_in6, level const[IPPROTO_IPV6], optname const[IPV6_XFRM_POLICY], optval ptr[out, xfrm_filter], optlen ptr[inout, len[optval, int32]]). The xfrm also contains the IP address, so this syscall, technically speaking, will produce DirOut ipv6_addr/mac_addr structs. Therefore, such struct generation will not trap into the self-defined functions. Special values should be allowed. We currently ignore this case, as all these syscalls are getting the ip/mac info from the kernel, which is originally generated by the psesodu syscall. However, we need to further investigate in the future.
+		fmt.Println(">DEBUG: Generating special values for ipv6_part1/2 or mac_part1/2 resource. This is due to the syscall that get such info from the kernel. We ignore for now.")
+	}
+	// fmt.Println(">DEBUG: using special value\n", a.Desc.Kind[0], "in", dir, "value")
 	return
 }
 
@@ -911,8 +991,9 @@ func (a *PtrType) generate(r *randGen, s *state, dir Dir) (arg Arg, calls []*Cal
 	}
 	// The resource we are trying to generate may be in the pointer,
 	// so don't try to create an empty special pointer during resource generation.
-	if !r.inGenerateResource && r.oneOf(1000) {
+	if !r.inGenerateResource && r.oneOf(1000) && a.Elem.Name() != "ipv6_part1" && a.Elem.Name() != "ipv6_part2" && a.Elem.Name() != "mac_part1" && a.Elem.Name() != "mac_part2" {
 		index := r.rand(len(r.target.SpecialPointers))
+		// fmt.Printf(">DEBUG: using special pointer %v for resource type %v\n", r.target.SpecialPointers[index], a.Elem.Name())
 		return MakeSpecialPointerArg(a, dir, index), nil
 	}
 	inner, calls := r.generateArg(s, a.Elem, a.ElemDir)
@@ -947,6 +1028,7 @@ func (r *randGen) existingResource(s *state, res *ResourceType, dir Dir) Arg {
 		}
 	}
 	if len(allres) == 0 {
+		// fmt.Println(">DEBUG: no existing resource found for", res.Desc.Kind[0], "in", dir)
 		return nil
 	}
 	return MakeResultArg(res, dir, allres[r.Intn(len(allres))], 0)
@@ -1006,6 +1088,13 @@ func (r *randGen) resourceCentric(s *state, t *ResourceType, dir Dir) (arg Arg, 
 	// Removes the references that are not used anymore.
 	for i := biasedLen; i < len(calls); i++ {
 		p.RemoveCall(i)
+	}
+
+	if (len(p.Calls) == 0 && t.Name() == "ipv6_part1") ||
+		(len(p.Calls) == 0 && t.Name() == "ipv6_part2") ||
+		(len(p.Calls) == 0 && t.Name() == "mac_part1") ||
+		(len(p.Calls) == 0 && t.Name() == "mac_part2") {
+		fmt.Println("no calls found for resource %v in dir %v", t.Name(), dir)
 	}
 
 	return MakeResultArg(t, dir, resource, 0), p.Calls

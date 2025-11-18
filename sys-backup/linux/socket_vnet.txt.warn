@@ -1,0 +1,11 @@
+no-such-struct: sockaddr_vm
+no-such-struct: vmaddr_cid
+no-such-struct: vmaddr_cid64
+no-such-struct: vhost_memory_region
+no-such-struct: vhost_vring_state
+no-such-struct: vhost_vring_addr
+no-such-struct: vhost_vring_file
+no-such-struct: vhost_msg
+no-such-struct: vhost_msg_v2
+no-such-struct: vhost_vdpa_iova_range
+no-such-struct: vhost_iotlb_msg

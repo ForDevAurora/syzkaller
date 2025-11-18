@@ -429,6 +429,23 @@ type Gen struct {
 	s *state
 }
 
+func (g *Gen) FindRef(arg *ResultArg) *ResultArg {
+	return g.s.FindRef(arg)
+}
+
+func (g *Gen) ChangeRef(arg *ResultArg, newArg *ResultArg) {
+	g.s.ChangeRef(arg, newArg)
+	return
+}
+
+func (g *Gen) PickStructure(correlation_structure, correlation_structure_part2 *map[*ResultArg]*ResultArg) (*ResultArg, *ResultArg) {
+	return g.s.PickStructure(correlation_structure, correlation_structure_part2)
+}
+
+func (g *Gen) GetState() *state {
+	return g.s
+}
+
 func (g *Gen) Target() *Target {
 	return g.r.target
 }
@@ -453,9 +470,33 @@ func (g *Gen) GenerateSpecialArg(typ Type, dir Dir, pcalls *[]*Call) Arg {
 	return g.generateArg(typ, dir, pcalls, true)
 }
 
+func (g *Gen) GenerateSpecialArgAddr(typ Type, dir Dir, pcalls *[]*Call) Arg {
+	return g.generateArgAddr(typ, dir, pcalls, true)
+}
+
 func (g *Gen) generateArg(typ Type, dir Dir, pcalls *[]*Call, ignoreSpecial bool) Arg {
 	arg, calls := g.r.generateArgImpl(g.s, typ, dir, ignoreSpecial)
 	*pcalls = append(*pcalls, calls...)
+	g.r.target.assignSizesArray([]Arg{arg}, []Field{{Name: "", Type: arg.Type()}}, nil)
+	return arg
+}
+
+func (g *Gen) generateArgAddr(typ Type, dir Dir, pcalls *[]*Call, ignoreSpecial bool) Arg {
+	arg, calls := g.r.generateArgImpl(g.s, typ, dir, ignoreSpecial)
+	*pcalls = append(*pcalls, calls...)
+	if len(calls) == 0 {
+		panic("generateArgAddr called with no calls")
+	}
+	if len(calls) != 1 {
+		// fmt.Println("resource centric generated arg")
+	}
+	for _, call := range calls {
+		// if call.Meta.Name == "syz_ipv6_addr_gen" || call.Meta.Name == "syz_mac_addr_gen" {
+		// 	// flag = true
+		// 	// AnalyzeAddr(call, g.s)
+		// }
+		AnalyzeAddr(call, g.s)
+	}
 	g.r.target.assignSizesArray([]Arg{arg}, []Field{{Name: "", Type: arg.Type()}}, nil)
 	return arg
 }
