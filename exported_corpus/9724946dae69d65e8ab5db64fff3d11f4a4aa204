@@ -1,0 +1,2 @@
+r0 = syz_init_net_socket$nl_rdma(0x10, 0x3, 0x10)
+ioctl$sock_SIOCBRADDBR(r0, 0x89a0, &(0x7f00000004c0)='wlan0\x00')

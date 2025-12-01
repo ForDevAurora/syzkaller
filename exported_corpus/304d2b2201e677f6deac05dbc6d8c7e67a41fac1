@@ -1,0 +1,4 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f0000000e80)={'bridge_slave_0\x00', <r1=>0x0})
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$netlink(r2, &(0x7f0000000040)={0x0, 0x0, &(0x7f0000000880)=[{&(0x7f0000000380)=ANY=[@ANYBLOB="240000002500010026bd7400fedbdf2508001600", @ANYRES64=r1, @ANYRES32], 0x24}], 0x1, 0x0, 0x0, 0x4048004}, 0xc3b152ba577b526c)

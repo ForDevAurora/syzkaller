@@ -1,0 +1,2 @@
+r0 = socket$inet_icmp_raw(0x2, 0x3, 0x1)
+ioctl$sock_inet_SIOCSIFDSTADDR(r0, 0x8918, &(0x7f0000000180)={'veth1_macvtap\x00'})

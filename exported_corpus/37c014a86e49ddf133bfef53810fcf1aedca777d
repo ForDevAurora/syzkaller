@@ -1,0 +1,2 @@
+r0 = socket$unix(0x1, 0x5, 0x0)
+getsockname$unix(r0, 0xfffffffffffffffc, &(0x7f0000000000))

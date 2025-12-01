@@ -1,0 +1,2 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r0, &(0x7f0000000380)={0x0, 0x0, &(0x7f0000000340)={&(0x7f00000002c0)=ANY=[@ANYBLOB="580100005e0001002abd8000ffdbdf2507000000", @ANYRES32=r0, @ANYBLOB="0f99c3159d14"], 0x158}}, 0x40800)

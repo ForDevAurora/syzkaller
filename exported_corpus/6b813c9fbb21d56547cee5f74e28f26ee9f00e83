@@ -1,0 +1,3 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f0000000000)={'veth0_virt_wifi\x00', <r1=>0x0})
+sendmsg$nl_route(r0, &(0x7f0000001900)={0x0, 0x0, &(0x7f00000004c0)={&(0x7f0000000140)=ANY=[@ANYBLOB="340000001100010028bd7000fedbdf2500000000", @ANYRES32=r1], 0x34}, 0x1, 0x0, 0x0, 0x10}, 0x48840)

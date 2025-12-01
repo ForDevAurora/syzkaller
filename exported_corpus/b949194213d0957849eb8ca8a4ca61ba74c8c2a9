@@ -1,0 +1,2 @@
+r0 = syz_init_net_socket$bt_bnep(0x1f, 0x3, 0x4)
+ioctl$sock_bt_bnep_BNEPGETCONNINFO(r0, 0x800442d3, &(0x7f0000000580)={0x24, 0x1, 0x9, {}, 'pimreg1\x00'})

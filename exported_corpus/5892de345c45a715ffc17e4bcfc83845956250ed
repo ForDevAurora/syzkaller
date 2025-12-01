@@ -1,0 +1,2 @@
+r0 = socket(0x11, 0x2, 0x3)
+ioctl$SIOCSIFMTU(r0, 0x8922, &(0x7f0000000000)={'netdevsim0\x00', 0x3d2a})

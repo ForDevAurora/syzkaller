@@ -1,0 +1,3 @@
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$netlbl_unlabel(&(0x7f00000000c0), r0)
+sendmsg$NLBL_UNLABEL_C_STATICREMOVEDEF(r0, &(0x7f0000000380)={0x0, 0x0, &(0x7f0000000240)={&(0x7f00000002c0)=ANY=[@ANYBLOB='$\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="d54e2dbd7000fedbdf250700000008000500", @ANYRES32=0x0, @ANYBLOB="060004"], 0x24}}, 0x4040004)

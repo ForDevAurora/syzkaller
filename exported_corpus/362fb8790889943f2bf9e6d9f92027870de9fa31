@@ -1,0 +1,5 @@
+r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), 0xffffffffffffffff)
+ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000040)={'wlan0\x00', <r3=>0x0})
+sendmsg$NL80211_CMD_NEW_KEY(r1, &(0x7f00000001c0)={0x0, 0x0, &(0x7f0000000080)={&(0x7f00000003c0)=ANY=[@ANYBLOB='H\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="010025bd7000fedbdf250b00000008000300", @ANYRES32=r3, @ANYBLOB="2c0050800500020003000000110001004fefb9f5f3e2ab43750a7d1cf3000000040004000800030007ac0f0086"], 0x48}, 0x1, 0x0, 0x0, 0x4004801}, 0x440)

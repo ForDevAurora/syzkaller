@@ -1,0 +1,4 @@
+r0 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), 0xffffffffffffffff)
+sendmsg$NL80211_CMD_VENDOR(0xffffffffffffffff, &(0x7f0000000100)={0x0, 0x0, &(0x7f00000000c0)={&(0x7f0000000080)=ANY=[@ANYBLOB='(\x00\x00\x00', @ANYRES16=r0, @ANYBLOB="010026bd7000fedbdf256f00000008000100270000000c0099000200000002000000"], 0x28}, 0x1, 0x0, 0x0, 0x480b0}, 0x40)
+r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+sendmsg$IEEE802154_ADD_IFACE(r1, &(0x7f0000000140)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000080)=ANY=[], 0x34}, 0x1, 0x0, 0x0, 0x8c815}, 0x40804)

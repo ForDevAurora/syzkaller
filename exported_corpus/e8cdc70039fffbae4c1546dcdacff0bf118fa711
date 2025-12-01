@@ -1,0 +1,4 @@
+r0 = syz_open_dev$ndb(&(0x7f0000000000), 0x0, 0x2000)
+r1 = socket$inet_smc(0x2b, 0x1, 0x0)
+ioctl$NBD_SET_SOCK(r0, 0xab00, r1)
+ioctl$NBD_DISCONNECT(r0, 0xab08)

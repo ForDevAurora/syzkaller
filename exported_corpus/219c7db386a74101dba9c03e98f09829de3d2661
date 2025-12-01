@@ -1,0 +1,7 @@
+r0 = socket$inet6(0xa, 0x2, 0x0)
+connect$inet6(r0, &(0x7f0000000100)={0xa, 0x0, 0x6, {}, 0x47}, 0x1c)
+getsockname$inet6(r0, &(0x7f0000000180), &(0x7f0000000200)=0x1c)
+sendmsg$nl_route(0xffffffffffffffff, 0x0, 0x0)
+r1 = socket$inet6_icmp(0xa, 0x2, 0x3a)
+sendmmsg$inet6(0xffffffffffffffff, &(0x7f00000047c0)=[{{0x0, 0x0, &(0x7f0000000500)=[{&(0x7f0000000100)="4c44a65fdc702bbb6e128ff3176451306269bd16a1d1a6bca321cc3db6d3bcc687cabb07405a20ecedab088222554aebcbdf96385726ccb6a0707a89fce725bd20a61a7affff7a83918150ca9622bd932fe0d5199d860b1ea04930b685722d885e4e399a8e92059c", 0x68}], 0x1}}], 0x1, 0x20000000)
+setsockopt$inet6_opts(r1, 0x29, 0x40, &(0x7f0000000140)=@hopopts={0x5c, 0x1fffffffffffffbd, '\x00', [@pad1]}, 0x60)

@@ -1,0 +1,2 @@
+r0 = socket$can_bcm(0x1d, 0x2, 0x2)
+ioctl$ifreq_SIOCGIFINDEX_vcan(r0, 0x8933, &(0x7f0000000000)={'vxcan0\x00'})

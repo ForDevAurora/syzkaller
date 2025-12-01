@@ -1,0 +1,2 @@
+r0 = syz_init_net_socket$bt_hidp(0x1f, 0x3, 0x6)
+setsockopt$SO_BINDTODEVICE_wg(r0, 0x1, 0x19, &(0x7f00000000c0)='wg0\x00', 0x4)

@@ -1,0 +1,2 @@
+r0 = socket$l2tp(0x2, 0x2, 0x73)
+ioctl$sock_inet_SIOCGIFADDR(r0, 0x8915, &(0x7f0000001980)={'bond_slave_0\x00'})

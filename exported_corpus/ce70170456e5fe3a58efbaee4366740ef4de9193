@@ -1,0 +1,1 @@
+sendmmsg$inet6(0xffffffffffffffff, 0x0, 0x0, 0x8a79666fed1a9f0f)

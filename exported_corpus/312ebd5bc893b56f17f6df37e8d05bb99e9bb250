@@ -1,0 +1,2 @@
+r0 = socket$caif_stream(0x25, 0x1, 0x5)
+write$RDMA_USER_CM_CMD_CREATE_ID(r0, 0x0, 0x0)

@@ -1,0 +1,2 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f00000000c0)={'ipvlan0\x00', 0x5201})

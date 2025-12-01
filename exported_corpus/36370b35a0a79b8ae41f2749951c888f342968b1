@@ -1,0 +1,2 @@
+syz_mac_addr_gen(&(0x7f0000000480)=@multicast, &(0x7f00000004c0)=<r0=>0x0, &(0x7f0000000500)=<r1=>0x0)
+syz_emit_ethernet(0xe, &(0x7f0000000540)={{r0, r1}, {r0, r1}, @void, {@generic={0x88f5}}}, 0x0)

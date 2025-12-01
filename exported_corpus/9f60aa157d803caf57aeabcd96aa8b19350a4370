@@ -1,0 +1,5 @@
+syz_mac_addr_gen(&(0x7f0000000040)=@local, &(0x7f0000000080)=<r0=>0x0, &(0x7f00000000c0)=<r1=>0x0)
+syz_ipv6_addr_gen(&(0x7f0000000780)=@ipv4, &(0x7f00000007c0)=<r2=>0x0, &(0x7f0000000880)=<r3=>0x0)
+ioctl$sock_ipv6_tunnel_SIOCCHGTUNNEL(0xffffffffffffffff, 0x89f3, &(0x7f0000000940)={'ip6_vti0\x00', &(0x7f00000008c0)={'syztnl0\x00', 0x0, 0x2f, 0x1, 0x9, 0x4, 0x0, {r2, r3}, {r2, r3}, 0x40, 0x7, 0x9, 0x10001}})
+syz_ipv6_addr_gen(&(0x7f00000000c0)=@local, &(0x7f0000000100)=<r4=>0x0, &(0x7f0000000140)=<r5=>0x0)
+syz_emit_ethernet(0x1de, &(0x7f0000000800)=ANY=[@ANYRES32=r0, @ANYRES16=r1, @ANYRES32=r0, @ANYRES16=r1, @ANYBLOB="86dd662676c701a82bff", @ANYRES64=r4, @ANYRES64=r5, @ANYRES64=r4, @ANYRES64=r5, @ANYBLOB="7315"], 0x0)

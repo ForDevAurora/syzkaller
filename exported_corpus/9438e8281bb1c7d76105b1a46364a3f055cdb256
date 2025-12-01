@@ -1,0 +1,3 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$ethtool(&(0x7f0000000040), 0xffffffffffffffff)
+sendmsg$ETHTOOL_MSG_TSINFO_GET(r0, &(0x7f00000006c0)={0x0, 0x0, &(0x7f0000000640)={&(0x7f0000000c80)=ANY=[@ANYBLOB=' \x00\x00\x00', @ANYRES16=r1, @ANYBLOB="a18f29ed8f4d24f440b41d0000000c0001800800030006"], 0x20}, 0x1, 0x0, 0x0, 0x1}, 0x0)

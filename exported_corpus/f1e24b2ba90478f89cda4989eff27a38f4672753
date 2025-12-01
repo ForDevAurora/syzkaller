@@ -1,0 +1,5 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_init_net_socket$bt_hidp(0x1f, 0x3, 0x6)
+ioctl$ifreq_SIOCGIFINDEX_batadv_mesh(r1, 0x8933, &(0x7f00000006c0)={'batadv0\x00', <r3=>0x0})
+sendmsg$nl_route(r0, &(0x7f0000001900)={0x0, 0x0, &(0x7f0000000880)={&(0x7f0000000280)=ANY=[@ANYBLOB="400000001000010d28bd7000fcdbdf2500000000", @ANYRES32=0x0, @ANYBLOB="01020200118000002000128008000100687372001400028008000100", @ANYRES32=r2, @ANYBLOB="08000200", @ANYRES32=r3], 0x40}, 0x1, 0x0, 0x0, 0x2}, 0x480c0)

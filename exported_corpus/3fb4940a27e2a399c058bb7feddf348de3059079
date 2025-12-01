@@ -1,0 +1,2 @@
+r0 = socket$inet(0x2, 0x5, 0x0)
+ioctl$sock_proto_private(r0, 0x8919, &(0x7f0000000040)="ae3abc")

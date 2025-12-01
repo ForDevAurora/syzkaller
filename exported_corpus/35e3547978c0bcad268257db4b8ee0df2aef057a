@@ -1,0 +1,5 @@
+r0 = syz_usb_connect$printer(0x0, 0x2d, &(0x7f00000000c0)=ANY=[@ANYBLOB="13010102000000402504a8a44000010203010902"], &(0x7f00000001c0)={0x0, 0x0, 0x0, 0x0})
+syz_usb_disconnect(r0)
+r1 = socket$kcm(0x29, 0x5, 0x0)
+setsockopt$kcm_KCM_RECV_DISABLE(r1, 0x119, 0x1, &(0x7f0000000000)=0xffff, 0x4)
+syz_usb_disconnect(r0)

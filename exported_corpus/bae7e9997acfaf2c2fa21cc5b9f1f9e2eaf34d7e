@@ -1,0 +1,4 @@
+r0 = socket$inet_smc(0x2b, 0x1, 0x0)
+listen(r0, 0xdc7d)
+r1 = epoll_create(0x3)
+epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000000000)={0x2010})

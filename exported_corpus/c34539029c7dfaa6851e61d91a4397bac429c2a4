@@ -1,0 +1,2 @@
+r0 = socket$inet_icmp(0x2, 0x2, 0x1)
+ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f0000000380)={'team_slave_1\x00', 0x8b03})

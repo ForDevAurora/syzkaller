@@ -1,0 +1,2 @@
+r0 = socket$inet(0x2, 0xa, 0x8)
+ioctl$sock_inet_sctp_SIOCINQ(r0, 0x541b, 0xfffffffffffffffd)

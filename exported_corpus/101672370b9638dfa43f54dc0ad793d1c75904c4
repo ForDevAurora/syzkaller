@@ -1,0 +1,2 @@
+r0 = socket$inet_sctp(0x2, 0x5, 0x84)
+setsockopt$inet_buf(r0, 0x0, 0x61, &(0x7f00000001c0)="f2060924d92e4e562fd1814b7c247888079d7b55065291275b4ed70bd9c65b5ed1b36ad71cf04949383f", 0x2a)

@@ -1,0 +1,4 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_SIOCGIFINDEX(r1, 0x8933, &(0x7f0000000e80)={'bond_slave_0\x00', <r2=>0x0})
+sendmsg$nl_route(r0, &(0x7f0000001900)={0x0, 0x0, &(0x7f00000004c0)={&(0x7f0000000080)=ANY=[@ANYBLOB="400000001000010028bd7000fedbdf2500000000", @ANYRES32=r2, @ANYBLOB="102b00000104010020004080"], 0x40}, 0x1, 0x0, 0x0, 0x2}, 0x48040)

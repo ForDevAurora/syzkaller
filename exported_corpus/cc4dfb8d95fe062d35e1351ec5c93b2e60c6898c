@@ -1,0 +1,6 @@
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+listen(r0, 0x7)
+r1 = bpf$MAP_CREATE_CONST_STR(0x0, &(0x7f0000001180)=ANY=[@ANYBLOB="12000000040000000800000001"], 0x50)
+r2 = socket$inet6_udp(0xa, 0x2, 0x0)
+bpf$MAP_UPDATE_ELEM(0x2, &(0x7f0000000240)={r1, &(0x7f0000000040), &(0x7f0000000180)=@udp6=r2, 0x1}, 0x20)
+bpf$MAP_UPDATE_ELEM(0x2, &(0x7f00000002c0)={r1, &(0x7f0000000200)="81f310", &(0x7f00000000c0)=@tcp6=r0}, 0x20)

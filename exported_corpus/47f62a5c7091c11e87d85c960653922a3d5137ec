@@ -1,0 +1,2 @@
+r0 = socket$inet_sctp(0x2, 0x5, 0x84)
+ioctl$sock_inet6_SIOCSIFADDR(r0, 0x8916, &(0x7f00000000c0)={{}, 0x20000057})

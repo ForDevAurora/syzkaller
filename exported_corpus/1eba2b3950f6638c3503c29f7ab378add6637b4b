@@ -1,0 +1,8 @@
+bind$packet(0xffffffffffffffff, 0x0, 0x0)
+r0 = socket$packet(0x11, 0x2, 0x300)
+ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f0000000040)={'wlan0\x00', <r1=>0x0})
+getsockname$inet6(0xffffffffffffffff, 0x0, &(0x7f0000000040))
+connect$inet6(0xffffffffffffffff, 0x0, 0x0)
+sendmmsg$inet6(0xffffffffffffffff, &(0x7f0000001840), 0x0, 0x40000)
+syz_mac_addr_gen(&(0x7f0000000340)=@multicast, &(0x7f0000000380)=<r2=>0x0, &(0x7f00000003c0)=<r3=>0x0)
+sendto$packet(r0, &(0x7f0000000240)="d1fb3d36eacdcecbd01cef582d1fa500b1bec095eecf161201c3e6905cee2b737f7a0a229dbbd2b1b5a62b93d8d83c165e3eb0182354ac2a13c2f3b701c6861f9b16a7", 0x43, 0x800, &(0x7f0000000400)={0x11, 0x1c, r1, 0x1, 0x9, 0x6, {r2, r3}}, 0x14)

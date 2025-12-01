@@ -1,0 +1,8 @@
+socket$nl_generic(0x10, 0x3, 0x10)
+syz_genetlink_get_family_id$nl80211(&(0x7f0000003a40), 0xffffffffffffffff)
+r0 = syz_usb_connect$printer(0x2, 0x2d, &(0x7f0000000000)=ANY=[@ANYBLOB="12010102000000102505a8a44000010203010902"], &(0x7f00000001c0)={0x0, 0x0, 0x0, 0x0})
+syz_usb_disconnect(r0)
+r1 = socket$can_bcm(0x1d, 0x2, 0x2)
+connect$can_bcm(r1, &(0x7f0000000b80), 0x10)
+listen(0xffffffffffffffff, 0xdc7d)
+syz_usb_disconnect(r0)

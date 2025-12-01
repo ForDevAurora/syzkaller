@@ -1,0 +1,5 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000c00), 0x101401, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000280)={'dvmrp1\x00', 0xe7e8f1f1ee8f9672})
+ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f00000002c0)={'dvmrp1\x00', 0x1})
+write$tun(r1, &(0x7f0000000000)={@void, @void, @eth={{}, {}, @val={@val={0x88a8, 0x6, 0x0, 0x4}}, {@ipv4={0x800, @udp={{0x5, 0x4, 0x1, 0x2, 0xb0, 0x65, 0x0, 0x9}, {0x0, 0x0, 0xfffffffffffffe25, 0x0, @gue={{0x0, 0x1, 0x2, 0x3, 0x0, @val=0x80}, "c11d77cd15201852009038c7e389e22f64404273f49f50c49847c5e41d03a307ff74ce02464359d4e9a5e5faac57f05670bd8f3f726056fc114aee0f36c6165f55763e53929072b205b1c931a44b48fd6dc2424469e4ab12dcb5b81c02b6646cf5d51972a91632f472c1b2bd2ad2b8ee132f0db6d342294470bfb6736b16ebe9dc44802d601002981732050362ead5cbf61798b2284ac1b1e737ef41b8c42a17f2a37598eb89979dd453cf5f6c707cc7e839"}}}}}}}, 0xc6)

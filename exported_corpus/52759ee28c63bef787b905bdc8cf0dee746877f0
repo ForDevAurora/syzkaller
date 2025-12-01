@@ -1,0 +1,4 @@
+r0 = socket$inet6(0xa, 0x3, 0x3c)
+syz_ipv6_addr_gen(&(0x7f0000000400)=@local, &(0x7f0000000440)=<r1=>0x0, &(0x7f0000000480)=<r2=>0x0)
+syz_emit_ethernet(0x3e, &(0x7f00000004c0)=ANY=[@ANYRES32, @ANYRES16, @ANYRES32, @ANYRES16, @ANYBLOB="86dd6586706600083c01", @ANYRES64=r1, @ANYRES64=r2, @ANYRES64=r1, @ANYRES64=r2], 0x0)
+recvfrom(r0, 0x0, 0xffffffffffffff78, 0x1300, 0x0, 0x4e)

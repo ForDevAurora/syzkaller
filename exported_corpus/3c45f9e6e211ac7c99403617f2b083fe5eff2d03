@@ -1,0 +1,2 @@
+r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
+setsockopt$inet6_opts(r0, 0x29, 0x39, &(0x7f0000000080)=ANY=[@ANYBLOB="3a0804", @ANYRES16=0x0, @ANYBLOB="d092629c020619e0dfb7b1c957de94ea9e43296385"], 0x48)

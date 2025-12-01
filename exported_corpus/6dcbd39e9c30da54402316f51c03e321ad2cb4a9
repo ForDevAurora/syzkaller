@@ -1,0 +1,2 @@
+r0 = socket$inet_udp(0x2, 0x2, 0x0)
+ioctl$sock_inet_SIOCDARP(r0, 0x8953, &(0x7f0000000300)={{}, {0xa3a07600edc7abee}, 0x8, {}, 'sit0\x00'})

@@ -1,0 +1,3 @@
+syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0)=<r0=>0x0, &(0x7f0000000100)=<r1=>0x0)
+syz_ipv6_addr_gen(&(0x7f0000000400)=@local, &(0x7f0000000440)=<r2=>0x0, &(0x7f0000000480)=<r3=>0x0)
+syz_emit_ethernet(0xde, &(0x7f0000000540)={{r0, r1}, {r0, r1}, @void, {@ipv6={0x86dd, @icmpv6={0xa, 0x6, "f11c55", 0xa8, 0x3a, 0xff, {r2, r3}, {r2, r3}, {[], @ndisc_ra={0x86, 0x0, 0x0, 0x0, 0x3, 0x2, 0x8, 0xffffff83, [{0x3, 0x13, "20ae77ef45743226665206bb8be56b0dd5d858afc2526070c10d688eca4d9e84ebfe627589f544ca71b92d26c3cdd2952c0f033490cd16fc5e42c06784ab965964f95030b7694bc84085e0afa03fb092b0f8bac8e027f59daabeb21f92d1ea51438f74d49c634d20c52288cb07ce1bcdecba2a8b2dc50d0abf19e94177664885b93ac4fed2281e99ea5830ab2d1648f7042278d59ef3"}]}}}}}}, 0x0)

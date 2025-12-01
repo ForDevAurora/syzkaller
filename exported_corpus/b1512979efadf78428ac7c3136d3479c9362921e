@@ -1,0 +1,2 @@
+r0 = syz_init_net_socket$nl_rdma(0x10, 0x3, 0x10)
+sendmsg$netlink(r0, &(0x7f0000000440)={0x0, 0x0, &(0x7f0000002fc0)=[{&(0x7f0000001180)=ANY=[@ANYBLOB="14060000330001002fbd7000fbdbdf250106868008000400", @ANYBLOB, @ANYRES32, @ANYBLOB="4d050380d1cf5736"], 0x614}], 0x1, 0x0, 0x0, 0x48000}, 0x10)

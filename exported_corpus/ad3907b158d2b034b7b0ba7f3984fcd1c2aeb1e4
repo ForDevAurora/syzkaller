@@ -1,0 +1,3 @@
+r0 = socket$igmp(0x2, 0x3, 0x2)
+ioctl$sock_ipv4_tunnel_SIOCGETTUNNEL(0xffffffffffffffff, 0x89f0, 0x0)
+ioctl$sock_inet_SIOCDARP(r0, 0x8953, &(0x7f0000000440)={{}, {0x306}, 0x80, {}, 'pim6reg0\x00'})

@@ -1,0 +1,3 @@
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000c00), 0x101401, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000280)={'dvmrp1\x00', 0x1})
+ioctl$TUNSETLINK(r0, 0x400454cd, 0x20)

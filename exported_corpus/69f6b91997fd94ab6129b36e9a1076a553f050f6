@@ -1,0 +1,3 @@
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl802154(&(0x7f0000000140), 0xffffffffffffffff)
+sendmsg$NL802154_CMD_NEW_SEC_DEV(r0, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={&(0x7f00000000c0)=ANY=[@ANYBLOB='$\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01002dbd7000fddbdf2527cb00000c000600010000000000000004002e80"], 0x24}, 0x1, 0x0, 0x0, 0x20000010}, 0x0)

@@ -1,0 +1,7 @@
+r0 = syz_ipv4_addr_gen(&(0x7f0000000000)=@loopback)
+r1 = socket$inet_sctp(0x2, 0x1, 0x84)
+bpf$PROG_LOAD(0x5, 0x0, 0x0)
+setsockopt$sock_int(r1, 0x1, 0x49, &(0x7f0000001180)=0x400009, 0x36)
+getsockopt$inet6_IPV6_IPSEC_POLICY(0xffffffffffffffff, 0x29, 0x22, 0x0, 0x0)
+syz_ipv6_addr_gen(&(0x7f0000000640)=@loopback, &(0x7f0000000680), &(0x7f00000007c0))
+sendmmsg$inet(r1, &(0x7f0000000900)=[{{&(0x7f0000000080)={0x2, 0x0, r0}, 0x10, &(0x7f00000001c0)=[{&(0x7f0000000400)="a237cda612afd725ac38ea2c34239a1fa95145dcf5a93aa68df20abdea78dcdf67994a64ef2f55d1a4ef2aa0d22c39e66edd7b12e34730adf05b019c1691da3a48db5816105e80a8efe3144bf1a0381d0332c8e76b3f7c5553334576", 0x5c}], 0x1}}, {{0x0, 0x0, &(0x7f0000000200)}}], 0x2, 0x8000000)

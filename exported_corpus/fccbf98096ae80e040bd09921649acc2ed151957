@@ -1,0 +1,1 @@
+mount$9p_rdma(0x0, &(0x7f0000000b00)='.\x00', &(0x7f0000000b40), 0x10, &(0x7f0000000bc0)=ANY=[@ANYBLOB='trans=fd'])

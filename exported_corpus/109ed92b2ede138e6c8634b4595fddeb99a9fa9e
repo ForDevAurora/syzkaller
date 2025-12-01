@@ -1,0 +1,2 @@
+r0 = socket$inet_udplite(0x2, 0x2, 0x88)
+ioctl$sock_inet_SIOCGARP(r0, 0x8954, &(0x7f00000002c0)={{}, {0x1}, 0x0, {}, 'lo\x00'})

@@ -1,0 +1,5 @@
+r0 = syz_ipv4_addr_gen(&(0x7f0000000000)=@loopback)
+r1 = socket$rds(0x15, 0x5, 0x0)
+r2 = syz_ipv4_addr_gen(&(0x7f0000000280)=@remote)
+connect$rds(r1, &(0x7f00000002c0)={0x2, 0x0, r2}, 0x10)
+bind$rds(r1, &(0x7f0000000500)={0x2, 0x0, r0}, 0x10)

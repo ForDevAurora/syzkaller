@@ -1,0 +1,5 @@
+r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$batadv(&(0x7f0000000140), 0xffffffffffffffff)
+ioctl$ifreq_SIOCGIFINDEX_batadv_mesh(r0, 0x8933, &(0x7f00000001c0)={'batadv0\x00', <r3=>0x0})
+sendmsg$BATADV_CMD_GET_NEIGHBORS(r1, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000200)={&(0x7f00000003c0)=ANY=[@ANYBLOB='<\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="010725bd7000fcdbdf250900000008000300", @ANYRES32=r3, @ANYBLOB="0500290000000000080039000700000008000600", @ANYRES64=r2], 0x3c}, 0x1, 0x0, 0x0, 0x44000}, 0x4000010)

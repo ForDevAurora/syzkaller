@@ -1,0 +1,7 @@
+sendmsg$NL80211_CMD_REGISTER_FRAME(0xffffffffffffffff, &(0x7f00000013c0)={0x0, 0x0, &(0x7f0000001380)={&(0x7f0000000140)={0x114, 0x0, 0x200, 0x70bd28, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0x6, 0x23}}}}, [@NL80211_ATTR_FRAME_MATCH={0xf4, 0x5b, "ba7b531a6a928930389c16ee04b2c03de70618ad739b74f99157236437a77dc9bffe9fe532307de8d9d66165f36251b47066b007c4240d0a1fc8436f113c15c7cacade4cb9969522cf5f352f36bdc89e181d4b7ded72c28cfa669f458a41aed16d263bc01d469ae9b969dc6dc2f040ea726bb8ddde1a8b71c2b891f7583f2407b0e134541531d67cbab4cd480110a2f069879ebe569c35bcda5875bb97eedd6c70016fbe73624ff41fc4b5e6636be14269507f8ea9025eeee0284e9ced24016925acd8cc894703bf25db31207ca1298fa6f1414917f2bfd91a486712a0c049a7aba75109b7f754fe8cd91d2a47e94b7a"}]}, 0x114}, 0x1, 0x0, 0x0, 0x4044}, 0x1)
+r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
+bind$inet6(r0, 0x0, 0x0)
+syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0), &(0x7f0000000100))
+getsockopt$inet_sctp_SCTP_RESET_STREAMS(0xffffffffffffffff, 0x84, 0x77, &(0x7f0000000280)={0x0, 0xebba}, 0x0)
+r1 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+sendmsg$netlink(r1, &(0x7f0000000080)={0x0, 0x0, &(0x7f0000000200)=[{&(0x7f0000000240)=ANY=[@ANYBLOB="180500001200"], 0x518}], 0x1, 0x0, 0x0, 0x40010}, 0xc3b152ba577f522c)

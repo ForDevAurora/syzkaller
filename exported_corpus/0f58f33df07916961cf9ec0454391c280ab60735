@@ -1,0 +1,4 @@
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+syz_ipv6_addr_gen(&(0x7f0000000000)=@ipv4, &(0x7f0000000040)=<r1=>0x0, &(0x7f0000000080)=<r2=>0x0)
+setsockopt$inet6_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000140)={@in6={{0xa, 0x0, 0x5, {r1, r2}, 0x1000}}, 0x0, 0x0, 0x1c, 0x0, "8c01637a064cc0ea8939913fc832e7096fc788fdc1f9ae98d67c9dcce6d124fcbec60f12c889b9055dc7a1d068421eb891ab8896193d44b01500a1731256fdfbba227039a14494c5d0485216de5d1e90"}, 0xd8)
+setsockopt$inet6_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000480)={@in6={{0xa, 0x0, 0x7374, {}, 0xa}}, 0x0, 0x0, 0x11, 0x0, "ff3b18bb8b30f8c400c49f42e7b1f83d1c276b6c41ab9ae9bf81877bbc9013b98fb1a86a17c8e353b16a53c59078dbf0405b6841aa0837273be316d63d5fd3030cb74df1bcebf89fb587a4fd2c9edfb8"}, 0xd8)

@@ -1,0 +1,5 @@
+r0 = bpf$MAP_CREATE_CONST_STR(0x0, &(0x7f0000001180)=ANY=[@ANYBLOB="12000000040000000800000001"], 0x50)
+r1 = socket(0x1, 0x2, 0x0)
+bpf$MAP_UPDATE_ELEM(0x2, &(0x7f0000000080)={r0, &(0x7f0000000780), &(0x7f00000002c0)=@udp=r1, 0x1}, 0x20)
+r2 = epoll_create(0xc)
+epoll_ctl$EPOLL_CTL_ADD(r2, 0x1, r1, &(0x7f0000000000)={0x2010})

@@ -1,0 +1,2 @@
+r0 = socket$inet_udplite(0x2, 0x2, 0x88)
+ioctl$sock_inet_SIOCSARP(r0, 0x8955, &(0x7f0000000f40)={{}, {0x6}, 0x0, {}, 'pim6reg\x00'})

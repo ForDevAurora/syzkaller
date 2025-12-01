@@ -1,0 +1,7 @@
+syz_genetlink_get_family_id$nl80211(&(0x7f0000000740), 0xffffffffffffffff)
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = socket$inet_mptcp(0x2, 0x1, 0x106)
+connect$inet(r0, &(0x7f0000000100), 0x10)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$mptcp(&(0x7f0000000780), 0xffffffffffffffff)
+sendmsg$MPTCP_PM_CMD_ADD_ADDR(r1, &(0x7f0000000100)={0x0, 0x0, &(0x7f0000000980)={&(0x7f0000000340)=ANY=[@ANYBLOB='4\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="01002db57000fddbdf250200000020000180060001000a00000014000400", @ANYRES64, @ANYRES64], 0x34}, 0x1, 0x0, 0x0, 0x24000004}, 0x0)

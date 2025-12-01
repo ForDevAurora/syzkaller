@@ -1,0 +1,4 @@
+sendmsg$NL80211_CMD_SET_CQM(0xffffffffffffffff, &(0x7f0000000580)={0x0, 0x0, &(0x7f0000000540)={&(0x7f0000000000)=ANY=[@ANYBLOB="1c000000", @ANYRES16, @ANYBLOB="010025bd7000fbdbdf253f000000080003"], 0x1c}, 0x1, 0x0, 0x0, 0x1}, 0x20000000)
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000080), 0xffffffffffffffff)
+sendmsg$NL80211_CMD_SET_INTERFACE(r0, &(0x7f0000000100)={0x0, 0x0, &(0x7f0000000140)={&(0x7f0000000000)=ANY=[@ANYBLOB='$\x00\x00\x00', @ANYRES16=r1, @ANYRES16, @ANYRES64=0x0, @ANYBLOB="05"], 0x24}}, 0x0)

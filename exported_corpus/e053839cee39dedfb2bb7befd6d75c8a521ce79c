@@ -1,0 +1,7 @@
+r0 = socket$inet_smc(0x2b, 0x1, 0x0)
+bind$inet(r0, &(0x7f00000000c0), 0x10)
+getsockname$inet(r0, &(0x7f0000000000)={0x2, <r1=>0x0}, &(0x7f0000000080)=0x10)
+r2 = syz_ipv4_addr_gen(&(0x7f0000000000)=@loopback)
+setsockopt$inet_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000100)={@in={{0x2, r1, r2}}, 0x0, 0x0, 0x9, 0x0, "f5d1860ae1cce118cb8459affa45c8edb2bc979c0187a9732d3c8cb26d3e907cb68f4030c40213f231c11be250e7fda25be2acbbac84b2fd8d269bbb10a5626751ae478dc89c482bbe91258cc8eaf876"}, 0xd8)
+sendmmsg$inet(r0, &(0x7f0000002dc0)=[{{&(0x7f0000000280)={0x2, r1}, 0x10, 0x0}}], 0x1, 0x28048000)
+shutdown(r0, 0x1)

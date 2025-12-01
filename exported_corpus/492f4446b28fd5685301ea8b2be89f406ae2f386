@@ -1,0 +1,2 @@
+r0 = socket$inet6_icmp(0xa, 0x2, 0x3a)
+setsockopt$inet6_opts(r0, 0x29, 0x40, &(0x7f0000000140)=@hopopts={0x16, 0xa, '\x00', [@generic={0x5, 0x4f, "0e67161385ef0260bbb976b64ed39b36bd887293c799b50193df77ee16739213a21254bbf4ff21fcc73be19ed4c21faee744372584578ab189ff821623679abab8a63f44a03d05ce327e3c8fd9245b"}]}, 0x60)

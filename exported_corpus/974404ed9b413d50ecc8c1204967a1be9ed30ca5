@@ -1,0 +1,2 @@
+r0 = socket$vsock_stream(0x28, 0x1, 0x0)
+shutdown(r0, 0x2dd0bf2e08ecc695)

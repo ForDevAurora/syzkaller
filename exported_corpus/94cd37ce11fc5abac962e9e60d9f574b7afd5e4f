@@ -1,0 +1,2 @@
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+setsockopt$inet6_tcp_TLS_RX(r0, 0x6, 0x2, &(0x7f0000000040)=@ccm_128={{0x304}, "69181f3b9832e5d1", "e763a35e708ee8b779cbc35d12818fe2", "2e27781f", "eb584f07f2a6501c"}, 0x28)

@@ -1,0 +1,4 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$ethtool(&(0x7f0000006e80), r0)
+ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f00000000c0)={'veth0_to_team\x00', <r2=>0x0})
+sendmsg$ETHTOOL_MSG_PAUSE_SET(r0, &(0x7f0000006f40)={0x0, 0x0, &(0x7f0000006f00)={&(0x7f0000000040)=ANY=[@ANYBLOB='(\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01002cbd7000fddbde25230000000c00018008000100", @ANYRES32=r2, @ANYBLOB="050002000100"], 0x28}, 0x1, 0x0, 0x0, 0x4000}, 0x50)

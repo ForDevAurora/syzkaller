@@ -1,0 +1,6 @@
+r0 = socket$inet6(0xa, 0x2, 0x0)
+sendmmsg$inet6(r0, &(0x7f0000000a80)=[{{0x0, 0x0, 0x0}}], 0x1, 0x2004c011)
+getsockname$inet6(r0, &(0x7f0000000240)={0xa, <r1=>0x0}, &(0x7f0000000c00)=0x1c)
+syz_ipv6_addr_gen(&(0x7f0000000400)=@local, &(0x7f0000000440)=<r2=>0x0, &(0x7f0000000480)=<r3=>0x0)
+syz_emit_ethernet(0xd6, &(0x7f0000000280)=ANY=[@ANYRES32, @ANYRES16, @ANYRES16, @ANYBLOB="8100100086dd65a164ac009c11ff", @ANYRES64=r2, @ANYRES64=r3, @ANYRES64=r2, @ANYRES64=r3, @ANYRES16=0x0, @ANYRES16=r1, @ANYBLOB="009c90"], 0x0)
+recvmsg(r0, &(0x7f0000000380)={0x0, 0x0, &(0x7f00000001c0)=[{&(0x7f0000000300)=""/107, 0x6b}, {&(0x7f00000004c0)=""/148, 0x94}], 0x2}, 0x40010060)

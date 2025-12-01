@@ -1,0 +1,4 @@
+r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
+r1 = epoll_create1(0x80000)
+epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000000700)={0x2016})
+epoll_wait(r1, &(0x7f0000000000)=[{}], 0x1, 0xfffffff2)

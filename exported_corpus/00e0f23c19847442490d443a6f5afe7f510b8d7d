@@ -1,0 +1,6 @@
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$netlbl_calipso(&(0x7f0000000200), r0)
+sendmsg$NLBL_CALIPSO_C_ADD(r0, &(0x7f0000000000)={0x0, 0x0, &(0x7f0000000280)={&(0x7f0000000040)={0x14, r1, 0x1, 0x70bd28, 0x25dfdbfb}, 0x14}, 0x1, 0x0, 0x0, 0x40083}, 0x0)
+syz_genetlink_get_family_id$nfc(&(0x7f00000002c0), r0)
+r2 = syz_genetlink_get_family_id$nbd(&(0x7f0000000800), r0)
+sendmsg$NBD_CMD_STATUS(r0, &(0x7f0000000900)={0x0, 0x0, &(0x7f00000008c0)={&(0x7f0000000700)=ANY=[@ANYBLOB="1c000000", @ANYRES16=r2, @ANYBLOB="01002abd7000ec3026b21e246a"], 0x1c}, 0x1, 0x0, 0x0, 0x800}, 0x800)

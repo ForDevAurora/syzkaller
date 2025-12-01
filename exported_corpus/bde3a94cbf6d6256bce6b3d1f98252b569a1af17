@@ -1,0 +1,1 @@
+syz_emit_ethernet(0xfe73, &(0x7f0000000080)={{}, {}, @void, {@generic={0x8864, "60e32207d26ecb81f633a6d2b6298b2be1602dd4824519a3cbd110d69da5a5f349c97d5ea45d3a2bd577774f4e3f97"}}}, 0x0)

@@ -1,0 +1,2 @@
+r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
+setsockopt$inet_sctp6_SCTP_AUTH_KEY(r0, 0x84, 0x17, &(0x7f00000000c0)=ANY=[@ANYRES32=0x0, @ANYBLOB="060097"], 0xd)

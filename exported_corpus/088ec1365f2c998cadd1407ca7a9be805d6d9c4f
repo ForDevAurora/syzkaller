@@ -1,0 +1,2 @@
+syz_mac_addr_gen(&(0x7f0000000000)=@local, &(0x7f0000000040)=<r0=>0x0, &(0x7f0000000080)=<r1=>0x0)
+syz_emit_ethernet(0x7e, &(0x7f00000002c0)={{r0, r1}, {r0, r1}, @void, {@ipv6={0x86dd, @udp={0x4, 0x6, "ec5600", 0x48, 0x11, 0xfe, {}, {}, {[], {0x0, 0x0, 0x48, 0x0, @wg=@cookie={0x3, 0x2, "6adea148ad96ff209a31dc8b2b4d88b6e837e7776e713860", "022fe1b95414c6e5677e3172cc22d643fb5d9736a851126089a616009830f2f8"}}}}}}}, 0x0)

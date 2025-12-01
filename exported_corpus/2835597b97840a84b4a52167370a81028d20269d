@@ -1,0 +1,4 @@
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$netlbl_mgmt(&(0x7f00000002c0), r1)
+sendmsg$NLBL_MGMT_C_ADDDEF(r0, &(0x7f0000000140)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000080)=ANY=[@ANYBLOB='D\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="010029bd700001dcdf2504000000080002000500000014000600", @ANYRES64=0x0, @ANYRES64=0x0, @ANYBLOB="040005"], 0x44}, 0x1, 0x0, 0x0, 0x40000}, 0xc0)

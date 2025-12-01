@@ -1,0 +1,5 @@
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+syz_ipv6_addr_gen(&(0x7f0000000000)=@ipv4, &(0x7f0000000040)=<r1=>0x0, &(0x7f0000000080)=<r2=>0x0)
+setsockopt$inet6_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000340)={@in6={{0xa, 0x0, 0x4, {r1, r2}, 0xffff}}, 0x0, 0x0, 0x2c, 0x0, "b1a0ab0c383244debc5e0b08e404b583a9243937416c84ba90da19d030cadc87f09790d68cb01a5001d8b6c860efa279013dc1a430f82dc412ae20fd92e2237d5df24adf8c863e7e703c6b4ffc930311"}, 0xd8)
+setsockopt$inet6_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000480)={@in6={{0xa, 0x0, 0x2, {}, 0x7ff}}, 0x0, 0x0, 0xf, 0x0, "a3e9074d171807e5a94f81707f944c1092ef6abb6daf8d364b78a938f5ef735ff186c8ebceeb4acf2d09e35d78ad83795a406bc894090d063486a0b2bcb8356d77f57e9e718536c78dd968290d7e2720"}, 0xd8)
+sendto$inet6(r0, 0x0, 0x0, 0x4f916e70ea28d25a, &(0x7f0000000100)={0xa, 0x0, 0x0, {}, 0x6}, 0x1c)

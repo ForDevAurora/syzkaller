@@ -1,0 +1,2 @@
+r0 = socket$inet_icmp(0x2, 0x2, 0x1)
+ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f00000000c0)={'wg2\x00', &(0x7f0000000000)=@ethtool_regs={0x4, 0x9}})

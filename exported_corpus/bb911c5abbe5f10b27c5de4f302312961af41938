@@ -1,0 +1,2 @@
+syz_mac_addr_gen(&(0x7f00000002c0)=@broadcast, &(0x7f0000000300)=<r0=>0x0, &(0x7f0000000340)=<r1=>0x0)
+syz_emit_ethernet(0x1f, &(0x7f0000000400)={{r0, r1}, {}, @void, {@llc_tr={0x11, {@llc={0xd4, 0x82, "1b", "31cb83eb1d0a441d5ab8a6f21fa7"}}}}}, 0x0)

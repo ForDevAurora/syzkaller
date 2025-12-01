@@ -1,0 +1,4 @@
+ioctl$sock_inet_SIOCGARP(0xffffffffffffffff, 0x8954, 0x0)
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl802154(&(0x7f0000000f00), r0)
+sendmsg$NL802154_CMD_SET_SEC_PARAMS(r0, &(0x7f0000001000)={0x0, 0x0, &(0x7f0000000fc0)={&(0x7f0000000f40)={0x28, r1, 0x1, 0x70bd2a, 0x25dfdbfc, {}, [@NL802154_ATTR_WPAN_DEV={0xc, 0x6, 0x100000001}, @NL802154_ATTR_SEC_OUT_LEVEL={0x8}]}, 0x28}}, 0x4008000)

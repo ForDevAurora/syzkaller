@@ -1,0 +1,2 @@
+r0 = socket$caif_stream(0x25, 0x1, 0x5)
+syz_genetlink_get_family_id$devlink(&(0x7f00000009c0), r0)

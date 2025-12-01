@@ -1,0 +1,4 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+r1 = socket$inet_udp(0x2, 0x2, 0x0)
+ioctl$sock_SIOCGIFINDEX(r1, 0x8933, &(0x7f0000000280)={'bridge_slave_0\x00', <r2=>0x0})
+sendmsg$nl_route(r0, &(0x7f0000000340)={0x0, 0x0, &(0x7f0000000880)={&(0x7f00000001c0)=ANY=[@ANYBLOB="280000001c0001002cbd7000fedbdf2507000000", @ANYRES32=r2, @ANYBLOB="0400000b0a0002"], 0x28}, 0x1, 0x0, 0x0, 0x40802}, 0x200400c0)

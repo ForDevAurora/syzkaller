@@ -1,0 +1,4 @@
+r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
+r1 = syz_ipv4_addr_gen(&(0x7f0000000080)=@local)
+syz_ipv6_addr_gen(&(0x7f0000000100)=@ipv4={'\x00', '\xff\xff', r1}, &(0x7f0000000140)=<r2=>0x0, &(0x7f00000001c0)=<r3=>0x0)
+bind$inet6(r0, &(0x7f0000000080)={0xa, 0x0, 0x0, {r2, r3}, 0x3}, 0x1c)

@@ -1,0 +1,8 @@
+r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
+socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$mptcp(&(0x7f0000000080), 0xffffffffffffffff)
+sendmsg$MPTCP_PM_CMD_SET_FLAGS(0xffffffffffffffff, &(0x7f0000000200)={0x0, 0x0, &(0x7f00000001c0)={&(0x7f00000004c0)=ANY=[@ANYBLOB="14000000", @ANYRES16=r1, @ANYBLOB="27ffc700"/18], 0x14}, 0x1, 0x0, 0x0, 0x800}, 0x40000)
+r2 = socket$nl_generic(0x10, 0x3, 0x10)
+r3 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000240), r2)
+ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000340)={'wlan0\x00', <r4=>0x0})
+sendmsg$NL80211_CMD_FRAME(r2, &(0x7f0000000400)={0x0, 0x0, &(0x7f00000003c0)={&(0x7f0000000480)=ANY=[@ANYBLOB='`\x00\x00\x00', @ANYRES16=r3, @ANYBLOB="010025bd7000fcdbdf253b00000008000300", @ANYRES32=r4, @ANYBLOB="3a00330080a00100ffffffffffff080211"], 0x60}, 0x1, 0x0, 0x0, 0x8000}, 0x40040)

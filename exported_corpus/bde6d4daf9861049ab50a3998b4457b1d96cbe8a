@@ -1,0 +1,5 @@
+r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
+setsockopt$inet6_opts(r0, 0x29, 0x39, &(0x7f00000001c0)=ANY=[@ANYBLOB="260804030378"], 0x48)
+ioctl$sock_inet_SIOCGIFDSTADDR(r0, 0x8917, 0x0)
+syz_ipv6_addr_gen(&(0x7f0000000000)=@rand_addr=' \x01\x00', &(0x7f0000000040)=<r1=>0x0, &(0x7f0000000080)=<r2=>0x0)
+connect$inet6(r0, &(0x7f0000000640)={0xa, 0x0, 0xfffffffa, {r1, r2}, 0xe14}, 0x1c)

@@ -1,0 +1,3 @@
+r0 = socket(0x23, 0x2, 0x0)
+setsockopt$SO_BINDTODEVICE_wg(r0, 0x1, 0x19, &(0x7f0000000000)='wg1\x00', 0x4)
+ioctl$sock_kcm_SIOCKCMATTACH(r0, 0x89e0, &(0x7f00000003c0))

@@ -1,0 +1,3 @@
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_batadv_hard(r0, 0x8933, &(0x7f0000000000)={'batadv_slave_0\x00', <r1=>0x0})
+sendmsg$nl_route(r0, &(0x7f00000002c0)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000500)=ANY=[@ANYBLOB="30000000140001002dbd7000fcdbdf25021820fd", @ANYRES32=r1, @ANYBLOB="08000800ff07000008000200e4"], 0x30}}, 0x4000000)

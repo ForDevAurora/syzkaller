@@ -1,0 +1,6 @@
+r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
+getsockname$inet6(r0, &(0x7f0000000000), &(0x7f0000000040)=0x1c)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+ioctl$sock_SIOCGIFINDEX(r2, 0x8933, &(0x7f0000000080)={'bridge0\x00', <r3=>0x0})
+sendmsg$nl_route(r1, &(0x7f0000000680)={0x0, 0x0, &(0x7f00000006c0)={&(0x7f00000002c0)=ANY=[@ANYBLOB="380000005500ffff29bd7000ffdbdf2507000000", @ANYRES32=r3, @ANYBLOB="20000100", @ANYRES32=r3], 0x38}, 0x1, 0x0, 0x0, 0x8010}, 0x400c0d4)

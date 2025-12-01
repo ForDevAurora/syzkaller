@@ -1,0 +1,3 @@
+r0 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+setsockopt$inet6_int(r0, 0x29, 0xc8, &(0x7f0000000140)=0x969, 0x4)
+syz_emit_ethernet(0x66, &(0x7f0000000500)=ANY=[@ANYRES32, @ANYRES16, @ANYRES32, @ANYRES16, @ANYBLOB="86dd6af1", @ANYRES64=0x0, @ANYRES64=0x0, @ANYRES64], 0x0)

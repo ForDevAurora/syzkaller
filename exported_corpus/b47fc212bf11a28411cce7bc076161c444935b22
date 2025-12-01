@@ -1,0 +1,3 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$mptcp(&(0x7f0000001a00), r0)
+sendmsg$MPTCP_PM_CMD_SET_LIMITS(r0, &(0x7f0000001ac0)={0x0, 0x0, &(0x7f0000001a80)={&(0x7f00000005c0)=ANY=[@ANYBLOB='0\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010028bd700094de32d9050000000800030005f5"], 0x30}, 0x1, 0x0, 0x0, 0x4000}, 0x20000000)

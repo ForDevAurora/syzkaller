@@ -1,0 +1,6 @@
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000100), 0xffffffffffffffff)
+r2 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_SIOCGIFINDEX_80211(r2, 0x8933, &(0x7f0000000700)={'wlan1\x00', <r3=>0x0})
+sendmsg$NL80211_CMD_REGISTER_FRAME(r0, &(0x7f0000000240)={&(0x7f0000000000), 0xc, &(0x7f0000000200)={&(0x7f0000000040)={0x60, r1, 0x1, 0x70bd2b, 0x25dfdbff, {{}, {@val={0x8, 0x3, r3}, @void}}, [@NL80211_ATTR_FRAME_TYPE={0x6, 0x65, 0x30}, @NL80211_ATTR_FRAME_MATCH={0x35, 0x5b, "da44f6e8b6986d5357934a2e101fc2ebbdfe57e30306a0bec208683638f4a1a337b2e3e40a4a2286036f5243d4026153e7"}, @NL80211_ATTR_FRAME_MATCH={0x4}]}, 0x60}, 0x1, 0x0, 0x0, 0x46c1dd69cd3a4e35}, 0x100008d0)

@@ -1,0 +1,5 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = socket$packet(0x11, 0x3, 0x300)
+sendmmsg$inet6(0xffffffffffffffff, &(0x7f00000009c0)=[{{0x0, 0x0, &(0x7f0000001180)=[{&(0x7f0000000f00)="378f6253153578beaeb9d8d9cee60207e96d2a8d9a79e2e1984d7659bf9b4d12f4edacf302803172b88085e8f378299a04504ab9979f193b2b00472bf3325f976705022b65937f8fe3", 0x49}], 0x1}}], 0x1, 0xa010)
+ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f0000000340)={'ip6tnl0\x00', <r2=>0x0})
+sendto$packet(r1, &(0x7f0000000f40)="6ea5", 0x60, 0x4810, &(0x7f00000010c0)={0x11, 0x3, r2, 0x1, 0x81}, 0x14)

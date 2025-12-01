@@ -1,0 +1,2 @@
+r0 = syz_init_net_socket$bt_bnep(0x1f, 0x3, 0x4)
+ioctl$sock_bt_bnep_BNEPGETSUPPFEAT(r0, 0x800442d4, &(0x7f0000001840)=0xbf7c)

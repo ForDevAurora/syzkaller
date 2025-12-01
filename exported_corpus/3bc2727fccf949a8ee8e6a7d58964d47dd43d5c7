@@ -1,0 +1,4 @@
+r0 = syz_ipv4_addr_gen(&(0x7f0000000000)=@multicast1)
+syz_ipv6_addr_gen(&(0x7f00000006c0)=@ipv4={'\x00', '\xff\xff', r0}, &(0x7f0000000700)=<r1=>0x0, &(0x7f0000000740)=<r2=>0x0)
+r3 = socket$rds(0x15, 0x5, 0x0)
+bind$inet6(r3, &(0x7f0000000080)={0xa, 0x0, 0x0, {r1, r2}, 0x3}, 0x1c)

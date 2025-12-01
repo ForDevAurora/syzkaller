@@ -1,0 +1,2 @@
+r0 = socket$inet_mptcp(0x2, 0x1, 0x106)
+shutdown(r0, 0x68cb8ae3c43e9dcf)

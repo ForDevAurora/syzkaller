@@ -1,0 +1,5 @@
+r0 = socket$packet(0x11, 0x3, 0x300)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$ifreq_SIOCGIFINDEX_batadv_mesh(r1, 0x8933, &(0x7f00000006c0)={'batadv0\x00', <r2=>0x0})
+bind$packet(r0, &(0x7f0000000f80)={0x11, 0x0, r2, 0x1, 0xea}, 0x14)
+sendto$packet(r0, &(0x7f0000000080)="51c10d01000000da0a9c0600080047b386bc0bffbe45db6a6798908127a13b26c0ff96982818", 0x26, 0x1400c0c4, 0x0, 0x0)

@@ -1,0 +1,8 @@
+r0 = syz_usb_connect$printer(0x2, 0x2d, &(0x7f0000000000)=ANY=[@ANYBLOB="12010102000000102505a8a44000010203010902"], &(0x7f00000001c0)={0x0, 0x0, 0x0, 0x0})
+syz_usb_disconnect(r0)
+r1 = socket(0x23, 0x5, 0x0)
+ioctl$sock_inet_SIOCGIFADDR(0xffffffffffffffff, 0x8915, &(0x7f00000000c0)={'wg2\x00'})
+syz_ipv4_addr_gen(&(0x7f0000000140)=@rand_addr=0x64010101)
+write$nbd(r1, 0x0, 0x84)
+sendmmsg$inet6(0xffffffffffffffff, 0x0, 0x0, 0x4048080)
+syz_usb_disconnect(r0)

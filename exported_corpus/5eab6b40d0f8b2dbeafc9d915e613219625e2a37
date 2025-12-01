@@ -1,0 +1,2 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_SIOCGPGRP(r0, 0x8904, &(0x7f0000000200))

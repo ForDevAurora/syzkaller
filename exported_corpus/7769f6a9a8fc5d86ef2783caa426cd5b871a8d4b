@@ -1,0 +1,8 @@
+r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
+listen(r0, 0x3)
+getsockname$inet6(r0, &(0x7f00000000c0)={0xa, <r1=>0x0}, &(0x7f0000000040)=0x1c)
+r2 = socket$inet_smc(0x2b, 0x1, 0x0)
+sendto$inet(r2, 0x0, 0x0, 0x20000050, &(0x7f0000000380)={0x2, r1}, 0x10)
+setsockopt$sock_int(r2, 0x1, 0x3c, &(0x7f0000000140)=0x1, 0x4)
+sendto$inet(r2, &(0x7f0000000200)="00d151ae60758b884b911ccb0777a0a9890fca818c1b42dbf1f52464045ea338ba948f745780e7d5a048f73dad19b072313c8a85480a57b4bf95e6497841bc606a62c5b5be7f9ae8d6a3c878a9ebc8fb7756cc5760e22d0c6911d81a56047dce90a927c273f00e86dc6468ce30fd0dd789d6f1251838f906092fb2f3ec4fd9da00fb71deee2356a95322050dd33de0b5cb56e204992727876f5e73e1b3c6c8", 0xfffffffffffffd9f, 0x40068d0, 0x0, 0xffffffffffffffa1)
+connect$unix(r2, &(0x7f0000000180)=@abs={0x0, 0x0, 0x4e21}, 0x6e)

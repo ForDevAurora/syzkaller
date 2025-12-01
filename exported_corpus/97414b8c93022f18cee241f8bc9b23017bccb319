@@ -1,0 +1,3 @@
+syz_ipv6_addr_gen(&(0x7f0000000000)=@local, &(0x7f0000000140), &(0x7f0000000180))
+r0 = socket$pppl2tp(0x18, 0x1, 0x1)
+ioctl$SIOCSIFMTU(r0, 0x8922, &(0x7f0000000000)={'veth1_macvtap\x00', 0x3fe})

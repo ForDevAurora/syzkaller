@@ -1,0 +1,3 @@
+r0 = socket$tipc(0x1e, 0x2, 0x0)
+r1 = epoll_create1(0x80000)
+epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000000000)={0x40002007})

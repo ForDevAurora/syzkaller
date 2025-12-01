@@ -1,0 +1,5 @@
+r0 = socket$inet_udp(0x2, 0x2, 0x0)
+syz_mac_addr_gen(&(0x7f0000000000)=@random="eb9b5d803249", &(0x7f0000000040)=<r1=>0x0, &(0x7f0000000080)=<r2=>0x0)
+ioctl$sock_inet_SIOCGIFADDR(r0, 0x8915, &(0x7f00000000c0)={'wg2\x00', {0x2, <r3=>0x0, <r4=>0x0}})
+r5 = syz_ipv4_addr_gen(&(0x7f0000000140)=@rand_addr=0x64010101)
+syz_emit_ethernet(0x82, &(0x7f0000000180)={{r1, r2}, {r1, r2}, @void, {@ipv4={0x800, @udp={{0x5, 0x4, 0x1, 0x3, 0x62, 0x67, 0x0, 0x0, 0x11, 0x0, r5, r4}, {r3, r3, 0x4e, 0x0, @wg=@cookie={0x3, 0x1, "63e0a72980f655b7a70ecaf15aeefe305c07b202144415bb", "2c29a173e5e3d82c3d88838e62c337086c28d0a1a2d1447e6448c94bff4c2283"}}}}}}, 0x0)

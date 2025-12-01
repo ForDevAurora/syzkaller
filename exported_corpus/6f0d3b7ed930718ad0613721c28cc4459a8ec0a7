@@ -1,0 +1,2 @@
+r0 = socket$l2tp(0x2, 0x2, 0x73)
+ioctl$sock_inet_SIOCGIFBRDADDR(r0, 0x8919, &(0x7f0000000340)={'ip_vti0\x00'})
