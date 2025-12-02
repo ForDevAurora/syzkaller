@@ -31,6 +31,12 @@ type config struct {
 	outputFormat string
 }
 
+// resolvedCall wraps a syscall with information about how it was resolved.
+type resolvedCall struct {
+	call           *prog.Syscall
+	prefixExpanded bool // true if resolved via prefix matching
+}
+
 func main() {
 	cfg, err := parseFlags()
 	if err != nil {
@@ -125,14 +131,15 @@ func run(cfg *config) error {
 	}
 }
 
-// resolveCalls converts syscall names to *prog.Syscall objects.
+// resolveCalls converts syscall names to resolvedCall objects.
 // Supports both exact matching and prefix matching:
 // - Exact match: "sendmsg$inet" matches only that syscall
 // - Prefix match: "sendmsg" matches "sendmsg", "sendmsg$inet", "sendmsg$unix", etc.
 // Prefix matching only applies when the name contains no '$' and exact match fails.
-func resolveCalls(target *prog.Target, names []string) ([]*prog.Syscall, error) {
+// Returns resolved calls with information about whether they were prefix-expanded.
+func resolveCalls(target *prog.Target, names []string) ([]resolvedCall, error) {
 	seen := make(map[string]bool)
-	var calls []*prog.Syscall
+	var calls []resolvedCall
 	var missing []string
 
 	for _, name := range names {
@@ -140,20 +147,22 @@ func resolveCalls(target *prog.Target, names []string) ([]*prog.Syscall, error) 
 			continue
 		}
 
-		// Try exact match first
-		if call := target.SyscallMap[name]; call != nil {
-			calls = append(calls, call)
-			seen[name] = true
-			continue
-		}
-
-		// If name contains '$', it's a specific specialization that wasn't found
+		// If name contains '$', it's a specific specialization - try exact match only
 		if strings.Contains(name, "$") {
-			missing = append(missing, name)
+			if call := target.SyscallMap[name]; call != nil {
+				calls = append(calls, resolvedCall{
+					call:           call,
+					prefixExpanded: false,
+				})
+				seen[name] = true
+			} else {
+				missing = append(missing, name)
+			}
 			continue
 		}
 
-		// Try prefix matching: find all syscalls with name or name$*
+		// For names without '$', perform prefix matching to find all variants
+		// This includes the base name itself (if it exists) plus all specializations
 		prefix := name + "$"
 		var matched []*prog.Syscall
 		for _, call := range target.Syscalls {
@@ -167,10 +176,13 @@ func resolveCalls(target *prog.Target, names []string) ([]*prog.Syscall, error) 
 			continue
 		}
 
-		// Add all matched syscalls
+		// Add all matched syscalls (all marked as prefix-expanded)
 		for _, call := range matched {
 			if !seen[call.Name] {
-				calls = append(calls, call)
+				calls = append(calls, resolvedCall{
+					call:           call,
+					prefixExpanded: true,
+				})
 				seen[call.Name] = true
 			}
 		}

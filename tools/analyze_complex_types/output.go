@@ -20,20 +20,33 @@ func renderText(w io.Writer, result *PropagationResult) error {
 	fmt.Fprintf(w, "=== Complex Type Propagation Analysis ===\n")
 	fmt.Fprintf(w, "Discovered %d syscalls sharing %d complex types\n\n", len(result.Calls), len(result.Types))
 
-	// Group syscalls by seed vs derived
-	var seeds, derived []*CallResult
+	// Group syscalls by category
+	var directSeeds, expandedSeeds, derived []*CallResult
 	for _, call := range result.Calls {
 		if call.Seed {
-			seeds = append(seeds, call)
+			if call.PrefixExpanded {
+				expandedSeeds = append(expandedSeeds, call)
+			} else {
+				directSeeds = append(directSeeds, call)
+			}
 		} else {
 			derived = append(derived, call)
 		}
 	}
 
-	// Output seed syscalls
-	if len(seeds) > 0 {
-		fmt.Fprintf(w, "Seed syscalls (%d):\n", len(seeds))
-		for _, call := range seeds {
+	// Output direct seed syscalls
+	if len(directSeeds) > 0 {
+		fmt.Fprintf(w, "Direct seed syscalls (%d):\n", len(directSeeds))
+		for _, call := range directSeeds {
+			fmt.Fprintf(w, "  - %s\n", call.Name)
+		}
+		fmt.Fprintf(w, "\n")
+	}
+
+	// Output prefix-expanded seed syscalls
+	if len(expandedSeeds) > 0 {
+		fmt.Fprintf(w, "Prefix-expanded seed syscalls (%d):\n", len(expandedSeeds))
+		for _, call := range expandedSeeds {
 			fmt.Fprintf(w, "  - %s\n", call.Name)
 		}
 		fmt.Fprintf(w, "\n")
@@ -86,9 +99,10 @@ func renderJSON(w io.Writer, result *PropagationResult) error {
 
 	for _, call := range result.Calls {
 		payload.Calls = append(payload.Calls, jsonCallResult{
-			Name:         call.Name,
-			Seed:         call.Seed,
-			MatchedTypes: toJSONTypes(call.MatchedTypes),
+			Name:           call.Name,
+			Seed:           call.Seed,
+			PrefixExpanded: call.PrefixExpanded,
+			MatchedTypes:   toJSONTypes(call.MatchedTypes),
 		})
 	}
 	for _, info := range result.Types {
@@ -106,9 +120,10 @@ func renderJSON(w io.Writer, result *PropagationResult) error {
 
 // jsonCallResult represents a syscall in JSON format.
 type jsonCallResult struct {
-	Name         string         `json:"name"`
-	Seed         bool           `json:"seed"`
-	MatchedTypes []jsonTypeInfo `json:"matched_types,omitempty"`
+	Name           string         `json:"name"`
+	Seed           bool           `json:"seed"`
+	PrefixExpanded bool           `json:"prefix_expanded,omitempty"`
+	MatchedTypes   []jsonTypeInfo `json:"matched_types,omitempty"`
 }
 
 // jsonTypeInfo represents a type in JSON format.

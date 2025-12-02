@@ -18,9 +18,10 @@ type PropagationResult struct {
 
 // CallResult describes a discovered syscall and how it relates to the analysis.
 type CallResult struct {
-	Name         string
-	Seed         bool       // true if this was a seed syscall
-	MatchedTypes []typeInfo // types that matched with already-discovered types
+	Name          string
+	Seed          bool       // true if this was a seed syscall
+	PrefixExpanded bool      // true if this seed was expanded from a prefix match
+	MatchedTypes  []typeInfo // types that matched with already-discovered types
 }
 
 // propagateComplexTypes performs iterative BFS-style propagation to discover
@@ -31,7 +32,7 @@ type CallResult struct {
 // 2. For each type, find all syscalls that use it
 // 3. For each discovered syscall, collect its types and repeat
 // 4. Continue until no new syscalls or types are discovered
-func propagateComplexTypes(index *typeIndex, seeds []*prog.Syscall) (*PropagationResult, error) {
+func propagateComplexTypes(index *typeIndex, seeds []resolvedCall) (*PropagationResult, error) {
 	if len(seeds) == 0 {
 		return nil, errors.New("no seed syscalls provided")
 	}
@@ -41,14 +42,19 @@ func propagateComplexTypes(index *typeIndex, seeds []*prog.Syscall) (*Propagatio
 	var typeQueue []typeInfo
 
 	// Initialize with seed syscalls
-	for _, call := range seeds {
+	for _, resolved := range seeds {
+		call := resolved.call
 		if call == nil {
 			continue
 		}
 		if _, ok := seenCalls[call]; ok {
 			continue
 		}
-		seenCalls[call] = &CallResult{Name: call.Name, Seed: true}
+		seenCalls[call] = &CallResult{
+			Name:           call.Name,
+			Seed:           true,
+			PrefixExpanded: resolved.prefixExpanded,
+		}
 
 		// Add all types from seed syscalls to the queue
 		for key, info := range index.callTypes[call] {
