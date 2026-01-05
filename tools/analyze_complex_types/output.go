@@ -21,7 +21,7 @@ func renderText(w io.Writer, result *PropagationResult) error {
 	fmt.Fprintf(w, "Discovered %d syscalls sharing %d complex types\n\n", len(result.Calls), len(result.Types))
 
 	// Group syscalls by category
-	var directSeeds, expandedSeeds, derived []*CallResult
+	var directSeeds, expandedSeeds, derived, resourceAdded []*CallResult
 	for _, call := range result.Calls {
 		if call.Seed {
 			if call.PrefixExpanded {
@@ -29,6 +29,8 @@ func renderText(w io.Writer, result *PropagationResult) error {
 			} else {
 				directSeeds = append(directSeeds, call)
 			}
+		} else if call.AddedForResource {
+			resourceAdded = append(resourceAdded, call)
 		} else {
 			derived = append(derived, call)
 		}
@@ -54,12 +56,21 @@ func renderText(w io.Writer, result *PropagationResult) error {
 
 	// Output derived syscalls with their matched types
 	if len(derived) > 0 {
-		fmt.Fprintf(w, "Derived syscalls (%d):\n", len(derived))
+		fmt.Fprintf(w, "Derived syscalls (via type propagation) (%d):\n", len(derived))
 		for _, call := range derived {
 			fmt.Fprintf(w, "  - %s\n", call.Name)
 			if len(call.MatchedTypes) > 0 {
 				fmt.Fprintf(w, "    matched: %s\n", joinTypeNames(call.MatchedTypes))
 			}
+		}
+		fmt.Fprintf(w, "\n")
+	}
+
+	// Output syscalls added for resource dependencies
+	if len(resourceAdded) > 0 {
+		fmt.Fprintf(w, "Resource dependency syscalls (%d):\n", len(resourceAdded))
+		for _, call := range resourceAdded {
+			fmt.Fprintf(w, "  - %s\n", call.Name)
 		}
 		fmt.Fprintf(w, "\n")
 	}
@@ -99,10 +110,11 @@ func renderJSON(w io.Writer, result *PropagationResult) error {
 
 	for _, call := range result.Calls {
 		payload.Calls = append(payload.Calls, jsonCallResult{
-			Name:           call.Name,
-			Seed:           call.Seed,
-			PrefixExpanded: call.PrefixExpanded,
-			MatchedTypes:   toJSONTypes(call.MatchedTypes),
+			Name:             call.Name,
+			Seed:             call.Seed,
+			PrefixExpanded:   call.PrefixExpanded,
+			AddedForResource: call.AddedForResource,
+			MatchedTypes:     toJSONTypes(call.MatchedTypes),
 		})
 	}
 	for _, info := range result.Types {
@@ -120,10 +132,11 @@ func renderJSON(w io.Writer, result *PropagationResult) error {
 
 // jsonCallResult represents a syscall in JSON format.
 type jsonCallResult struct {
-	Name           string         `json:"name"`
-	Seed           bool           `json:"seed"`
-	PrefixExpanded bool           `json:"prefix_expanded,omitempty"`
-	MatchedTypes   []jsonTypeInfo `json:"matched_types,omitempty"`
+	Name             string         `json:"name"`
+	Seed             bool           `json:"seed"`
+	PrefixExpanded   bool           `json:"prefix_expanded,omitempty"`
+	AddedForResource bool           `json:"added_for_resource,omitempty"`
+	MatchedTypes     []jsonTypeInfo `json:"matched_types,omitempty"`
 }
 
 // jsonTypeInfo represents a type in JSON format.

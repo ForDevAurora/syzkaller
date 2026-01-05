@@ -114,8 +114,8 @@ func run(cfg *config) error {
 		return fmt.Errorf("failed to build type index: %w", err)
 	}
 
-	// Perform propagation analysis
-	result, err := propagateComplexTypes(index, seeds)
+	// Perform propagation analysis (including resource dependency analysis)
+	result, err := propagateComplexTypes(target, index, seeds)
 	if err != nil {
 		return err
 	}
