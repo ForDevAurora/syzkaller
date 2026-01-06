@@ -1,3 +1,0 @@
-r0 = socket$inet_smc(0x2b, 0x1, 0x0)
-getsockopt$IPT_SO_GET_REVISION_MATCH(r0, 0x0, 0x42, &(0x7f0000000000)={'icmp6\x00'}, &(0x7f0000000040)=0x1e)
-ioctl$sock_bt_bnep_BNEPCONNDEL(0xffffffffffffffff, 0x400442c9, &(0x7f0000000140)={0x2})

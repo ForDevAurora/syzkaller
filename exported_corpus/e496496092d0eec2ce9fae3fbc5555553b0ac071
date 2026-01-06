@@ -1,3 +1,0 @@
-r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
-syz_ipv4_addr_gen(&(0x7f0000000100)=@loopback)
-ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f0000000440)={'lo\x00', &(0x7f0000000340)=@ethtool_drvinfo={0x3, "6baf254edcdfab6c8b005edca528d00fad4f064b5d0fa219a63faf556b9d3a47", "fa60e9c995bd0c5e8e13a886f7ba3d9d892a9fe6ee9b3f3eae8992706e3a8a7a", "21c6836e2c2cb0a4ce20ed4c2809a42805263934376c21f8eb6470d08d576cae", "ead138a68104d98434a5553d2f21c1eb86ac7153b70fc97ad63cc0f80a70bef9", "0157018566b53dd609a4b144b9e18de3d014a8f06236a54c978a6a4bdccdfa8b", "85a6220bd46af94f223563ca", 0x6, 0x2, 0xfffffffb, 0x2, 0x9}})

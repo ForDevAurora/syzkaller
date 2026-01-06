@@ -1,2 +1,0 @@
-r0 = socket$inet6_icmp(0xa, 0x2, 0x3a)
-ioctl$ifreq_SIOCGIFINDEX_vcan(r0, 0x8933, &(0x7f0000000000)={'vxcan1\x00'})

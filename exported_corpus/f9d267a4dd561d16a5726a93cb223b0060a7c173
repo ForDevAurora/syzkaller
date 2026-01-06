@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
-getsockopt$inet_sctp6_SCTP_FRAGMENT_INTERLEAVE(r0, 0x84, 0x12, &(0x7f0000000d00), &(0x7f0000000d40)=0x4)

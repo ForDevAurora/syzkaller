@@ -1,2 +1,0 @@
-r0 = socket$qrtr(0x2a, 0x2, 0x0)
-write$RDMA_USER_CM_CMD_JOIN_IP_MCAST(r0, 0x0, 0xffffff51)

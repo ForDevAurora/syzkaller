@@ -1,2 +1,0 @@
-r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
-ioctl$sock_SIOCSPGRP(r0, 0x8902, 0xfffffffffffffffd)

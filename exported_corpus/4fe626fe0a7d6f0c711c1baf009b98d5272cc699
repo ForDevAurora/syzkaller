@@ -1,1 +1,0 @@
-mount$9p_rdma(&(0x7f0000000ac0), &(0x7f0000000b00)='.\x00', &(0x7f0000000b40), 0x10, &(0x7f0000000000)={'trans=rdma,', {}, 0x2c, {[{@rq={'rq', 0x3d, 0xffffffffffffffff}}, {@common=@privport}]}})

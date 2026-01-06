@@ -1,2 +1,0 @@
-r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
-setsockopt$inet6_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000080)={@in, 0x0, 0x0, 0x1a, 0x0, "c7bd378fc953d4b3e3229ad472c72478d93c325ab1805758323b3c0ec808f4e5396664d25afdd14625a49bab9f625a07b21f4a83c9d01d7952f21fc6655f7119346cfe3e3c148d867ec3cd065e8d4e2a"}, 0xd8)

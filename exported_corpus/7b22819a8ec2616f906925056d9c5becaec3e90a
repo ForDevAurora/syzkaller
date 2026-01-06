@@ -1,5 +1,0 @@
-syz_genetlink_get_family_id$mptcp(&(0x7f0000000000), 0xffffffffffffffff)
-ioctl$sock_inet_SIOCGIFBRDADDR(0xffffffffffffffff, 0x8919, &(0x7f0000000040)={'veth1_to_team\x00'})
-r0 = socket$nl_sock_diag(0x10, 0x3, 0x4)
-sendmsg$netlink(r0, &(0x7f0000000080)={0x0, 0x0, &(0x7f0000000880)=[{&(0x7f0000000000)=ANY=[@ANYBLOB="18050000120021"], 0x518}], 0x1}, 0xc3b152ba577f522c)
-recvmsg(r0, &(0x7f0000000700)={0x0, 0x0, 0x0}, 0x2002)

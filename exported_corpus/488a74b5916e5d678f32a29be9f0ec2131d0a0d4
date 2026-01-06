@@ -1,2 +1,0 @@
-r0 = syz_init_net_socket$bt_hidp(0x1f, 0x3, 0x6)
-ioctl$sock_bt_hidp_HIDPCONNDEL(r0, 0x400448c9, &(0x7f0000000200)={@fixed={'\xaa\xaa\xaa\xaa\xaa', 0x10}, 0xfffffffd})

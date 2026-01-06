@@ -1,2 +1,0 @@
-syz_mac_addr_gen(&(0x7f0000000180)=@local, &(0x7f00000001c0)=<r0=>0x0, &(0x7f0000000200)=<r1=>0x0)
-syz_emit_ethernet(0x1f, &(0x7f0000006500)={{r0, r1}, {r0, r1}, @void, {@llc_tr={0x11, {@snap={0xaa, 0x1, "f3", "c8520a", 0xdada, "50222d8b26863a3886"}}}}}, 0x0)

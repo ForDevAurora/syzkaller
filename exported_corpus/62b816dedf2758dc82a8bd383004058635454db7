@@ -1,4 +1,0 @@
-r0 = socket$nl_route(0x10, 0x3, 0x0)
-r1 = socket$can_j1939(0x1d, 0x2, 0x7)
-ioctl$ifreq_SIOCGIFINDEX_vcan(r1, 0x8933, &(0x7f00000000c0)={'vxcan1\x00', <r2=>0x0})
-sendmsg$nl_route(r0, &(0x7f00000001c0)={0x0, 0x0, &(0x7f0000000100)={&(0x7f00000004c0)=ANY=[@ANYBLOB="2c000000130001002a580f00ffdb62119ee126b9", @ANYRES32=r2, @ANYBLOB="040000005265af070c001a80ca"], 0x2c}, 0x1, 0x0, 0x0, 0x2004c885}, 0x20000800)

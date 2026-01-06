@@ -1,4 +1,0 @@
-r0 = socket$nl_route(0x10, 0x3, 0x0)
-socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000200)={0xffffffffffffffff, <r1=>0xffffffffffffffff})
-ioctl$ifreq_SIOCGIFINDEX_team(r1, 0x8933, &(0x7f0000000100)={'team0\x00', <r2=>0x0})
-sendmsg$nl_route(r0, &(0x7f0000000040)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f0000000380)=ANY=[@ANYBLOB="580000001d00010025bd7000fbdbdf2507000000", @ANYRES32=r2, @ANYBLOB="04005e0508000e800400020008000b000e0000000a000200", @ANYRES32], 0x58}, 0x1, 0x0, 0x0, 0x200040d0}, 0x80)

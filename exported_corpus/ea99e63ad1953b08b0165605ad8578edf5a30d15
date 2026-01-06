@@ -1,3 +1,0 @@
-r0 = syz_ipv4_addr_gen(&(0x7f0000000000)=@loopback)
-r1 = socket$nl_generic(0x10, 0x3, 0x10)
-sendmsg$nl_generic(r1, &(0x7f0000000c80)={0x0, 0x0, &(0x7f0000000540)={&(0x7f0000000680)=ANY=[@ANYBLOB="1c0000002200090227bd7000fcdbdf250200000008000100", @ANYRES32=r0], 0x1c}, 0x1, 0x0, 0x0, 0x40c1}, 0x0)

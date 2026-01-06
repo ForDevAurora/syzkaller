@@ -1,2 +1,0 @@
-r0 = socket$inet6_udplite(0xa, 0x2, 0x88)
-connect$unix(r0, &(0x7f00000004c0)=@file={0x1, './file0\x00'}, 0x6e)

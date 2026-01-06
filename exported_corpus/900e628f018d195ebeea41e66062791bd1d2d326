@@ -1,2 +1,0 @@
-r0 = socket$caif_seqpacket(0x25, 0x5, 0x5)
-syz_emit_ethernet(0xe, &(0x7f0000000600)=ANY=[@ANYRES32=r0], 0x0)

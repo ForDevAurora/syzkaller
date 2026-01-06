@@ -1,2 +1,0 @@
-r0 = socket$inet_smc(0x2b, 0x1, 0x0)
-write$RDMA_USER_CM_CMD_JOIN_MCAST(r0, 0x0, 0x0)

@@ -1,2 +1,0 @@
-socketpair$nbd(0x1, 0x1, 0x0, &(0x7f0000000040)={<r0=>0xffffffffffffffff})
-ioctl$sock_inet_tcp_SIOCATMARK(r0, 0x8905, &(0x7f0000000180))

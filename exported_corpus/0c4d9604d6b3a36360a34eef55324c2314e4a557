@@ -1,5 +1,0 @@
-r0 = socket$l2tp6(0xa, 0x2, 0x73)
-r1 = socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000440), 0xffffffffffffffff)
-ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000100)={'wlan1\x00', <r3=>0x0})
-sendmsg$NL80211_CMD_SET_NOACK_MAP(r1, &(0x7f00000001c0)={0x0, 0x0, &(0x7f0000000180)={&(0x7f0000000200)=ANY=[@ANYBLOB='4\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="03012cbd7000fcdbdf255700000008000300", @ANYRES32=r3, @ANYBLOB="060095"], 0x34}, 0x1, 0x0, 0x0, 0x24024094}, 0x80)

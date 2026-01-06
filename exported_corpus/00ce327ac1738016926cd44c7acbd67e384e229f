@@ -1,2 +1,0 @@
-r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
-ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f0000000440)={'team0\x00', &(0x7f0000000400)=@ethtool_ts_info})

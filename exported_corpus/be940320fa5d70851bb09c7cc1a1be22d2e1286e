@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
-getsockopt$IP6T_SO_GET_REVISION_MATCH(r0, 0x29, 0x44, &(0x7f00000000c0)={'TPROXY\x00'}, &(0x7f0000000100)=0x1e)

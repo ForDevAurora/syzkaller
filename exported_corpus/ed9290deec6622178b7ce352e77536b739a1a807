@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
-setsockopt$inet6_buf(r0, 0x29, 0x1b, &(0x7f0000000180)="a3732c70c9bb5723cec60ffcc1d1cba66685d662", 0x14)

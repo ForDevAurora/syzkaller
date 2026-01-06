@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$tipc(&(0x7f0000002640), 0xffffffffffffffff)
-sendmsg$TIPC_CMD_DISABLE_BEARER(r0, &(0x7f0000002700)={0x0, 0x0, &(0x7f00000026c0)={&(0x7f0000000000)=ANY=[@ANYBLOB=',\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010025bd7000ffdbdf2501000000000000000241000000030013"], 0x2c}, 0x1, 0x0, 0x0, 0x8000}, 0x0)

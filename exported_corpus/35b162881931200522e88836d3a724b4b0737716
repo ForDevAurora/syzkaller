@@ -1,5 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = socket$l2tp(0x2, 0x2, 0x73)
-r2 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000140), 0xffffffffffffffff)
-ioctl$sock_SIOCGIFINDEX_80211(r1, 0x8933, &(0x7f0000000180)={'wlan0\x00', <r3=>0x0})
-sendmsg$NL80211_CMD_SET_PMKSA(r0, &(0x7f00000002c0)={0x0, 0x0, &(0x7f0000000280)={&(0x7f0000000200)={0x50, r2, 0x1, 0x70bd29, 0x25dfdbff, {{}, {@val={0x8, 0x3, r3}, @void}}, [@NL80211_ATTR_PMKID={0x14, 0x55, "cb350befeeceb347ef440d12eb6a51c2"}, @NL80211_ATTR_PMK={0x14, 0xfe, "41f677f0d438d190dba0d43713b657f0"}, @NL80211_ATTR_MAC={0xa, 0x6, @from_mac=@broadcast}]}, 0x50}}, 0x40040)

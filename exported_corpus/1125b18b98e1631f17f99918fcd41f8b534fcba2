@@ -1,2 +1,0 @@
-r0 = socket$rxrpc(0x21, 0x2, 0xa)
-write$RDMA_USER_CM_CMD_JOIN_MCAST(r0, 0x0, 0x0)

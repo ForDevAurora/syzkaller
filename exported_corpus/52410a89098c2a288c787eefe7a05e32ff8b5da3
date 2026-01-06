@@ -1,3 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
-setsockopt$inet_sctp6_SCTP_I_WANT_MAPPED_V4_ADDR(r0, 0x84, 0xc, &(0x7f0000000240), 0x4)
-getsockname$inet6(r0, 0x0, &(0x7f0000000840))

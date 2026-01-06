@@ -1,2 +1,0 @@
-r0 = socket(0x25, 0x5, 0x1)
-syz_genetlink_get_family_id$ethtool(&(0x7f0000000040), r0)

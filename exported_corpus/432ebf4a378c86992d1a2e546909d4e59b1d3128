@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
-ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f0000000340)={'ipvlan1\x00', 0x1})

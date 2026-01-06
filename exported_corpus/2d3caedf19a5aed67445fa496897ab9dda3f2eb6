@@ -1,5 +1,0 @@
-r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
-r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000080), 0xffffffffffffffff)
-r2 = socket$nl_generic(0x10, 0x3, 0x10)
-ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000380)={'wlan0\x00', <r3=>0x0})
-sendmsg$NL80211_CMD_SET_CQM(r2, &(0x7f0000000000)={0x0, 0x0, &(0x7f0000000540)={&(0x7f0000000100)=ANY=[@ANYBLOB='<\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010027bd7000fbdbdf253f00000008000300", @ANYRES32=r3, @ANYBLOB="20005e80070002"], 0x3c}, 0x1, 0x0, 0x0, 0x1}, 0x20000000)

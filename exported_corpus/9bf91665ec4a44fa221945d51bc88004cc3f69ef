@@ -1,2 +1,0 @@
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-ioctl$sock_netdev_private(r0, 0x8970, &(0x7f0000000040)="21f68d54e292f7113a")

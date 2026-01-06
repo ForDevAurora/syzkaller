@@ -1,2 +1,0 @@
-r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
-ioctl$sock_SIOCGIFVLAN_ADD_VLAN_CMD(r0, 0x8982, &(0x7f00000002c0)={0x0, 'lo\x00', {0x800002}, 0x10})

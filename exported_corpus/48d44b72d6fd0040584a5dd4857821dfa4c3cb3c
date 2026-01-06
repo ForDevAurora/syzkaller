@@ -1,3 +1,0 @@
-r0 = socket$inet_smc(0x2b, 0x1, 0x0)
-listen(r0, 0x7)
-ioctl$sock_inet_tcp_SIOCOUTQNSD(r0, 0x894b, 0x0)

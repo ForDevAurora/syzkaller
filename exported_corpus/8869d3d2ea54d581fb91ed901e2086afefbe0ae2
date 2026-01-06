@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$wireguard(&(0x7f0000000e40), 0xffffffffffffffff)
-sendmsg$WG_CMD_SET_DEVICE(r0, &(0x7f0000000540)={0x0, 0x0, &(0x7f0000000500)={&(0x7f00000015c0)=ANY=[@ANYBLOB='\\\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01002dbd7000fedbdf2501000000140002007767320000000000000000000000000008000700faffffff2c00088028"], 0x5c}, 0x1, 0x0, 0x0, 0x20002080}, 0x20000004)

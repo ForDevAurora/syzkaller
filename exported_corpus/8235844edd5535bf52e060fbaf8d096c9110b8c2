@@ -1,2 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-sendmsg$netlink(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f00000001c0)=[{&(0x7f0000000480)={0x9c, 0x2c, 0x115, 0x70bd29, 0x25dfdbfe, "", [@nested={0x4, 0x6}, @nested={0x88, 0x16, 0x0, 0x1, [@nested={0x83, 0x31, 0x0, 0x1, [@generic="5b1dceb15e1bd08e6123bbe8b5ad303c0fa4295cf2aa354884627b79b388f039feacf67ffc3d3ecdfaf4e8655ededc487dfb6396cd7348cac0f59cc3a888ff6092f9e135914790186c5339a9d673e42e80b81353c7432bbaced46aabb4256a14accc8bcaaa6d6d7234dca1cb7b54ee636bb6d2a373472d31e9f55d66781181"]}]}]}, 0x9c}], 0x1, 0x0, 0x0, 0x20048051}, 0x20044826)

@@ -1,2 +1,0 @@
-r0 = socket$igmp(0x2, 0x3, 0x2)
-ioctl$SIOCGETMIFCNT_IN6(r0, 0x89e0, &(0x7f00000001c0))

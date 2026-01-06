@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$tipc2(&(0x7f0000000080), 0xffffffffffffffff)
-sendmsg$TIPC_NL_BEARER_GET(r0, &(0x7f0000000180)={0x0, 0x0, &(0x7f0000000140)={&(0x7f00000001c0)=ANY=[@ANYBLOB='(\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01002cbd7000fe5adc2504000000140001800d00010075c8f749ef510f8ed9"], 0x28}, 0x1, 0x0, 0x0, 0x4884}, 0x84)

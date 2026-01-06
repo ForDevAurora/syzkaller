@@ -1,3 +1,0 @@
-r0 = socket$packet(0x11, 0x2, 0x300)
-syz_emit_ethernet(0x5e, &(0x7f0000001a40)=ANY=[], 0x0)
-ioctl$sock_SIOCINQ(r0, 0x541b, &(0x7f0000000200))

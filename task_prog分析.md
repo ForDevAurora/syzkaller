@@ -1,0 +1,5 @@
+我想让Syzkaller与Linux内核的污点追踪模块对接起来，实现Syzkaller在运行prog时，遇到用户指定的syscall（目前只关注sendmsg类型的syscall），分别taint。假如用户指定的是sendmsg$nl_route syscall：
+
+Syzkaller在运行包含sendmsg$nl_route syscall的prog时，你需要基于Syzlang Spec解析这个syscall，关注msg参数中各个netlink attribute，如nlattr[FRA_PRIORITY, int32]。对于嵌套的netlink attribute，你需要递归的分析其中的内容。对于每一个attribute，你都需要计算其相对于所在基地址的offset和size，在构造指针时在syz-executor中标记各个attribute为不同的taint（kernel一方的taint使用方法见kdfsan_highbit_user_guide.md文件）。同时，你需要记录下污点的tag和syzlang spec当中field的对应关系，便于在运行多个prog后，能够把相同syzlang spec field当中相同的attribute在不同运行中检测到的污点合并起来分析。
+
+这是一个复杂的任务，请充分利用skills，（1）与codex、gemini讨论后行事；（2）写测试用例，利用已有的skills来测试正确性，修补bug。不过你需要注意的是，当前kdfsan部分解析高位指针的逻辑尚未完成，请主要测试你Syzkaller部分构造高位指针的逻辑是否正确，目前无法与qemu联合调试。（3）在测试正确性后，再向用户确认完成。

@@ -1,2 +1,0 @@
-r0 = socket$phonet(0x23, 0x2, 0x1)
-ioctl$SIOCSIFHWADDR(r0, 0x8924, &(0x7f0000003180)={'netdevsim0\x00'})

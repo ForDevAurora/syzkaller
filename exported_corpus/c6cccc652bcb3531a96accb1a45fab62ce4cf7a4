@@ -1,3 +1,0 @@
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-syz_genetlink_get_family_id$smc(&(0x7f0000000140), 0xffffffffffffffff)
-setsockopt$sock_int(r0, 0x1, 0x43, &(0x7f0000000140), 0xff84)

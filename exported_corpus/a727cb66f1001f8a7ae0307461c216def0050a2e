@@ -1,4 +1,0 @@
-r0 = socket$nl_route(0x10, 0x3, 0x0)
-socket$inet_sctp(0x2, 0x1, 0x84)
-r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-sendmsg$nl_route(r0, &(0x7f0000001900)={0x0, 0x0, &(0x7f0000000880)={&(0x7f0000000d00)=ANY=[@ANYBLOB="c00000001000050828bd7000fedbdf2500000000", @ANYRES32=r1, @ANYBLOB="010202009d810300a0001280080001007674690094000280"], 0xc0}, 0x1, 0x0, 0x0, 0x8012}, 0x480c0)

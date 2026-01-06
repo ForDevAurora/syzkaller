@@ -1,5 +1,0 @@
-r0 = socket$nl_route(0x10, 0x3, 0x0)
-r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000c00), 0x101401, 0x0)
-ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000280)={'dvmrp1\x00', 0x1})
-ioctl$TUNSETLINK(r1, 0x400454cd, 0x20)
-ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f00000002c0)={'dvmrp1\x00', 0x1})

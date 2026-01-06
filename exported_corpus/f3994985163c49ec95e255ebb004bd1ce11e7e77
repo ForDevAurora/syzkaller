@@ -1,1 +1,0 @@
-syz_emit_ethernet(0xfffffffffffffed2, 0x0, 0x0)

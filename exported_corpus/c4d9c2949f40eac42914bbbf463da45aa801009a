@@ -1,2 +1,0 @@
-r0 = socket$pppl2tp(0x18, 0x1, 0x1)
-ioctl$SIOCGIFMTU(r0, 0x8921, &(0x7f0000000540)={'bridge_slave_1\x00'})

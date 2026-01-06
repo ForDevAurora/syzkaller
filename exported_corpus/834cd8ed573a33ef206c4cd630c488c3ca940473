@@ -1,7 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-ioctl$ifreq_SIOCGIFINDEX_batadv_hard(r0, 0x8933, &(0x7f0000006500)={'batadv_slave_1\x00', <r1=>0x0})
-syz_ipv6_addr_gen(&(0x7f0000000000)=@remote, &(0x7f0000000040)=<r2=>0x0, &(0x7f0000000080)=<r3=>0x0)
-r4 = socket$inet6_udplite(0xa, 0x2, 0x88)
-setsockopt$inet6_mreq(r4, 0x29, 0x1b, &(0x7f00000005c0)={{r2, r3}, r1}, 0x14)
-r5 = socket$l2tp6(0xa, 0x2, 0x73)
-sendmmsg$inet6(r5, &(0x7f0000005940)=[{{&(0x7f0000000280)={0xa, 0x0, 0x0, {r2, r3}}, 0x1c, 0x0, 0x0, &(0x7f00000007c0)=ANY=[@ANYBLOB='$\x00\x00\x00\x00\x00\x00\x00)\x00\x00\x002\x00\x00\x00', @ANYRES64=r2, @ANYRES64=r3, @ANYRES32=r1, @ANYBLOB="00000000140000000000000001000000510000002da5c841810104000000000000180000000000000029000000390000002c00000000000000bf6f0553709c32a367e478884ad14de53661e2"], 0x58}}], 0x1, 0x4c040)

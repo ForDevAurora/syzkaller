@@ -1,6 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), 0xffffffffffffffff)
-r2 = socket$nl_generic(0x10, 0x3, 0x10)
-syz_genetlink_get_family_id$nl80211(&(0x7f00000003c0), r2)
-ioctl$sock_SIOCGIFINDEX_80211(r2, 0x8933, &(0x7f0000000440)={'wlan1\x00', <r3=>0x0})
-sendmsg$NL80211_CMD_SET_STATION(r0, &(0x7f0000000540)={0x0, 0x0, &(0x7f0000000500)={&(0x7f0000000080)={0xec, r1, 0x209, 0x70bd2b, 0x25dfdbfd, {{}, {@val={0x8, 0x3, r3}, @void}}, [@NL80211_ATTR_MAC={0xa, 0x6, @device_b}, @NL80211_ATTR_MAC={0xa}, @NL80211_ATTR_STA_EXT_CAPABILITY={0xb8, 0xac, "ad2b359277b5db209bd424ecb88b039fcada937ccdbf8c95d11858f619b2c8f05c9c7b247d30ce3cc93077b6768e7c4d2010be8986496d77acfe09321fff2605af47cd2bc2ad7175417d5b8205b2932540220789aadcba4b04f36e47f2ffffffffffffffd6329e41b7b329c1d6e1bf2657d1baf2ce2e0755f0f94cbc5b481b76e21fc9dfea6d2580d3565086fb122ece5374d50e07a40dc5f36adca8c6b696d4f9036dfb8e2e3ee616d8b166f6f48e11ddd424d1"}]}, 0xec}, 0x1, 0x0, 0x0, 0x1ac44df4ddfe9624}, 0x4040844)

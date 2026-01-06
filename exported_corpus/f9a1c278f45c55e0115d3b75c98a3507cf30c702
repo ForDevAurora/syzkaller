@@ -1,3 +1,0 @@
-syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0)=<r0=>0x0, &(0x7f0000000100)=<r1=>0x0)
-r2 = syz_ipv4_addr_gen(&(0x7f0000000000)=@multicast1)
-syz_emit_ethernet(0x2a, &(0x7f0000000280)={{r0, r1}, {r0, r1}, @void, {@arp={0x806, @ether_ipv4={0x1, 0x800, 0x6, 0x4, 0x1, {r0, r1}, 0x0, {r0, r1}, r2}}}}, 0x0)

@@ -1,7 +1,0 @@
-syz_ipv6_addr_gen(&(0x7f0000000000)=@mcast2, &(0x7f0000000080)=<r0=>0x0, &(0x7f00000000c0)=<r1=>0x0)
-syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0)=<r2=>0x0, &(0x7f0000000100)=<r3=>0x0)
-r4 = socket$rxrpc(0x21, 0x2, 0xa)
-r5 = socket(0x11, 0x2, 0x3)
-getsockname$inet6(r5, &(0x7f0000000bc0)={0xa, <r6=>0x0}, &(0x7f0000000c00)=0x1c)
-bind$rxrpc(r4, &(0x7f0000000b80)=@in4={0x21, 0x8000, 0x2, 0x10, {0x2, r6}}, 0x24)
-syz_emit_ethernet(0xd2, &(0x7f0000000140)={{r2, r3}, {r2, r3}, @void, {@ipv6={0x86dd, @udp={0x5, 0x6, "a164ac", 0x9c, 0x11, 0xff, {}, {r0, r1}, {[], {0x0, r6, 0x9c, 0x0, @wg=@initiation={0x1, 0x7, "212a60f2352898331ce7c4fa35389bb295fd9191888a945d3c85f2f05332fe8c", "9dea5de390e6ee2266d191e8dc5c6ffc02ef8e3e9b2939b015b4feb438cc707703452f011f12ad38fbe3cbd13718f5d3", "a3846428a2666166d66f2fff1bc333b058c481555600", {"4cae87f72a5f4184b2d9d40262d289bd", "5195d894fb7afe1357878ed79b8150b1"}}}}}}}}, 0x0)

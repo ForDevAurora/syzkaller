@@ -1,2 +1,0 @@
-r0 = socket$unix(0x1, 0x1, 0x0)
-ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f0000000100)={'wg0\x00', &(0x7f0000000000)=@ethtool_perm_addr})

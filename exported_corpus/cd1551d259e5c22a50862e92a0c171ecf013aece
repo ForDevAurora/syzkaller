@@ -1,2 +1,0 @@
-r0 = syz_init_net_socket$bt_bnep(0x1f, 0x3, 0x4)
-ioctl$sock_bt_bnep_BNEPCONNDEL(r0, 0x400442c9, 0x0)

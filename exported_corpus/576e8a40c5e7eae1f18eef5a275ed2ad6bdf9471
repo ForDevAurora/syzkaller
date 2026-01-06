@@ -1,2 +1,0 @@
-r0 = socket$l2tp(0x2, 0x2, 0x73)
-getsockopt$ARPT_SO_GET_ENTRIES(r0, 0x0, 0x61, &(0x7f00000000c0)=ANY=[@ANYBLOB='filter'], &(0x7f0000000080)=0x28)

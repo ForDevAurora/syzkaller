@@ -1,4 +1,0 @@
-r0 = socket$inet6_icmp(0xa, 0x2, 0x3a)
-r1 = socket$can_j1939(0x1d, 0x2, 0x7)
-ioctl$ifreq_SIOCGIFINDEX_vcan(r1, 0x8933, &(0x7f00000000c0)={'vxcan1\x00', <r2=>0x0})
-ioctl$sock_inet6_SIOCSIFADDR(r0, 0x8916, &(0x7f00000000c0)={{}, 0x80058, r2})

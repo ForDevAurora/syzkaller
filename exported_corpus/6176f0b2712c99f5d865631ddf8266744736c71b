@@ -1,2 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f0000000f00)={'veth0_vlan\x00', &(0x7f0000000100)=@ethtool_eeprom={0xb, 0x3, 0x1}})

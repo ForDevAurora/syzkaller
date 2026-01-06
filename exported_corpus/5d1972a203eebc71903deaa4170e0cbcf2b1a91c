@@ -1,2 +1,0 @@
-r0 = socket$inet_icmp_raw(0x2, 0x3, 0x1)
-sendto$inet(r0, &(0x7f0000000000)="39ec1a4fc05f4e0a", 0xffffffffffffff2c, 0xc804, &(0x7f0000000340), 0x10)

@@ -1,5 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$nl802154(&(0x7f0000000300), 0xffffffffffffffff)
-sendmsg$NL802154_CMD_NEW_INTERFACE(r0, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000080)={&(0x7f0000000040)=ANY=[@ANYBLOB='(\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01dbdf2507000000080001"], 0x28}, 0x1, 0x0, 0x0, 0x20000001}, 0x8040)
-syz_genetlink_get_family_id$ieee802154(&(0x7f0000000140), r0)
-syz_genetlink_get_family_id$nbd(&(0x7f0000000100), r0)

@@ -1,1 +1,0 @@
-syz_emit_ethernet(0x26, &(0x7f0000000300)={{}, {}, @void, {@generic={0x4305, "be408b50d3904d1fee34513ccb3b060db44c1e3a0248a4de"}}}, 0x0)

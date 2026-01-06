@@ -1,4 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$ieee802154(&(0x7f0000000bc0), r1)
-sendmsg$IEEE802154_LLSEC_SETPARAMS(r0, &(0x7f0000000300)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f0000000040)=ANY=[@ANYBLOB='0\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="01002abd7000fcdbdfa122c1a4000a0001007770616e3100000005002b000300000005002a"], 0x30}}, 0x20000000)

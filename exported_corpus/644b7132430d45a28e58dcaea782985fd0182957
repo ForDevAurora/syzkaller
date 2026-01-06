@@ -1,4 +1,0 @@
-r0 = socket$packet(0x11, 0x3, 0x300)
-r1 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-ioctl$ifreq_SIOCGIFINDEX_wireguard(r1, 0x8933, &(0x7f0000000300)={'wg0\x00', <r2=>0x0})
-sendto$packet(r0, &(0x7f0000000d40)="69e38463bcd15450c147bf8ec9a3527983cf488dcce038758157866cf4ce567519facab769480445ebb84f", 0x2b, 0x0, &(0x7f0000000780)={0x11, 0x0, r2, 0x1, 0x97}, 0x14)

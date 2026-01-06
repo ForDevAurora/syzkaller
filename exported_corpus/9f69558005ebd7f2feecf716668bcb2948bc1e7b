@@ -1,8 +1,0 @@
-r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000c00), 0x101401, 0x0)
-ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000c80)={'ip6erspan0\x00', 0x4213})
-getsockopt$inet_sctp_SCTP_ENABLE_STREAM_RESET(0xffffffffffffffff, 0x84, 0x76, 0x0, 0x0)
-syz_genetlink_get_family_id$l2tp(&(0x7f0000000640), 0xffffffffffffffff)
-r1 = socket$nl_route(0x10, 0x3, 0x0)
-r2 = socket$kcm(0x29, 0x2, 0x0)
-ioctl$sock_SIOCGIFINDEX(r2, 0x8933, &(0x7f00000007c0)={'ip6erspan0\x00', <r3=>0x0})
-sendmsg$nl_route(r1, &(0x7f0000001900)={0x0, 0x0, &(0x7f00000004c0)={&(0x7f0000000500)=ANY=[@ANYBLOB="340000001100010028bd7000fedbdf2500000000", @ANYRES32=r3], 0x34}, 0x1, 0x0, 0x0, 0x10}, 0x48840)

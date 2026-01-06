@@ -1,4 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$ethtool(&(0x7f0000001380), 0xffffffffffffffff)
-ioctl$ifreq_SIOCGIFINDEX_wireguard(r0, 0x8933, &(0x7f0000000140)={'wg1\x00', <r2=>0x0})
-sendmsg$ETHTOOL_MSG_LINKMODES_SET(r0, &(0x7f0000002540)={0x0, 0x0, &(0x7f0000002500)={&(0x7f0000000180)=ANY=[@ANYBLOB='4\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010027bd8890845458442e5b00002000018008000100", @ANYRES32=r2, @ANYBLOB="14000200776731"], 0x34}, 0x1, 0x0, 0x0, 0x10}, 0x40890)

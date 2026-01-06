@@ -1,3 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
-listen(r0, 0xaf)
-ioctl$sock_inet_SIOCSIFNETMASK(r0, 0x891c, 0x0)

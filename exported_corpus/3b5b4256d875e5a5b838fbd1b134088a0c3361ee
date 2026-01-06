@@ -1,6 +1,0 @@
-r0 = socket$inet_icmp(0x2, 0x2, 0x1)
-r1 = socket$nl_generic(0x10, 0x3, 0x10)
-ioctl$sock_ipv4_tunnel_SIOCCHGTUNNEL(0xffffffffffffffff, 0x89f3, &(0x7f0000000440)={'syztnl2\x00', 0x0})
-r2 = syz_genetlink_get_family_id$nl80211(&(0x7f00000001c0), r1)
-ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000780)={'wlan0\x00', <r3=>0x0})
-sendmsg$NL80211_CMD_NEW_INTERFACE(r1, &(0x7f0000000200)={0x0, 0x0, &(0x7f0000000980)={&(0x7f0000000400)=ANY=[@ANYBLOB='\\\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="010029bd7000fbdbdf250700000008000300", @ANYRES32=r3, @ANYBLOB="0c0099000d9e41e9580000001400040069703665727370616e30000000000000140006"], 0x5c}, 0x1, 0x0, 0x0, 0x40851}, 0x20008004)

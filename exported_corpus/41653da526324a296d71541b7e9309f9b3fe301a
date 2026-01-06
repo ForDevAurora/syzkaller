@@ -1,3 +1,0 @@
-ioctl$sock_SIOCETHTOOL(0xffffffffffffffff, 0x8946, &(0x7f0000000180)={'netdevsim0\x00', 0x0})
-r0 = socket$inet(0x2, 0x5, 0x0)
-ioctl$sock_proto_private(r0, 0x8923, &(0x7f0000000180))

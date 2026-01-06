@@ -1,4 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$ipvs(&(0x7f0000000d80), 0xffffffffffffffff)
-sendmsg$IPVS_CMD_GET_SERVICE(r0, &(0x7f0000000340)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000380)=ANY=[@ANYBLOB="04010000", @ANYRES16=r1, @ANYBLOB="090f27bd7000fedbdf2504"], 0x104}, 0x1, 0x0, 0x0, 0x24044811}, 0x800)
-syz_genetlink_get_family_id$batadv(&(0x7f00000000c0), r0)

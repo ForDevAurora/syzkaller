@@ -1,6 +1,0 @@
-r0 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
-syz_genetlink_get_family_id$nl80211(&(0x7f0000000300), 0xffffffffffffffff)
-syz_ipv6_addr_gen(&(0x7f0000000540)=@mcast2, &(0x7f0000000580)=<r1=>0x0, &(0x7f00000005c0)=<r2=>0x0)
-bind$inet6(r0, &(0x7f0000000040)={0xa, 0x0, 0x9, {r1, r2}, 0xb}, 0x1c)
-syz_ipv6_addr_gen(&(0x7f0000000400)=@local, &(0x7f0000000440)=<r3=>0x0, &(0x7f0000000480)=<r4=>0x0)
-syz_emit_ethernet(0x66, &(0x7f0000000500)=ANY=[@ANYRES32, @ANYRES16, @ANYRES32, @ANYRES16, @ANYBLOB="86dd6af1090000303aff", @ANYRES64=0x0, @ANYRES64=0x0, @ANYRES64=r3, @ANYRES64=r4], 0x0)

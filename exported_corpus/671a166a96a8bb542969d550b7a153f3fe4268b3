@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
-ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f0000000000)={'bridge_slave_0\x00', 0x200})

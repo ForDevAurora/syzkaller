@@ -1,4 +1,0 @@
-r0 = socket$inet_sctp(0x2, 0x1, 0x84)
-ioctl$sock_inet_SIOCGIFDSTADDR(r0, 0x8917, &(0x7f0000000000)={'macvlan1\x00', {0x2, <r1=>0x0, <r2=>0x0}})
-bind$inet(r0, &(0x7f0000000380)={0x2, r1, r2}, 0x10)
-getsockopt$inet_sctp_SCTP_GET_LOCAL_ADDRS(r0, 0x84, 0x6d, &(0x7f0000000140)={0x0, 0x10, "2c9ac1370b0000687d4b3c522ac099e0"}, &(0x7f00000001c0)=0x18)

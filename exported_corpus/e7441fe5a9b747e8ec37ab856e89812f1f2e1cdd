@@ -1,2 +1,0 @@
-r0 = socket$can_raw(0x1d, 0x3, 0x1)
-recvmsg$can_raw(r0, &(0x7f0000001340)={&(0x7f0000001180)=@ax25={{0x3, @default}, [@remote, @default, @rose, @default, @netrom, @netrom, @rose, @default]}, 0x80, 0x0}, 0x2082)

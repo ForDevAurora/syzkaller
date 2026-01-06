@@ -1,2 +1,0 @@
-r0 = syz_open_procfs$namespace(0x0, &(0x7f0000000ec0)='ns/net\x00')
-ioctl$NS_GET_USERNS(r0, 0xb701, 0x0)

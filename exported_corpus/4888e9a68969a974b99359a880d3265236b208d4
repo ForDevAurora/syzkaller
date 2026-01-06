@@ -1,2 +1,0 @@
-r0 = syz_init_net_socket$bt_hidp(0x1f, 0x3, 0x6)
-ioctl$sock_bt_hidp_HIDPGETCONNINFO(r0, 0x800448d3, &(0x7f0000000040)={@any, 0x8, 0x9, 0x3, 0x8000, 0x7, "a322d7050fa00006add8889483dae2c9224645abab8823da7fd37a406f200086b23ec379e2cadf7f6e6ab38fd5f1bc9902e011d5b70e76be2bf5ad5910a1e2738f75d8f91d38a56d36ccdb30f05edf1144f94b80dfd540246a83574fac4ccdf677a652feec1b655cc1048c06a14ed532be6d2aebf5ceaab1bd60778bb7a1caf4"})

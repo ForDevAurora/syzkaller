@@ -1,1 +1,0 @@
-mount$9p_tcp(0x0, &(0x7f0000000200)='.\x00', &(0x7f0000000240), 0x80, &(0x7f0000000540)=ANY=[@ANYBLOB='trans=tcp,port=', @ANYRESHEX=0x0, @ANYRESOCT])

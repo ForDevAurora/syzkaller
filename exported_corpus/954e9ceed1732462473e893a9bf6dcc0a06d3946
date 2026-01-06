@@ -1,5 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-syz_genetlink_get_family_id$tipc2(&(0x7f0000000540), r0)
-getsockname$packet(r0, &(0x7f0000000280)={0x11, 0x0, <r1=>0x0}, &(0x7f00000002c0)=0x14)
-r2 = socket$nl_route(0x10, 0x3, 0x0)
-sendmsg$nl_route(r2, &(0x7f0000001900)={0x0, 0x0, &(0x7f00000001c0)={&(0x7f0000000200)=ANY=[@ANYBLOB="480000001000010d25bd7004fedbdf25be9f0000", @ANYRES32=r1, @ANYBLOB="010202002d810300280012800a000100767863616e000000180002801400010000000000", @ANYRES64=r2], 0x48}, 0x1, 0x0, 0x0, 0x2}, 0x48044)

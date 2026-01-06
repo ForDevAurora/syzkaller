@@ -1,3 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
-r1 = syz_port_gen(0x4e27)
-setsockopt$inet_sctp6_SCTP_SOCKOPT_BINDX_ADD(r0, 0x84, 0x64, &(0x7f0000000700)=[@in={0x2, r1}], 0x10)

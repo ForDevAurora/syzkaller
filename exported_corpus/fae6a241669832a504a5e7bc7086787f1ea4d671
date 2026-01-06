@@ -1,4 +1,0 @@
-r0 = socket$rds(0x15, 0x5, 0x0)
-r1 = epoll_create1(0x80000)
-epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000000100)={0x10000011})
-epoll_wait(r1, &(0x7f0000000000)=[{}], 0x1, 0x6cb)

@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
-ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f0000008040)={'veth1_to_bond\x00', &(0x7f0000008000)=@ethtool_sset_info={0x37, 0x0, 0xfffffffffffffffa}})

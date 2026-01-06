@@ -1,2 +1,0 @@
-r0 = socket$inet_sctp(0x2, 0x1, 0x84)
-ioctl$sock_inet_SIOCGARP(r0, 0x8954, &(0x7f0000000500)={{}, {0x1}, 0x7a, {}, 'pim6reg1\x00'})

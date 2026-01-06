@@ -1,3 +1,0 @@
-ioctl$sock_inet_SIOCGIFNETMASK(0xffffffffffffffff, 0x891b, &(0x7f0000000200)={'veth1_virt_wifi\x00'})
-r0 = socket$inet(0x2, 0x5, 0x0)
-ioctl$sock_proto_private(r0, 0x8970, &(0x7f0000000200))

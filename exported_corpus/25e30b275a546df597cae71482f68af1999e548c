@@ -1,4 +1,0 @@
-r0 = socket$inet_udp(0x2, 0x2, 0x0)
-shutdown(r0, 0x0)
-r1 = epoll_create(0x3764)
-epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000002cc0)={0x4})

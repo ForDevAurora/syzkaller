@@ -1,4 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-sendmsg$unix(0xffffffffffffffff, &(0x7f0000000440)={0x0, 0x0, &(0x7f00000002c0)=[{&(0x7f0000000140)="0c8354ee96fb0f6183f828ec36553ba92d9c91e605b370aaa774d61baf570eb431d5d1774ccb4d2fb4eefd76aeb045fc70caf072bc64283e018e0efdcdc1b0f251d03bcaf02b4707111bf411d90d11670afa24d350d436", 0x57}], 0x1, 0x0, 0x0, 0x40000044}, 0x84840)
-ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000180)={'wlan0\x00'})
-ioctl$sock_proto_private(r0, 0x8b26, &(0x7f0000000180))

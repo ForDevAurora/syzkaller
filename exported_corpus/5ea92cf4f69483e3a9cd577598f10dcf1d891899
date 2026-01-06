@@ -1,3 +1,0 @@
-r0 = socket$inet_icmp(0x2, 0x2, 0x1)
-connect$inet(r0, &(0x7f0000000080), 0x10)
-getsockname$inet(r0, 0x0, &(0x7f0000000040))

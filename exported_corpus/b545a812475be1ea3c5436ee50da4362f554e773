@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$devlink(&(0x7f0000000080), 0xffffffffffffffff)
-sendmsg$DEVLINK_CMD_TRAP_GROUP_GET(r0, &(0x7f0000000280)={0x0, 0x0, &(0x7f0000000240)={&(0x7f0000000000)=ANY=[@ANYBLOB="14000000", @ANYRES16=r1, @ANYBLOB="050326bd7000fddb19234e5c"], 0x14}, 0x1, 0x0, 0x0, 0x4000000}, 0x84)

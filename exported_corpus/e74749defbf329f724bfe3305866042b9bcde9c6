@@ -1,2 +1,0 @@
-r0 = socket$rxrpc(0x21, 0x2, 0x2)
-setsockopt$RXRPC_SECURITY_KEY(r0, 0x110, 0x1, &(0x7f0000000000)=',j]/&@#!-).)]\x00', 0xe)

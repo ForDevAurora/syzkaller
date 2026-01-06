@@ -1,3 +1,0 @@
-r0 = socket$inet_udp(0x2, 0x2, 0x0)
-r1 = syz_ipv4_addr_gen(&(0x7f0000000140)=@rand_addr=0x64010101)
-ioctl$sock_inet_SIOCSIFADDR(r0, 0x8916, &(0x7f00000006c0)={'wlan0\x00', {0x2, 0x0, r1}})

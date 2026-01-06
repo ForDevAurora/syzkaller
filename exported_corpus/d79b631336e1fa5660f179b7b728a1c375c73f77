@@ -1,4 +1,0 @@
-r0 = socket$nl_route(0x10, 0x3, 0x0)
-r1 = socket$nl_route(0x10, 0x3, 0x0)
-ioctl$sock_SIOCGIFINDEX(r1, 0x8933, &(0x7f0000000000)={'ipvlan1\x00', <r2=>0x0})
-sendmsg$nl_route(r0, &(0x7f0000000400)={0x0, 0x0, &(0x7f00000003c0)={&(0x7f0000000340)=ANY=[@ANYBLOB="300000001d00010028bd7000ffdbdf2507000000", @ANYRES32=r2, @ANYBLOB="800008050a000200", @ANYRES32=0x0, @ANYRES16=0x0, @ANYBLOB="00ec050005"], 0x30}, 0x1, 0x0, 0x0, 0x40}, 0xc004)

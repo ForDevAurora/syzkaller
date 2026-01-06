@@ -1,4 +1,0 @@
-syz_ipv6_addr_gen(&(0x7f0000000300)=@remote, &(0x7f0000000340)=<r0=>0x0, &(0x7f00000003c0)=<r1=>0x0)
-syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0)=<r2=>0x0, &(0x7f0000000100)=<r3=>0x0)
-syz_ipv6_addr_gen(&(0x7f0000000400)=@local, &(0x7f0000000440)=<r4=>0x0, &(0x7f0000000480)=<r5=>0x0)
-syz_emit_ethernet(0x127, &(0x7f0000000540)={{r2, r3}, {r2, r3}, @void, {@ipv6={0x86dd, @icmpv6={0xa, 0x6, "f11c55", 0xf1, 0x3a, 0xff, {r0, r1}, {r4, r5}, {[], @ndisc_redir={0x89, 0x0, 0x0, '\x00', {r0, r1}, {r0, r1}, [{0xe, 0x18, "ca128722d1bb4d670b85a86281fa88de749b5da1b83119481e64bb4ceff4fcc3d54b5bedc9c5315502ea68adbadf7c2e3745498bbf0f21ae338584b52979cf1a347e6622f02faf3cf12dd4212e3d29634c4388845241afa7c372fa74476c9b76c59a0081a1383f71e42ed47fe95420e636d765f753d546c30424c6dac079805906fb31612d9dc0afde3f62decbc5b4fb8e99d618d6932b5f66d05cf16c15fa79749cba43b4146bf71f529ad809a800b937aa8fc8c5bcc049527cb31adc1b"}, {0xe, 0x1, "3152328a54399e"}]}}}}}}, 0x0)

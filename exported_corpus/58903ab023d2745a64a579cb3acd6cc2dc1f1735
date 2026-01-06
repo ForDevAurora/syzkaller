@@ -1,3 +1,0 @@
-r0 = socket$inet(0x2, 0x3, 0x1)
-sendto$inet(r0, &(0x7f0000000200)="56e4bfba83554448", 0x8, 0x4080, &(0x7f0000000480), 0x10)
-ioctl$sock_inet_tcp_SIOCINQ(r0, 0x541b, &(0x7f0000000000))

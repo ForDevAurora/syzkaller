@@ -1,2 +1,0 @@
-r0 = socket$can_raw(0x1d, 0x3, 0x1)
-ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f00000005c0)={'veth1_macvtap\x00', 0x200})

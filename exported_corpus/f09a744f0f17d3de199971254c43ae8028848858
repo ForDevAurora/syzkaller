@@ -1,2 +1,0 @@
-r0 = syz_init_net_socket$llc(0x1a, 0x2, 0x0)
-syz_genetlink_get_family_id$batadv(&(0x7f0000000280), r0)

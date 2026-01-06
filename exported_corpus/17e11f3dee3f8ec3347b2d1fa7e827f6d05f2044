@@ -1,2 +1,0 @@
-r0 = socket$can_j1939(0x1d, 0x2, 0x7)
-ioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f0000001140)={'macsec0\x00', 0x2201})

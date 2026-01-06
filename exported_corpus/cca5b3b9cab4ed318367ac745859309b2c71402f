@@ -1,5 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$nl802154(&(0x7f00000008c0), r0)
-r2 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-ioctl$sock_SIOCGIFINDEX_802154(r2, 0x8933, &(0x7f0000000100)={'wpan0\x00', <r3=>0x0})
-sendmsg$NL802154_CMD_DEL_SEC_KEY(r0, &(0x7f0000000280)={0x0, 0x0, &(0x7f0000000240)={&(0x7f0000000480)=ANY=[@ANYBLOB='<\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010025bd22883db8a9141280000008000300", @ANYRES32=r3], 0x3c}, 0x1, 0x0, 0x0, 0x40080}, 0x24004000)

@@ -1,4 +1,0 @@
-r0 = socket$inet_smc(0x2b, 0x1, 0x0)
-r1 = epoll_create(0x60f)
-epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000000040)={0x2004})
-epoll_ctl$EPOLL_CTL_MOD(r1, 0x3, r0, &(0x7f0000000000)={0x4000000e})

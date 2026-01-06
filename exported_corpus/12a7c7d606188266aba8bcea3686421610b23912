@@ -1,5 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$ethtool(&(0x7f0000000040), 0xffffffffffffffff)
-ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f00000001c0)={'wlan1\x00', <r3=>0x0})
-sendmsg$ETHTOOL_MSG_CHANNELS_SET(r1, &(0x7f0000000280)={0x0, 0x0, &(0x7f0000000140)={&(0x7f0000000080)=ANY=[@ANYBLOB='(\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="010029bd7000fedbdf251000000008000600060000000c00018008000100", @ANYRES32=r3], 0x28}, 0x1, 0x0, 0x0, 0xc800}, 0x0)

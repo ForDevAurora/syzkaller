@@ -1,2 +1,0 @@
-r0 = socket$inet_smc(0x2b, 0x1, 0x0)
-setsockopt$inet_tcp_buf(r0, 0x6, 0x21, &(0x7f00000000c0)="8d7b0783884c1665879d8dce1fdfda68d7e87eb78deea1fb521e60c50d8fda31", 0x20)

@@ -1,3 +1,0 @@
-ioctl$sock_inet_SIOCGIFBRDADDR(0xffffffffffffffff, 0x8919, &(0x7f0000000240)={'bond0\x00'})
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-ioctl$sock_proto_private(r0, 0x8913, &(0x7f0000000240))

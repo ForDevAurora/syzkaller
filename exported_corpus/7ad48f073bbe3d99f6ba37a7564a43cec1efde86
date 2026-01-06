@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$smc(&(0x7f0000000140), 0xffffffffffffffff)
-sendmsg$SMC_PNETID_ADD(r0, &(0x7f0000000680)={0x0, 0x0, &(0x7f0000000640)={&(0x7f0000000040)=ANY=[@ANYBLOB='8\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="0100a4bd7000fddbdf25020000000900010073797a09"], 0x38}, 0x1, 0x0, 0x0, 0xc000}, 0x4)

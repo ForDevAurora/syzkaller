@@ -1,2 +1,0 @@
-r0 = socket$rds(0x15, 0x5, 0x0)
-setsockopt$SO_RDS_MSG_RXPATH_LATENCY(r0, 0x114, 0xa, &(0x7f0000000000)=ANY=[@ANYBLOB="4ca630702c"], 0x4)

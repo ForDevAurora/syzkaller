@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$ethtool(&(0x7f0000000100), r0)
-sendmsg$ETHTOOL_MSG_CHANNELS_SET(r0, &(0x7f0000000800)={0x0, 0x0, &(0x7f00000007c0)={&(0x7f0000000000)=ANY=[@ANYBLOB=',\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01002cbc7000fedbdf252c0000001800018014000200"], 0x2c}, 0x1, 0x0, 0x0, 0x4804}, 0x40c4)

@@ -1,2 +1,0 @@
-r0 = socket$inet_mptcp(0x2, 0x1, 0x106)
-setsockopt$inet_tcp_TLS_TX(r0, 0x6, 0x1, &(0x7f0000001700)=@gcm_256={{0x304}, "b8f1acaea9ea271f", "4704f875b30a43c898e3ba9fb97c0c767bb5b696153f4d3d9cd11b148fe8fa60", "ccbacb45", "62934b1a0cd3b139"}, 0x38)

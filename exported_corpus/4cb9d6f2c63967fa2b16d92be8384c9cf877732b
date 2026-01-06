@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$fou(&(0x7f0000008100), r0)
-sendmsg$FOU_CMD_ADD(r0, &(0x7f00000082c0)={0x0, 0x0, &(0x7f0000000000)={&(0x7f00000007c0)=ANY=[@ANYBLOB=',\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010027bd7000fedbdf2501000000050004000100000008000b00", @ANYRES32, @ANYBLOB="080006"], 0x2c}, 0x1, 0x0, 0x0, 0x2000a010}, 0x0)

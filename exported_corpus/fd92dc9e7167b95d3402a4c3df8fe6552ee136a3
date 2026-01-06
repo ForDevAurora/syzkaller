@@ -1,4 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$ieee802154(&(0x7f0000000bc0), r1)
-sendmsg$IEEE802154_LLSEC_SETPARAMS(r0, &(0x7f0000000300)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f0000000280)={0x20, r2, 0x1, 0x70bd2a, 0x25dfdbfc, {}, [@IEEE802154_ATTR_DEV_NAME={0xa, 0x1, 'wpan1\x00'}]}, 0x20}}, 0x20000000)

@@ -1,2 +1,0 @@
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-ioctl$sock_SIOCGIFVLAN_ADD_VLAN_CMD(r0, 0x8982, &(0x7f0000000000)={0x0, 'wlan1\x00', {}, 0x3})

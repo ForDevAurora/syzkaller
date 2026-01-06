@@ -1,5 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$ieee802154(&(0x7f0000000bc0), r0)
-ioctl$sock_SIOCGIFINDEX_802154(r1, 0x8933, &(0x7f0000000000)={'wpan0\x00', <r3=>0x0})
-sendmsg$IEEE802154_LLSEC_ADD_SECLEVEL(r0, &(0x7f00000001c0)={0x0, 0x0, &(0x7f00000000c0)={&(0x7f0000000040)={0x34, r2, 0x601, 0x70bd2b, 0x25dfdbfd, {}, [@IEEE802154_ATTR_LLSEC_SECLEVELS={0x5, 0x35, 0x7}, @IEEE802154_ATTR_DEV_INDEX={0x8, 0x2, r3}, @IEEE802154_ATTR_LLSEC_FRAME_TYPE={0x5, 0x33, 0x47}, @IEEE802154_ATTR_LLSEC_DEV_OVERRIDE={0x5}]}, 0x34}}, 0x90)

@@ -1,2 +1,0 @@
-r0 = socket$inet6(0xa, 0x1, 0x0)
-connect$unix(r0, &(0x7f00000001c0)=@file={0x0, './file0\x00'}, 0x6e)

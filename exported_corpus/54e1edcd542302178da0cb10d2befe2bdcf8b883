@@ -1,2 +1,0 @@
-r0 = socket$inet_icmp(0x2, 0x2, 0x1)
-bind$unix(r0, &(0x7f0000000080)=@file={0x0, './file0\x00'}, 0x6e)

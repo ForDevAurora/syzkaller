@@ -1,2 +1,0 @@
-r0 = socket$inet_icmp(0x2, 0x2, 0x1)
-ioctl$sock_SIOCETHTOOL(r0, 0x8946, &(0x7f0000000040)={'batadv0\x00', &(0x7f0000000080)=@ethtool_eeprom={0x43, 0x3368, 0x7ff}})

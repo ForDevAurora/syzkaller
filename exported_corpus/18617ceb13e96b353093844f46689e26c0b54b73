@@ -1,4 +1,0 @@
-r0 = socket$inet_udp(0x2, 0x2, 0x0)
-ioctl$sock_inet_SIOCGIFNETMASK(r0, 0x891b, &(0x7f0000000000)={'batadv_slave_1\x00', {0x2, <r1=>0x0, <r2=>0x0}})
-bpf$BPF_TASK_FD_QUERY(0x14, 0x0, 0x0)
-ioctl$sock_inet_SIOCSIFADDR(r0, 0x8916, &(0x7f0000000180)={'veth1\x00', {0x2, r1, r2}})

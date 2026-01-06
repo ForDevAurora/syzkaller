@@ -1,6 +1,0 @@
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-listen(r0, 0x3)
-getsockname$inet6(r0, &(0x7f0000000000)={0xa, <r1=>0x0}, &(0x7f0000000040)=0x1c)
-syz_emit_ethernet(0x2a, &(0x7f00000001c0)=ANY=[@ANYRES32], 0x0)
-r2 = socket$nl_sock_diag(0x10, 0x3, 0x4)
-sendmsg$TCPDIAG_GETSOCK(r2, &(0x7f0000002300)={0x0, 0x0, &(0x7f00000022c0)={&(0x7f0000000180)=ANY=[@ANYBLOB="4c0000001200010029bd7000fcdbdf250a044007", @ANYRES16=r1, @ANYRES16=0x0, @ANYBLOB="010000000010000010fe000083fd0000340e0000040000000000000006000000", @ANYRES32=0x0, @ANYBLOB="ffffffff"], 0x4c}, 0x1, 0x0, 0x0, 0x4008090}, 0x40048c0)

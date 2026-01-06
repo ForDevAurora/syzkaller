@@ -1,2 +1,0 @@
-r0 = socket$inet_sctp(0x2, 0x5, 0x84)
-ioctl$sock_inet_SIOCSIFPFLAGS(r0, 0x8934, &(0x7f0000000140)={'veth0_to_team\x00', 0x6})

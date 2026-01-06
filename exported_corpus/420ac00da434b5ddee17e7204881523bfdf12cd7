@@ -1,2 +1,0 @@
-r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
-connect$netlink(r0, &(0x7f0000000180), 0xc)

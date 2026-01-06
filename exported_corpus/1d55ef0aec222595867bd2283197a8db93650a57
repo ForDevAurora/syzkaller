@@ -1,4 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = socket$packet(0x11, 0x3, 0x300)
-ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f0000000000)={'ip6_vti0\x00', <r2=>0x0})
-sendto$packet(r1, &(0x7f0000000080)="4cbd244a9ca30454260739dc22c112e821a9dead0f94e3ce7b004f462ecb552927bf56bbdfeefd0090ed5b2b3fbebf88", 0x30, 0xc810, &(0x7f0000000040)={0x11, 0x3, r2, 0x1, 0x81}, 0x14)

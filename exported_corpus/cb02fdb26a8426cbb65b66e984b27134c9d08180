@@ -1,3 +1,0 @@
-r0 = socket$key(0xf, 0x3, 0x2)
-ioctl$ifreq_SIOCGIFINDEX_batadv_hard(0xffffffffffffffff, 0x8933, &(0x7f0000000400)={'batadv_slave_0\x00'})
-sendmsg$key(r0, &(0x7f0000000080)={0x0, 0x0, &(0x7f0000000040)={&(0x7f00000003c0)=ANY=[@ANYBLOB="020a0c00090000002abd7000ffdbdf2502000a00ffff0000000000000000000005001a"], 0x48}}, 0x40)

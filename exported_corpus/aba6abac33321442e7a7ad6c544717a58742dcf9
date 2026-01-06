@@ -1,3 +1,0 @@
-syz_mac_addr_gen(&(0x7f0000000040)=@local, &(0x7f0000000080)=<r0=>0x0, &(0x7f00000000c0)=<r1=>0x0)
-syz_ipv6_addr_gen(&(0x7f00000000c0)=@local, &(0x7f0000000100)=<r2=>0x0, &(0x7f0000000140)=<r3=>0x0)
-syz_emit_ethernet(0x45d, &(0x7f0000000b00)=ANY=[@ANYRES32=r0, @ANYRES16=r1, @ANYRES32=r0, @ANYRES16=r1, @ANYBLOB="86dd65a47d7204272b01", @ANYRES64=r2, @ANYRES64=r3, @ANYRES64=r2, @ANYRES64=r3, @ANYBLOB="330003"], 0x0)

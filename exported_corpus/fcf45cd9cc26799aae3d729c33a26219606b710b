@@ -1,2 +1,0 @@
-r0 = socket$inet_udp(0x2, 0x2, 0x0)
-setsockopt$inet_buf(r0, 0x0, 0x20, &(0x7f0000000300)="2286337a0d2ec5e6ce67a1bf", 0xc)

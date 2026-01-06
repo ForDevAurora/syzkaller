@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$mptcp(&(0x7f0000000b00), 0xffffffffffffffff)
-sendmsg$MPTCP_PM_CMD_GET_ADDR(r0, &(0x7f0000000f40)={0x0, 0x0, &(0x7f0000000f00)={&(0x7f0000000e40)=ANY=[@ANYBLOB=' \x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01932bbd7000fbdbdf25030000000400018008000400"], 0x20}, 0x1, 0x0, 0x0, 0x4008011}, 0xc014)

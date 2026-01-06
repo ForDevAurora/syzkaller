@@ -1,2 +1,0 @@
-syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0)=<r0=>0x0, &(0x7f0000000100)=<r1=>0x0)
-syz_emit_ethernet(0xfcb5, &(0x7f0000000180)={{r0, r1}, {r0, r1}, @void, {@canfd={0xd, {{0x0, 0x0, 0x0, 0x1}, 0x2b, 0x2, 0x0, 0x0, "5aa05b9ab3d9b2ba84c752c0418f3b3d173e235f355073da0299f71027ea1bdc908e10b594fc2eb0835031fcf2b731055e07e485acbd2ea9ac79d232f4087c89"}}}}, 0x0)

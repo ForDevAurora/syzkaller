@@ -1,2 +1,0 @@
-r0 = syz_init_net_socket$bt_hidp(0x1f, 0x3, 0x6)
-write$RDMA_USER_CM_CMD_RESOLVE_ADDR(r0, 0x0, 0x0)

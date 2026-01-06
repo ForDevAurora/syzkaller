@@ -1,3 +1,0 @@
-socket$inet(0x2, 0xa, 0x8)
-syz_mac_addr_gen(&(0x7f0000000000)=@broadcast, &(0x7f0000000040)=<r0=>0x0, &(0x7f0000000080)=<r1=>0x0)
-syz_emit_ethernet(0x3318, &(0x7f0000000a40)={{r0, r1}, {}, @void, {@ipv4={0x800, @udp={{0x5, 0x4, 0x0, 0x0, 0x81}, {0x0, 0x0, 0x6d, 0x0, @wg=@data={0x4, 0x0, 0x0, "953501a0830eaf96d1f745a45602f1da219a544b77b026ca45d37bd89211bdd14ba5487321b5459bbfc55a3617db2b2b498f2f24b73482cba0f526a3bd47845d05963b0c145a5b729bc86e3a726cac5d6eeb346b8f"}}}}}}, 0x0)

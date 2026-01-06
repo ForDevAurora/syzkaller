@@ -1,5 +1,0 @@
-r0 = socket$l2tp6(0xa, 0x2, 0x73)
-syz_ipv6_addr_gen(&(0x7f00000000c0)=@ipv4, &(0x7f0000000100)=<r1=>0x0, &(0x7f0000000140)=<r2=>0x0)
-r3 = socket$inet6_udp(0xa, 0x2, 0x0)
-ioctl$sock_SIOCGIFINDEX(r3, 0x8933, &(0x7f0000000100)={'sit0\x00', <r4=>0x0})
-ioctl$sock_inet6_SIOCSIFDSTADDR(r0, 0x8918, &(0x7f0000000180)={{r1, r2}, 0x2, r4})

@@ -1,2 +1,0 @@
-r0 = socket$inet_sctp(0x2, 0x5, 0x84)
-ioctl$sock_inet_SIOCSIFNETMASK(r0, 0x891c, &(0x7f0000000180)={'ip_vti0\x00'})

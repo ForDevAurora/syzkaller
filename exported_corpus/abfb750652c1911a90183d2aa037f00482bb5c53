@@ -1,2 +1,0 @@
-r0 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
-ioctl$SIOCSIFMTU(r0, 0x8922, &(0x7f0000001400)={'macsec0\x00', 0x2})

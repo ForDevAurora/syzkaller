@@ -1,5 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000200), 0xffffffffffffffff)
-r2 = socket$inet_sctp(0x2, 0x1, 0x84)
-ioctl$sock_SIOCGIFINDEX_80211(r2, 0x8933, &(0x7f0000000040)={'wlan0\x00', <r3=>0x0})
-sendmsg$NL80211_CMD_SET_INTERFACE(r0, &(0x7f0000000340)={0x0, 0x0, &(0x7f0000000300)={&(0x7f0000000240)=ANY=[@ANYBLOB='$\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="0500000000000000e9ff0500000008000300", @ANYRES32=r3], 0x24}}, 0x0)

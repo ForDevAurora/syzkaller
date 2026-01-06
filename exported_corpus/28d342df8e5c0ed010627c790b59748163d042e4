@@ -1,2 +1,0 @@
-r0 = socket$inet_smc(0x2b, 0x1, 0x0)
-setsockopt$inet_tcp_TLS_TX(r0, 0x6, 0x1, &(0x7f0000000100)=@ccm_128={{0x303}, "4aab7e54ea660bd4", "b522d0dcab62cfb7fc3cd6dc2462df56", "ed8c54e7", "09a4fbdb1f489c73"}, 0x28)

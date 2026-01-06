@@ -1,5 +1,0 @@
-r0 = socket$nl_route(0x10, 0x3, 0x0)
-r1 = socket$nl_generic(0x10, 0x3, 0x10)
-ioctl$ifreq_SIOCGIFINDEX_batadv_mesh(r1, 0x8933, &(0x7f0000000040)={'batadv0\x00', <r2=>0x0})
-syz_mac_addr_gen(&(0x7f0000000040)=@link_local={0x1, 0x80, 0xc2, 0x0, 0x0, 0xe}, &(0x7f0000000080)=<r3=>0x0, &(0x7f00000000c0))
-sendmsg$nl_route(r0, &(0x7f0000000100)={0x0, 0x0, &(0x7f0000000000)={&(0x7f0000000200)=ANY=[@ANYBLOB="c40000001c0001002cbd7000ffdbdf2507000000", @ANYRES32=r2, @ANYBLOB="0000ca07140003000500000004000000000000000000140008000900040000110a000200", @ANYRES32=r3], 0xc4}, 0x1, 0x0, 0x0, 0x4048050}, 0x890)

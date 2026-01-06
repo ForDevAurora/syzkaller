@@ -1,2 +1,0 @@
-r0 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
-setsockopt$inet6_buf(r0, 0x29, 0xca, &(0x7f00000002c0)="010008aa2ee675093b0c45f1", 0xc)

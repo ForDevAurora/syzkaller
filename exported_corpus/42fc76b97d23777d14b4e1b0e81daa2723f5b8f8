@@ -1,4 +1,0 @@
-r0 = syz_ipv4_addr_gen(&(0x7f0000000000)=@multicast1)
-r1 = socket$l2tp6(0xa, 0x2, 0x73)
-syz_ipv6_addr_gen(&(0x7f00000006c0)=@ipv4={'\x00', '\xff\xff', r0}, &(0x7f0000000700)=<r2=>0x0, &(0x7f0000000740)=<r3=>0x0)
-connect$l2tp6(r1, &(0x7f0000000780)={0xa, 0x0, 0x7300000, {r2, r3}, 0xfffffffb, 0x4}, 0x20)

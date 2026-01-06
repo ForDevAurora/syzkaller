@@ -1,4 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$ieee802154(&(0x7f00000000c0), r1)
-sendmsg$IEEE802154_SET_MACPARAMS(r0, &(0x7f0000000400)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000080)=ANY=[@ANYBLOB="14000000", @ANYRES16=r2, @ANYBLOB="7f1dffe096b02899b0b727"], 0x14}, 0x1, 0x0, 0x0, 0x81}, 0x240408d4)

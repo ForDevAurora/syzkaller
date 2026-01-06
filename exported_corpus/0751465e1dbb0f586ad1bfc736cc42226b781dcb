@@ -1,2 +1,0 @@
-r0 = socket$inet_udplite(0x2, 0x2, 0x88)
-ioctl$sock_ipv6_tunnel_SIOCADD6RD(r0, 0x89f9, &(0x7f00000001c0)={'sit0\x00', 0x0})

@@ -1,3 +1,0 @@
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-r1 = epoll_create(0x5)
-epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f0000000000)={0x10000014})

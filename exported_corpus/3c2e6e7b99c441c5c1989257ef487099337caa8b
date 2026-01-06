@@ -1,2 +1,0 @@
-r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
-ioctl$sock_inet6_SIOCADDRT(r0, 0x890b, 0x0)

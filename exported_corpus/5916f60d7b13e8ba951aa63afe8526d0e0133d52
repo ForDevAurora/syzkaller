@@ -1,4 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-r2 = syz_genetlink_get_family_id$netlbl_mgmt(&(0x7f00000002c0), r1)
-sendmsg$NLBL_MGMT_C_ADD(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000200)={&(0x7f0000000300)={0xb8, r2, 0x1, 0x70bd27, 0x25dfdc03, {}, [@NLBL_MGMT_A_PROTOCOL={0x8, 0x2, 0x5}, @NLBL_MGMT_A_IPV6ADDR={0x14}, @NLBL_MGMT_A_DOMAIN={0x7f, 0x1, ':+1/.@*\x10\x00\xdc.\x82\f\xb9\xf3:xI5\r\xa7\xc1\xf1`\xc9\xe8\xc5z\xa2\xff\xb9\x86\v@\x12el\x98}\xdbC5K\xd8\xb5\xaf$7\x88\xc6c@~\xaei\xdc\x9dJQn\x01K\xbb. \xa9\xdd\xb0\xec\x9co\xd7\x06\xff\x8b\xdf\xfd\xe6\'D\xc2\x8c\x11\x9a\xcau\x14\xa0k\xa6\xbc\xaf\xae\xe1\x1b\xbcx\xd7\xedr\xee\';!7\xf76VGsJx\xc4\biu\xf4\xed\x8bd\xdc\x16p'}, @NLBL_MGMT_A_IPV4ADDR={0x8}]}, 0xb8}, 0x1, 0x0, 0x0, 0x24084841}, 0x40010)

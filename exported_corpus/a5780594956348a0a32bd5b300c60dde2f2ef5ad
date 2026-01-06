@@ -1,6 +1,0 @@
-r0 = socket$l2tp(0x2, 0x2, 0x73)
-r1 = syz_open_dev$ndb(&(0x7f0000000240), 0x0, 0x40)
-r2 = syz_open_dev$ndb(&(0x7f0000000000), 0x0, 0x123e02)
-ioctl$NBD_SET_SOCK(r2, 0xab00, r0)
-ioctl$NBD_DO_IT(r2, 0xab03)
-ioctl$NBD_CLEAR_SOCK(r1, 0xab04)

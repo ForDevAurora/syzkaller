@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$tipc(&(0x7f0000000080), 0xffffffffffffffff)
-sendmsg$TIPC_CMD_RESET_LINK_STATS(r0, &(0x7f0000004b40)={0x0, 0x0, &(0x7f0000004b00)={&(0x7f0000004ac0)=ANY=[@ANYBLOB='0\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010026bd7000fedbdf2501000000000000000c4100000014001462726f6164636173742d6c696e6beb"], 0x30}, 0x1, 0x0, 0x0, 0xc800}, 0x20004000)

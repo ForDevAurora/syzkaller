@@ -1,2 +1,0 @@
-r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
-syz_genetlink_get_family_id$nfc(&(0x7f0000000fc0), r0)

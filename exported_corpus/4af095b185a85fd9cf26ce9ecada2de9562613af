@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000a80), 0xffffffffffffffff)
-sendmsg$NL80211_CMD_SET_KEY(r0, &(0x7f0000000b40)={0x0, 0x0, &(0x7f0000000b00)={&(0x7f0000000040)=ANY=[@ANYBLOB='0\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="010028bd7000fcdbdf250a00000008000300", @ANYRES32, @ANYBLOB="14005081"], 0x30}, 0x1, 0x0, 0x0, 0x4000}, 0x84)

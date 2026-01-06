@@ -1,3 +1,0 @@
-r0 = socket$inet_mptcp(0x2, 0x1, 0x106)
-listen(r0, 0x977d)
-ioctl$sock_inet_tcp_SIOCOUTQ(r0, 0x5411, &(0x7f0000000040))

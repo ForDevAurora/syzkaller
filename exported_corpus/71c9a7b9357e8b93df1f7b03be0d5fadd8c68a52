@@ -1,4 +1,0 @@
-r0 = socket$packet(0x11, 0x2, 0x300)
-r1 = socket$inet_tcp(0x2, 0x1, 0x0)
-ioctl$sock_inet_SIOCGIFNETMASK(r1, 0x891b, &(0x7f0000000240)={'lo\x00', {0x2, <r2=>0x0, <r3=>0x0}})
-ioctl$sock_inet_SIOCSIFNETMASK(r0, 0x891c, &(0x7f00000003c0)={'ip6gretap0\x00', {0x2, r2, r3}})

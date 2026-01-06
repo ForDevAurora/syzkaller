@@ -1,5 +1,0 @@
-r0 = socket$inet_udplite(0x2, 0x2, 0x88)
-ioctl$sock_ipv4_tunnel_SIOCADDTUNNEL(r0, 0x89f1, &(0x7f0000000a80)={'sit0\x00', &(0x7f0000000a00)={'gre0\x00', 0x0, 0x40, 0x20, 0x1, 0x7, {{0x5, 0x4, 0x3, 0x23, 0x14, 0x67, 0x0, 0x0, 0x29}}}})
-syz_init_net_socket$nl_rdma(0x10, 0x3, 0x10)
-r1 = socket$inet6(0xa, 0x2, 0x0)
-sendmmsg$inet6(r1, &(0x7f0000004c00)=[{{0x0, 0x0, &(0x7f0000001040)=[{&(0x7f0000000980)="9ffa1dcd49d9cec135ddbf987d92974977d1ef5696788ae99af7687396bc00705afe4fbe8d0cec969a68d19d19f35ec8ba461162927bdc2e2f4a3edf583a13988f481f14794f4797fe6307c631590e45df57fdc25c0ee3ec7f59cfb2e235eca30a88fbbb094af767a5fbe5cd01e56bf80632e640c3df9cf4a3468562cc3e3b70c572470b27ed44e55ecd19612896a9f743", 0x91}], 0x1}}], 0x1, 0x48000)

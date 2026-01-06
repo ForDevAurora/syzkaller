@@ -1,4 +1,0 @@
-r0 = syz_ipv4_addr_gen(&(0x7f0000000140)=@rand_addr=0x64010101)
-syz_ipv6_addr_gen(&(0x7f0000000540)=@ipv4={'\x00', '\xff\xff', r0}, &(0x7f0000000580)=<r1=>0x0, &(0x7f0000000600)=<r2=>0x0)
-r3 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-bind$inet6(r3, &(0x7f0000000080)={0xa, 0x0, 0x4000, {r1, r2}, 0x95b}, 0x1c)

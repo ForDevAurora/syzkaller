@@ -1,3 +1,0 @@
-syz_mac_addr_gen(&(0x7f0000000080)=@broadcast, &(0x7f00000000c0)=<r0=>0x0, &(0x7f0000000100)=<r1=>0x0)
-syz_ipv6_addr_gen(&(0x7f0000000400)=@local, &(0x7f0000000440)=<r2=>0x0, &(0x7f0000000480)=<r3=>0x0)
-syz_emit_ethernet(0x67, &(0x7f0000000200)={{r0, r1}, {r0, r1}, @void, {@ipv6={0x86dd, @generic={0x0, 0x6, "e228c6", 0x31, 0x67, 0x1, {r2, r3}, {r2, r3}, {[@fragment={0x21, 0x0, 0x7f, 0x0, 0x0, 0x16, 0x68}], "0a2f4795cd0087c79217a7c4fe44278722d84d83ed2de239a761203d21bd44bdad05d23f62f1468c41"}}}}}, 0x0)

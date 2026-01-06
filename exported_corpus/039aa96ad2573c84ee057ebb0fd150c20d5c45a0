@@ -1,4 +1,0 @@
-r0 = socket$can_j1939(0x1d, 0x2, 0x7)
-ioctl$ifreq_SIOCGIFINDEX_vcan(r0, 0x8933, &(0x7f0000002880)={'vxcan0\x00', <r1=>0x0})
-r2 = socket$packet(0x11, 0x3, 0x300)
-sendto$packet(r2, &(0x7f0000000440)="cd7111477e7fa7a070ac13e2f8a9c297132988eada24ac27e6a17976705dffd226e3149b2fde9afc966db64fb549a2880f06a593e1cf1a8be47fe0707c8a2aee5e5d5be1c9a8c1f131", 0x49, 0x4000000, &(0x7f0000000500)={0x11, 0x0, r1, 0x1, 0x23}, 0x14)

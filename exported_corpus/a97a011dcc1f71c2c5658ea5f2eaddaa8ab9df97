@@ -1,3 +1,0 @@
-r0 = socket$nl_generic(0x10, 0x3, 0x10)
-r1 = syz_genetlink_get_family_id$devlink(&(0x7f0000000040), 0xffffffffffffffff)
-sendmsg$DEVLINK_CMD_PORT_GET(r0, &(0x7f00000003c0)={0x0, 0x0, &(0x7f0000000380)={&(0x7f0000000080)=ANY=[@ANYBLOB="14000000", @ANYRES16=r1, @ANYBLOB="010028bd700008dcf2022d00a6"], 0x14}, 0x1, 0x0, 0x0, 0x40090}, 0x40000)

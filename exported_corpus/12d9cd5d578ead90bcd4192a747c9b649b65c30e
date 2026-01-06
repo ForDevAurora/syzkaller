@@ -1,2 +1,0 @@
-r0 = socket$inet_sctp(0x2, 0x5, 0x84)
-connect$unix(r0, &(0x7f0000000bc0)=@file={0x0, './file0\x00'}, 0x6e)

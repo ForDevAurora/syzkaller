@@ -1,3 +1,0 @@
-ioctl$SIOCSIFMTU(0xffffffffffffffff, 0x8922, &(0x7f0000000200)={'macvlan1\x00', 0x3d2a})
-r0 = socket$inet6_mptcp(0xa, 0x1, 0x106)
-ioctl$sock_proto_private(r0, 0x89b1, &(0x7f0000000200))

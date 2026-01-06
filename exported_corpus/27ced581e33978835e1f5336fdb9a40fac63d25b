@@ -1,3 +1,0 @@
-r0 = socket$inet_sctp(0x2, 0x1, 0x84)
-r1 = syz_ipv4_addr_gen(&(0x7f0000000000)=@loopback)
-ioctl$sock_inet_SIOCSIFDSTADDR(r0, 0x8918, &(0x7f0000000200)={'macsec0\x00', {0x2, 0x0, r1}})
